@@ -1,13 +1,13 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-//#include "6IT.h"
-//#include "6OO.h"
+#include "6IT.h"
+#include "6OO.h"
 
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
 
-SCANNER_METHOD_CONST(int, is_eof)
+_6OO_METHOD_CONST(int, is_eof)
 {
 	int eof = 0;
 
@@ -16,7 +16,7 @@ SCANNER_METHOD_CONST(int, is_eof)
 	return eof;
 }
 
-SCANNER_METHOD_CONST(int, is_eol)
+_6OO_METHOD_CONST(int, is_eol)
 {
 	if (_This->is_char(_This, '\n')) return 1;
 	if (_This->is_char(_This, '\r')) return 1;
@@ -24,7 +24,7 @@ SCANNER_METHOD_CONST(int, is_eol)
 	return 0;
 }
 
-SCANNER_METHOD_CONST(int, is_whitespace)
+_6OO_METHOD_CONST(int, is_whitespace)
 {
 	if (_This->is_char(_This, ' ')) return 1;
 	if (_This->is_char(_This, '\t')) return 1;
@@ -34,13 +34,13 @@ SCANNER_METHOD_CONST(int, is_whitespace)
 	return 0;
 }
 
-SCANNER_METHODX_CONST(int, is_char, char ch)
+_6OO_METHODX_CONST(int, is_char, char ch)
 {
 	return _This->state.current_char == ch;
 }
 
 // todo crz: move to matching
-SCANNER_METHODX(int, matches_string, char const *s)
+_6OO_METHODX(int, matches_string, char const *s)
 {
 	if (_This->state.current_char != s[0]) return 0;
 
@@ -62,27 +62,27 @@ SCANNER_METHODX(int, matches_string, char const *s)
 	return 1;
 }
 
-SCANNER_METHOD_CONST(int, is_alpha)
+_6OO_METHOD_CONST(int, is_alpha)
 {
 	return isalpha(_This->state.current_char);
 }
 
-SCANNER_METHOD_CONST(int, is_digit)
+_6OO_METHOD_CONST(int, is_digit)
 {
 	return isdigit(_This->state.current_char);
 }
 
-SCANNER_METHOD_CONST(int, is_alphanumeric)
+_6OO_METHOD_CONST(int, is_alphanumeric)
 {
 	return isalnum(_This->state.current_char) || _This->is_char(_This, '_');
 }
 
-SCANNER_METHODX_CONST(int, is_token, int id)
+_6OO_METHODX_CONST(int, is_token, int id)
 {
 	return id == _This->token.id;
 }
 
-SCANNER_METHODX(void, check_token, token_id_t required)
+_6OO_METHODX(void, check_token, token_id_t required)
 {
 	if (_This->token.id == required) return;
 
@@ -95,14 +95,14 @@ SCANNER_METHODX(void, check_token, token_id_t required)
 	_This->die(_This, ERROR_SCANNER_UNEXPECTED_TOKEN, "unexpected token");
 }
 
-SCANNER_METHODX(void, check_token_type, token_id_t type)
+_6OO_METHODX(void, check_token_type, token_id_t type)
 {
 	if (_This->token.type == type) return;
 
 	_This->die(_This, ERROR_SCANNER_UNEXPECTED_TOKEN_TYPE, "unexpected token");
 }
 
-SCANNER_METHODX(int, match_token, char const *token)
+_6OO_METHODX(int, match_token, char const *token)
 {
 	int i = 0;
 	while (_This->token_strings[i].id)
@@ -119,7 +119,7 @@ SCANNER_METHODX(int, match_token, char const *token)
 	return 0;
 }
 
-SCANNER_METHOD(int, match_next_token)
+_6OO_METHOD(int, match_next_token)
 {
 	int i = 0;
 	while (_This->token_strings[i].id)

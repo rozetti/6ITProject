@@ -1,8 +1,9 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6EV.h"
 
-_6IT_PRIVATE struct mnemonic_t const *get_mnemonic(opcode_t opcode)
+_6IT_PRIVATE struct mnemonic_t const *_6EV_get_mnemonic(opcode_t opcode)
 {
 	int i = 0;
 

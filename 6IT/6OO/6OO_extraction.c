@@ -1,11 +1,11 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-//#include "6IT.h"
-//#include "6OO.h"
+#include "6IT.h"
+#include "6OO.h"
 
 #include <string.h>
 
-SCANNER_METHOD(void, extract_string_literal)
+_6OO_METHOD(void, extract_string_literal)
 {
 	if (!_This->is_char(_This, '\"'))
 	{
@@ -50,7 +50,7 @@ SCANNER_METHOD(void, extract_string_literal)
 	_This->move_next_char(_This);
 }
 
-SCANNER_METHOD(void, extract_char_literal)
+_6OO_METHOD(void, extract_char_literal)
 {
 	if (!_This->is_char(_This, '\''))
 	{
@@ -82,7 +82,7 @@ SCANNER_METHOD(void, extract_char_literal)
 	_This->move_next_char(_This);
 }
 
-SCANNER_METHOD(void, extract_numeric_literal)
+_6OO_METHOD(void, extract_numeric_literal)
 {
 	int i = 0;
 
@@ -95,7 +95,7 @@ SCANNER_METHOD(void, extract_numeric_literal)
 	_This->token.token[i] = 0;
 }
 
-SCANNER_METHOD(void, extract_alphanumeric)
+_6OO_METHOD(void, extract_alphanumeric)
 {
 	int i = 0;
 
@@ -108,7 +108,7 @@ SCANNER_METHOD(void, extract_alphanumeric)
 	_This->token.token[i] = 0;
 }
 
-SCANNER_METHOD(void, extract_char)
+_6OO_METHOD(void, extract_char)
 {
 	if (_This->is_eof(_This)) return;
 
@@ -117,7 +117,7 @@ SCANNER_METHOD(void, extract_char)
 	_This->move_next_char(_This);
 }
 
-SCANNER_METHODX(void, extract_chars, int n)
+_6OO_METHODX(void, extract_chars, int n)
 {
 	int i = 0;
 	for (; i < n; ++i)
@@ -128,13 +128,3 @@ SCANNER_METHODX(void, extract_chars, int n)
 
 	_This->token.token[i] = 0;
 }
-
-//void _6OO_bind_extraction_methods(struct scanner_t *scanner)
-//{
-//	scanner->extract_alphanumeric = extract_alphanumeric;
-//	scanner->extract_char = extract_char;
-//	scanner->extract_chars = extract_chars;
-//	scanner->extract_char_literal = extract_char_literal;
-//	scanner->extract_numeric_literal = extract_numeric_literal;
-//	scanner->extract_string_literal = extract_string_literal;
-//}

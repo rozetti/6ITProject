@@ -1,11 +1,11 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-//#include "6IT.h"
-//#include "6OO.h"
+#include "6IT.h"
+#include "6OO.h"
 
 #include <stdio.h>
 
-static char const *get_token_string(struct scanner_t *scanner, int id)
+static char const *_6OO_get_token_string(struct scanner_t *scanner, int id)
 {
 	int i = 0;
 	while (scanner->token_strings[i].id)
@@ -17,7 +17,7 @@ static char const *get_token_string(struct scanner_t *scanner, int id)
 	return 0;
 }
 
-static char const *get_token_type_string(token_type_t type)
+static char const *_6OO_get_token_type_string(token_type_t type)
 {
 	switch (type)
 	{
@@ -85,6 +85,7 @@ struct token_string_t _6OO_default_token_strings[] =
 	0, 0
 };
 
+// todo crz: look at why this has old-style signature
 void _6OO_print_token(struct scanner_t *scanner, struct token_t const *token)
 {
 	char s[1000];

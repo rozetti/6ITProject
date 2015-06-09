@@ -1,13 +1,13 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
-
 #include "SubC.h"
+
 #include "6IL/6IL_opcodes.h"
 
 #include <string.h>
 
-COMPILER_METHODX_CONST(void, compile_function_parameters, struct callable_unit_t *function)
+_SUBC_METHODX_CONST(void, compile_function_parameters, struct callable_unit_t *function)
 {
 	struct machine_t *machine = _This->machine;
 	struct frame_t *frame = _State->frame;
@@ -47,7 +47,7 @@ COMPILER_METHODX_CONST(void, compile_function_parameters, struct callable_unit_t
 	function->number_of_parameters = parameter_index;
 }
 
-COMPILER_METHOD_CONST(void, compile_function)
+_SUBC_METHOD_CONST(void, compile_function)
 {
 	struct machine_t *machine = _This->machine;
 	struct frame_t *frame = _State->frame;
@@ -75,7 +75,7 @@ COMPILER_METHOD_CONST(void, compile_function)
 
 	int rsp = _REG_RSP(_REGS(machine));
 
-	compile_function_parameters(_This, _State, function);
+	_SUBC_METHOD_NAME(compile_function_parameters)(_This, _State, function);
 
 	if (!scanner->try_consume_token(scanner, TOKEN_OPEN_BRACE))
 	{
@@ -94,7 +94,7 @@ COMPILER_METHOD_CONST(void, compile_function)
 	function->entry_point_program_counter = _REG_FCP(_REGS(machine));
 	function->is_resolved = 1;
 
-	compile_block(_This, _State);
+	_SUBC_METHOD_NAME(compile_block)(_This, _State);
 	if (!_State->fatal)
 	{
 		scanner->consume_token(scanner, TOKEN_CLOSE_BRACE);
@@ -135,7 +135,7 @@ COMPILER_METHOD_CONST(void, compile_function)
 	}
 }
 
-COMPILER_METHOD_CONST(void, compile_return)
+_SUBC_METHOD_CONST(void, compile_return)
 {
 	struct instruction_emitter_t *emitter = &_This->machine->instruction_emitter;
 	struct scanner_t *scanner = _This->scanner;

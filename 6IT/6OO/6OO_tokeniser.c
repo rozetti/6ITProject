@@ -5,7 +5,7 @@
 
 #include "6OO_reader.c" // hack crz
 
-SCANNER_METHOD(int, tokenise)
+_6OO_METHOD(int, tokenise)
 {
 	// todo crz: make this load lazily
 	if (!(_This->source = scanner_load_program(_This)))
@@ -26,7 +26,7 @@ SCANNER_METHOD(int, tokenise)
 	return 1;
 }
 
-SCANNER_METHOD(void, lex_next_token)
+_6OO_METHOD(void, lex_next_token)
 {
 	_This->token.token[0] = 0;
 	_This->token.type = TOKEN_TYPE_INVALID;

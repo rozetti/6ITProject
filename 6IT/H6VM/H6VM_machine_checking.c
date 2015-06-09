@@ -3,27 +3,27 @@
 #include "6IT.h"
 
 // todo crz: much much more of this
-int machine_check_state(struct machine_t *machine)
+_H6VM_METHOD(int, check_state)
 {
-	int vsp = _REG_VSP(_REGS(machine));
-	int rsp = _REG_RSP(_REGS(machine));
-	int esp = _REG_ESP(_REGS(machine));
+	int vsp = _REG_VSP(_REGS(_This));
+	int rsp = _REG_RSP(_REGS(_This));
+	int esp = _REG_ESP(_REGS(_This));
 
 	if (-1 > vsp)
 	{
-		machine->printf(machine, "Error: VSP is %d\n", vsp);
+		_This->printf(_This, "Error: VSP is %d\n", vsp);
 		return 0;
 	}
 
-	if (rsp < machine->config.max_number_of_globals)
+	if (rsp < _This->config.max_number_of_globals)
 	{
-		machine->printf(machine, "Error: RSP is %d\n", rsp);
+		_This->printf(_This, "Error: RSP is %d\n", rsp);
 		return 0;
 	}
 
 	if (0 > esp)
 	{
-		machine->printf(machine, "Error: ESP is %d\n", esp);
+		_This->printf(_This, "Error: ESP is %d\n", esp);
 		return 0;
 	}
 

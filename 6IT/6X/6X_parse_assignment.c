@@ -1,9 +1,10 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6X.h"
 #include "6EV/6EV_opcodes.h"
 
-EXPRESSION_PARSER_METHODXX(void, parse_assignment, struct expression_parser_state_t *state, struct expression_t *expression)
+_6X_METHODXX(void, parse_assignment, struct expression_parser_state_t *state, struct expression_t *expression)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
@@ -71,7 +72,7 @@ EXPRESSION_PARSER_METHODXX(void, parse_assignment, struct expression_parser_stat
 	_This->parse_unary_post_assignment(_This, state, expression);
 }
 
-EXPRESSION_PARSER_METHODXX(void, parse_unary_post_assignment, struct expression_parser_state_t *state, struct expression_t *expression)
+_6X_METHODXX(void, parse_unary_post_assignment, struct expression_parser_state_t *state, struct expression_t *expression)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
@@ -121,7 +122,7 @@ EXPRESSION_PARSER_METHODXX(void, parse_unary_post_assignment, struct expression_
 	_This->parse_relational(_This, state, expression);
 }
 
-EXPRESSION_PARSER_METHODXX(void, parse_unary_pre_assignment, struct expression_parser_state_t *state, struct expression_t *expression)
+_6X_METHODXX(void, parse_unary_pre_assignment, struct expression_parser_state_t *state, struct expression_t *expression)
 {
 	struct machine_t *machine = state->parser->machine;
 	struct scanner_t *scanner = state->parser->scanner;

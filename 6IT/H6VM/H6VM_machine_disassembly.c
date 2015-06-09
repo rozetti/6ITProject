@@ -1,12 +1,13 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "H6VM.h"
 
 #include <string.h>
 #include <stdio.h>
 
 // hack crz: replace these with generalised versions
-_6IT_PRIVATE char const * _6IT_THISCALLX(machine, type_base_description, data_type_t type)
+_6IT_PRIVATE char const * _6IT_THISCALLX(machine, _H6VM_METHOD_NAME(type_base_description), data_type_t type)
 {
 	if (TYPE_VARARG == type)
 	{
@@ -28,7 +29,7 @@ _6IT_PRIVATE char const * _6IT_THISCALLX(machine, type_base_description, data_ty
 	return "INVALID";
 }
 
-static char const *format_machine_code(struct machine_t *machine, int type, int code)
+static char const *_H6VM_METHOD_NAME(format_machine_code)(struct machine_t *machine, int type, int code)
 {
 	static char s[100];
 
@@ -60,7 +61,7 @@ static char const *format_machine_code(struct machine_t *machine, int type, int 
 	return s;
 }
 
-static char const *machine_format_operand(struct machine_t *machine, int type, int operand)
+static char const *_H6VM_METHOD_NAME(format_operand)(struct machine_t *machine, int type, int operand)
 {
 	static char s[20];
 	switch (type)
@@ -119,7 +120,7 @@ static char const *machine_format_operand(struct machine_t *machine, int type, i
 	return s;
 }
 
-MACHINE_METHODXX(int, get_referenced_expressions, int pc, int *expressions)
+_H6VM_METHODXX(int, get_referenced_expressions, int pc, int *expressions)
 {
 	int number_of_expressions = 0;
 
@@ -142,7 +143,7 @@ MACHINE_METHODXX(int, get_referenced_expressions, int pc, int *expressions)
 	return number_of_expressions;
 }
 
-MACHINE_METHODX(char const *, format_primitive_value, struct value_t *value)
+_H6VM_METHODX(char const *, format_primitive_value, struct value_t *value)
 {
 	static char buffer[30];
 	switch (value->type)
@@ -165,7 +166,7 @@ MACHINE_METHODX(char const *, format_primitive_value, struct value_t *value)
 	return buffer;
 }
 
-MACHINE_METHODXX(char const *, disassemble_instruction, int pc, int callable_unit_PC)
+_H6VM_METHODXX(char const *, disassemble_instruction, int pc, int callable_unit_PC)
 {
 	_SET_PC(_REGS(_This), pc);
 	struct mnemonic_t const *mn = _This->processor.get_mnemonic(OPCODE(_This));
@@ -190,7 +191,7 @@ MACHINE_METHODXX(char const *, disassemble_instruction, int pc, int callable_uni
 	if (mn->parm_type)
 	{
 		strcat(s, " ");
-		strcat(s, machine_format_operand(_This, mn->parm_type, OPCODE_PARM(_This)));
+		strcat(s, _H6VM_METHOD_NAME(format_operand)(_This, mn->parm_type, OPCODE_PARM(_This)));
 	}
 
 	opcode_t *operand_p = _REG_IP(_REGS(_This)) + 1;// _ip + 1;
@@ -200,7 +201,7 @@ MACHINE_METHODXX(char const *, disassemble_instruction, int pc, int callable_uni
 
 		codes[i] = operand;
 		strcat(s, " ");
-		strcat(s, machine_format_operand(_This, mn->operands[i], operand));
+		strcat(s, _H6VM_METHOD_NAME(format_operand)(_This, mn->operands[i], operand));
 	}
 
 	while (strlen(s) < 40) strcat(s, " ");
@@ -225,7 +226,7 @@ MACHINE_METHODXX(char const *, disassemble_instruction, int pc, int callable_uni
 	return s;
 }
 
-MACHINE_METHODX(char const *, type_description, data_type_t type)
+_H6VM_METHODX(char const *, type_description, data_type_t type)
 {
 	static char buff[30];
 	buff[0] = 0;
@@ -240,7 +241,7 @@ MACHINE_METHODX(char const *, type_description, data_type_t type)
 		strcat(buff, "unsigned ");
 	}
 
-	strcat(buff, type_base_description(_This, type));
+	strcat(buff, _H6VM_METHOD_NAME(type_base_description)(_This, type));
 
 	if (type & TYPE_CONST)
 	{

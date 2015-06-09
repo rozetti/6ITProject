@@ -1,8 +1,9 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6YM.h"
 
-DOWNCOMPILER_METHODX_CONST(int, find_new_pc, int old_pc)
+_6YM_METHODX_CONST(int, find_new_pc, int old_pc)
 {
 	if (_This->verbosity)
 	{
@@ -30,7 +31,7 @@ DOWNCOMPILER_METHODX_CONST(int, find_new_pc, int old_pc)
 	return -1;
 }
 
-DOWNCOMPILER_METHODXX_CONST(void, add_fixup, int old_pc, int new_pc)
+_6YM_METHODXX_CONST(void, add_fixup, int old_pc, int new_pc)
 {
 	if (_This->verbosity)
 	{

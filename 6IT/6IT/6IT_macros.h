@@ -62,12 +62,12 @@
 #define INITIALISE_REQUIRED_ATTRIBUTES(T, M) \
 	_This->machine = (M)
 
-#define INITIALISE_COMMON_ATTRIBUTES(T, M) \
+#define INITIALISE_COMMON_ATTRIBUTES(T, NS, M) \
 	_This->base = _This; \
-	_This->get_error_string = T##_get_error_string; \
-	_This->destruct = T##_destruct; \
+	_This->destruct = _##NS##_destruct; \
+	_This->die = _##NS##_die; \
+	_This->get_error_string = _##NS##_get_error_string; \
 	_This->verbosity = 0; \
-	_This->die = T##_die; \
 	_This->environment = 0; \
 	_This->exception.fault_code = ITSOK; \
 	_This->exception.machine = (M); \

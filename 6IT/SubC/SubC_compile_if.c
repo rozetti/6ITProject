@@ -5,7 +5,7 @@
 #include "SubC.h"
 #include "6IL/6IL_opcodes.h"
 
-COMPILER_METHOD_CONST(void, compile_if)
+_SUBC_METHOD_CONST(void, compile_if)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
@@ -37,7 +37,7 @@ COMPILER_METHOD_CONST(void, compile_if)
 	{
 		has_true_block = 1;
 
-		compile_block(_This, _State);
+		_SUBC_METHOD_NAME(compile_block)(_This, _State);
 
 		scanner->consume_token(scanner, TOKEN_CLOSE_BRACE);
 	}
@@ -45,7 +45,7 @@ COMPILER_METHOD_CONST(void, compile_if)
 	{
 		has_true_block = 0;
 
-		compile_single_statement_scope(_This, _State);
+		_SUBC_METHOD_NAME(compile_single_statement_scope)(_This, _State);
 	}
 
 	if (scanner->try_consume_string(scanner, "else"))
@@ -61,7 +61,7 @@ COMPILER_METHOD_CONST(void, compile_if)
 		{
 			has_false_block = 1;
 
-			compile_block(_This, _State);
+			_SUBC_METHOD_NAME(compile_block)(_This, _State);
 
 			scanner->consume_token(scanner, TOKEN_CLOSE_BRACE);
 		}
@@ -69,7 +69,7 @@ COMPILER_METHOD_CONST(void, compile_if)
 		{
 			has_false_block = 0;
 
-			compile_single_statement_scope(_This, _State);
+			_SUBC_METHOD_NAME(compile_single_statement_scope)(_This, _State);
 		}
 
 		end_pc = _REG_FCP(_REGS(machine)) - _State->callable_unit_PC;

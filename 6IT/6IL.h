@@ -26,4 +26,9 @@ SOFTWARE.
 
 #pragma once
 
-#include "6IL_opcodes.h"
+#define _6IL_METHOD_NAME(NAME) (_6IL##_##NAME)
+#define _6IL_METHOD(R, NAME) PRIVATE_METHOD(debugger, R, _6IL_METHOD_NAME(NAME)) 
+#define _6IL_METHODX(R, NAME, P1) PRIVATE_METHODX(debugger, R, _6IL_METHOD_NAME(NAME), P1)
+#define _6IL_METHODXX(R, NAME, P1, P2) PRIVATE_METHODXX(debugger, R, _6IL_METHOD_NAME(NAME), P1, P2)
+
+#include "6IL/6IL_opcodes.h"

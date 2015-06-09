@@ -4,6 +4,7 @@
 
 struct bios_t _Bios; 
 
+#ifdef _6IT_AMALGAMATE_SOURCE
 #include "H6VM/H6VM_execution_stack.c"
 #include "H6VM/H6VM_evaluator_stack.c"
 #include "H6VM/H6VM_instruction_emitter.c"
@@ -13,4 +14,4 @@ struct bios_t _Bios;
 #include "H6VM/H6VM_debug.c"
 
 #include "H6VM/H6VM_machine.c"
-
+#endif

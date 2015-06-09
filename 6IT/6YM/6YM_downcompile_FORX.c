@@ -1,6 +1,7 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6YM.h"
 #include "6EV/6EV_opcodes.h"
 #include "6IL/6IL_opcodes.h"
 
@@ -9,7 +10,7 @@ static struct expression_t init_expression;
 static struct expression_t condition_expression;
 static struct expression_t iteration_expression;
 
-DOWNCOMPILER_METHOD_CONST(int, downcompile_FORRI)
+_6YM_METHOD_CONST(int, downcompile_FORRI)
 {
 	struct machine_t *machine = _This->machine;
 	struct instruction_emitter_t *emitter = &machine->instruction_emitter;
@@ -46,7 +47,7 @@ DOWNCOMPILER_METHOD_CONST(int, downcompile_FORRI)
 	_State->pc += machine->processor.get_instruction_length(OPCODE(machine));
 	while (_State->pc < _State->callable_unit_PC + OPERAND3(machine))
 	{
-		downcompile_instruction(_This, _State);
+		_6YM_METHOD_NAME(downcompile_instruction)(_This, _State);
 	}
 
 	opcode_t next_oc = OPCODE_INSTRUCTION(_REG_CS(_REGS(machine))[_State->pc]);
@@ -78,7 +79,7 @@ DOWNCOMPILER_METHOD_CONST(int, downcompile_FORRI)
 	return 1;
 }
 
-DOWNCOMPILER_METHOD_CONST(int, downcompile_FORX)
+_6YM_METHOD_CONST(int, downcompile_FORX)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -102,7 +103,7 @@ DOWNCOMPILER_METHOD_CONST(int, downcompile_FORX)
 		condition_expression.terms[0].data.as_integer == init_expression.terms[1].data.as_integer &&
 		init_expression.terms[1].data.as_integer == init_expression.terms[1].data.as_integer)
 	{
-		return downcompile_FORRI(_This, _State);
+		return _6YM_METHOD_NAME(downcompile_FORRI)(_This, _State);
 	}
 
 	return 0;

@@ -1,12 +1,13 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "H6VM.h"
 
 #include <stdlib.h>
 #include <memory.h>
 #include <string.h>
 
-_6IT_DESTRUCTOR(thread) 
+_6IT_DESTRUCTOR(thread, H6VM_THREAD) 
 { 
 	if (_REG_VS(&_This->registers))
 	{
@@ -27,12 +28,12 @@ _6IT_DESTRUCTOR(thread)
 	}
 }
 
-_6IT_THISCALL_DIE(thread)
+_6IT_THISCALL_DIE(thread, H6VM_THREAD)
 {
 	THROW(&_This->exception, fault_code);
 }
 
-_6IT_THISCALL_GET_ERROR_STRING(thread)
+_6IT_THISCALL_GET_ERROR_STRING(thread, H6VM_THREAD)
 {
 	return 0;
 }
@@ -92,9 +93,9 @@ static int construct_register_stack(struct thread_t *thread, int max_depth)
 	return 0;
 }
 
-_6IT_PUBLIC _6IT_CONSTRUCTORX(thread, thread, struct machine_config_t *config)
+_6IT_PUBLIC _6IT_CONSTRUCTORX(thread, H6VM_THREAD, struct machine_config_t *config)
 {
-	INITIALISE_COMMON_ATTRIBUTES(thread, _Machine);
+	INITIALISE_COMMON_ATTRIBUTES(thread, H6VM_THREAD, _Machine);
 
 	// todo crz: handle alloc errors
 	construct_stack(_This, config->max_number_of_frames);

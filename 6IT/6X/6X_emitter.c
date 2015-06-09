@@ -1,9 +1,10 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6X.h"
 #include "6EV/6EV_opcodes.h" // todo crz: please try to decouple this
 
-EXPRESSION_PARSER_METHODXXX(void, emit_string, struct expression_t *expression, int index, int source_position)
+_6X_METHODXXX(void, emit_string, struct expression_t *expression, int index, int source_position)
 {
 	struct expression_emitter_t *emitter = &_This->machine->expression_emitter;
 
@@ -16,7 +17,7 @@ EXPRESSION_PARSER_METHODXXX(void, emit_string, struct expression_t *expression, 
 	emitter->append_term(emitter, expression, &term, source_position);
 }
 
-EXPRESSION_PARSER_METHODXXX(void, emit_variable, struct expression_t *expression, struct register_t const *var, int source_position)
+_6X_METHODXXX(void, emit_variable, struct expression_t *expression, struct register_t const *var, int source_position)
 {
 	struct expression_emitter_t *emitter = &_This->machine->expression_emitter;
 
@@ -38,7 +39,7 @@ EXPRESSION_PARSER_METHODXXX(void, emit_variable, struct expression_t *expression
 	emitter->append_term(emitter, expression, &term, source_position);
 }
 
-EXPRESSION_PARSER_METHODXXX(void, emit_float, struct expression_t *expression, float value, int source_position)
+_6X_METHODXXX(void, emit_float, struct expression_t *expression, float value, int source_position)
 {
 	struct expression_emitter_t *emitter = &_This->machine->expression_emitter;
 
@@ -51,7 +52,7 @@ EXPRESSION_PARSER_METHODXXX(void, emit_float, struct expression_t *expression, f
 	emitter->append_term(emitter, expression, &term, source_position);
 }
 
-EXPRESSION_PARSER_METHODXXX(void, emit_integer, struct expression_t *expression, int value, int source_position)
+_6X_METHODXXX(void, emit_integer, struct expression_t *expression, int value, int source_position)
 {
 	struct expression_emitter_t *emitter = &_This->machine->expression_emitter;
 
@@ -64,7 +65,7 @@ EXPRESSION_PARSER_METHODXXX(void, emit_integer, struct expression_t *expression,
 	emitter->append_term(emitter, expression, &term, source_position);
 }
 
-EXPRESSION_PARSER_METHODXXXX(void, emit_call, struct expression_t *expression, struct callable_unit_t *function, int number_of_args, int source_position)
+_6X_METHODXXXX(void, emit_call, struct expression_t *expression, struct callable_unit_t *function, int number_of_args, int source_position)
 {
 	struct expression_emitter_t *emitter = &_This->machine->expression_emitter;
 
@@ -98,7 +99,7 @@ EXPRESSION_PARSER_METHODXXXX(void, emit_call, struct expression_t *expression, s
 	emitter->append_term(emitter, expression, &term, source_position);
 }
 
-EXPRESSION_PARSER_METHODXXX(void, emit_static_register_allocation, struct expression_t *expression, int idx, int source_position)
+_6X_METHODXXX(void, emit_static_register_allocation, struct expression_t *expression, int idx, int source_position)
 {
 	struct expression_emitter_t *emitter = &_This->machine->expression_emitter;
 
@@ -111,7 +112,7 @@ EXPRESSION_PARSER_METHODXXX(void, emit_static_register_allocation, struct expres
 	emitter->append_term(emitter, expression, &term, source_position);
 }
 
-EXPRESSION_PARSER_METHODXXX(void, emit_frame_register_allocation, struct expression_t *expression, int type, int source_position)
+_6X_METHODXXX(void, emit_frame_register_allocation, struct expression_t *expression, int type, int source_position)
 {
 	struct expression_emitter_t *emitter = &_This->machine->expression_emitter;
 

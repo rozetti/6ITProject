@@ -3,6 +3,7 @@
 #include "6IT.h"
 #include "6EV.h"
 
+#ifdef _6IT_AMALGAMATE_SOURCE
 #include "6EV/6EV_debug.c"
 #include "6EV/6EV_opcodes.c"
 #include "6EV/6EV_misc.c"
@@ -13,16 +14,18 @@
 #include "6EV/6EV_evaluator.c"
 #undef EVALUATOR_WITH_DEBUGGER
 #endif
+
 #include "6EV/6EV_evaluator.c"
+#endif
 
-_6IT_DESTRUCTOR(evaluator) { }
+_6IT_DESTRUCTOR(evaluator, 6EV) { }
 
-_6IT_THISCALL_DIE(evaluator)
+_6IT_THISCALL_DIE(evaluator, 6EV)
 {
 	THROW(&_This->exception, fault_code);
 }
 
-_6IT_THISCALL_GET_ERROR_STRING(evaluator)
+_6IT_THISCALL_GET_ERROR_STRING(evaluator, 6EV)
 {
 	switch (error)
 	{
@@ -47,16 +50,16 @@ _6IT_THISCALL_GET_ERROR_STRING(evaluator)
 
 _6IT_PUBLIC _6IT_CONSTRUCTOR(evaluator, 6EV)
 {
-	INITIALISE_COMMON_ATTRIBUTES(evaluator, _Machine);
+	INITIALISE_COMMON_ATTRIBUTES(evaluator, 6EV, _Machine);
 
-	_This->evaluate = evaluate;
+	_This->evaluate = _6EV_METHOD_NAME(evaluate);
 #ifdef _6IT_DEBU66ER
-	_This->evaluate_debug = evaluate_debug;
+	_This->evaluate_debug = _6EV_METHOD_NAME(evaluate_debug);
 #else
 	_This->evaluate_debug = 0; // todo crz: catch this
 #endif
-	_This->check_expression = check_expression;
-	_This->print_expression = print_expression;
-	_This->print_state = print_state;
-	_This->get_mnemonic = get_mnemonic;
+	_This->check_expression = _6EV_METHOD_NAME(check_expression);
+	_This->print_expression = _6EV_METHOD_NAME(print_expression);
+	_This->print_state = _6EV_METHOD_NAME(print_state);
+	_This->get_mnemonic = _6EV_METHOD_NAME(get_mnemonic);
 }

@@ -26,19 +26,12 @@ SOFTWARE.
 
 #pragma once
 
-#include "6IT/6IT_platform.h"
+#include "6IT_config.h"
+#ifndef _6IT_CONFIGURED
+COMPILE_ERROR: 6IT is not configured
+#endif
 
-//#define PROGRAM_COUNTER_INDEX_BASED
-#define REGISTER_STACK_INDEX_BASED
-#define _6IT_STACK_DISPATCH
-#define _6IT_SUPPORT_LUA
-//#define _6IT_SUPPORT_INTERRUPTS
-#define _6IT_SUPPORT_THREADS
-#define _6IT_DEBU66ER
-//#define _6IT_CHECKED_BUILD
-
-#define _TIMESLICE 10000
-#define _NUMBER_OF_INTERRUPT_LEVELS 10
+typedef volatile unsigned char atomic_flag_t; // todo crz: platform-specific betterness
 
 #ifdef _6IT_SUPPORT_THREADS
 
@@ -58,9 +51,9 @@ SOFTWARE.
 #endif
 #endif
 
-typedef volatile unsigned char atomic_flag_t; // todo crz: platform-specific betterness
-
 // crz: these must stay at the top
+#include "6IT/6IT_platform.h"
+
 #include "6IT/6IT_macros.h"
 #include "6IT/6IT_classes.h"
 #include "6IT/6IT_outside_world.h" // crz: this should have no dependency on 6IT

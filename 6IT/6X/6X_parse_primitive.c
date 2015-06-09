@@ -1,12 +1,13 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6X.h"
 
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 
-EXPRESSION_PARSER_METHODXX(void, parse_numeric_literal, struct expression_parser_state_t *state, struct expression_t *expression)
+_6X_METHODXX(void, parse_numeric_literal, struct expression_parser_state_t *state, struct expression_t *expression)
 {
 	struct machine_t *machine = state->parser->machine;
 	struct scanner_t *scanner = state->parser->scanner;
@@ -28,7 +29,7 @@ EXPRESSION_PARSER_METHODXX(void, parse_numeric_literal, struct expression_parser
 	scanner->move_next_token(scanner);
 }
 
-EXPRESSION_PARSER_METHODXX(void, parse_char_literal, struct expression_parser_state_t *state, struct expression_t *expression)
+_6X_METHODXX(void, parse_char_literal, struct expression_parser_state_t *state, struct expression_t *expression)
 {
 	struct machine_t *machine = state->parser->machine;
 	struct scanner_t *scanner = state->parser->scanner;
@@ -51,7 +52,7 @@ EXPRESSION_PARSER_METHODXX(void, parse_char_literal, struct expression_parser_st
 	scanner->move_next_token(scanner);
 }
 
-EXPRESSION_PARSER_METHODXX(void, parse_string_literal, struct expression_parser_state_t *state, struct expression_t *expression)
+_6X_METHODXX(void, parse_string_literal, struct expression_parser_state_t *state, struct expression_t *expression)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
@@ -61,7 +62,7 @@ EXPRESSION_PARSER_METHODXX(void, parse_string_literal, struct expression_parser_
 	scanner->move_next_token(scanner);
 }
 
-EXPRESSION_PARSER_METHODXX(void, parse_primitive, struct expression_parser_state_t *state, struct expression_t *expression)
+_6X_METHODXX(void, parse_primitive, struct expression_parser_state_t *state, struct expression_t *expression)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;

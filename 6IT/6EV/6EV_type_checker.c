@@ -7,7 +7,7 @@
 #include <string.h>
 
 // todo crz: this needs a lot of work
-_6IT_PRIVATE int _6IT_MACHINECALLXX(check_expression, struct expression_parser_state_t *state, struct expression_t const *expression)
+_6IT_PRIVATE int _6IT_MACHINECALLXX(_6EV_check_expression, struct expression_parser_state_t *state, struct expression_t const *expression)
 {
 	int pointer_save = _REG_VSP(_REGS(_Machine));
 	struct register_t *var;

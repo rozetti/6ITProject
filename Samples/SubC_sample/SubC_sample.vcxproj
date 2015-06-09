@@ -66,6 +66,7 @@
       </InlineFunctionExpansion>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <ShowIncludes>true</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -91,6 +92,7 @@
       <WholeProgramOptimization />
       <AssemblerOutput>NoListing</AssemblerOutput>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <ShowIncludes>true</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,12 +103,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\ThirdParty\lua\lapi.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lauxlib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lbaselib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lbitlib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lcode.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lcorolib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lctype.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\ldblib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\ldebug.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\ldo.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\ldump.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lfunc.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lgc.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\linit.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\liolib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\llex.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lmathlib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lmem.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\loadlib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lobject.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lopcodes.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\loslib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lparser.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lstate.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lstring.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lstrlib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\ltable.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\ltablib.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\ltm.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lundump.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lvm.c" />
+    <ClCompile Include="..\..\ThirdParty\lua\lzio.c" />
     <ClCompile Include="main.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Build\VS2013\6ITProject.vcxproj">
-      <Project>{95063b91-b05e-4c3f-b198-9f2579f995ce}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="test_fibonacci_lua.lua" />

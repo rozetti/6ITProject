@@ -2,6 +2,7 @@
 
 #include "6IT.h"
 
+#ifdef _6IT_AMALGAMATE_SOURCE
 #include "6IL/6IL_opcodes.c"
 #include "6IL/6IL_misc.c"
 
@@ -12,26 +13,27 @@
 #endif
 
 #include "6IL/6IL_processor.c"
+#endif
 
-_6IT_PRIVATE void _6IT_MACHINECALL(execute_debug_no_debugger)
+_6IT_PRIVATE void _6IT_MACHINECALL(_6IL_execute_debug_no_debugger)
 {
 	THROWM(&_Machine->exception, 0, "no debugger");
 }
 
-_6IT_DESTRUCTOR(processor) { }
+_6IT_DESTRUCTOR(processor, 6IL) { }
 
 _6IT_PUBLIC _6IT_CONSTRUCTOR(processor, 6IL)
 {
-	_This->destruct = processor_destruct;
+	_This->destruct = _6IL_METHOD_NAME(destruct);
 
-	_This->execute = execute;
+	_This->execute = _6IL_METHOD_NAME(execute);
 #ifdef _6IT_DEBU66ER
-	_This->execute_debug = execute_debug;
+	_This->execute_debug = _6IL_METHOD_NAME(execute_debug);
 #else
-	_This->execute_debug = execute_debug_no_debugger;
+	_This->execute_debug = _6IL_METHOD_NAME(execute_debug_no_debugger);
 #endif
-	_This->execute_and_reset = execute_and_reset;
-	_This->get_mnemonic = get_mnemonic;
-	_This->get_instruction_length = get_instruction_length;
+	_This->execute_and_reset = _6IL_METHOD_NAME(execute_and_reset);
+	_This->get_mnemonic = _6IL_METHOD_NAME(get_mnemonic);
+	_This->get_instruction_length = _6IL_METHOD_NAME(get_instruction_length);
 }
 

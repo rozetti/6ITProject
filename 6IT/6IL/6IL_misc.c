@@ -2,7 +2,7 @@
 
 #include "6IT.h"
 
-_6IT_PRIVATE void _6IT_MACHINECALL(execute_and_reset)
+_6IT_PRIVATE void _6IT_MACHINECALL(_6IL_execute_and_reset)
 {
 	int rsp = _REG_RSP(_REGS(_Machine));
 	int pc = _REG_PC(_REGS(_Machine));
@@ -13,7 +13,7 @@ _6IT_PRIVATE void _6IT_MACHINECALL(execute_and_reset)
 	_SET_PC(_REGS(_Machine), pc);
 }
 
-_6IT_PRIVATE struct mnemonic_t const *get_mnemonic(opcode_t opcode)
+_6IT_PRIVATE struct mnemonic_t const *_6IL_get_mnemonic(opcode_t opcode)
 {
 	int i = 0;
 
@@ -30,9 +30,9 @@ _6IT_PRIVATE struct mnemonic_t const *get_mnemonic(opcode_t opcode)
 	return 0;
 }
 
-_6IT_PRIVATE int get_instruction_length(opcode_t opcode)
+_6IT_PRIVATE int _6IL_get_instruction_length(opcode_t opcode)
 {
-	struct mnemonic_t const *mn = get_mnemonic(OPCODE_INSTRUCTION(opcode));
+	struct mnemonic_t const *mn = _6IL_get_mnemonic(OPCODE_INSTRUCTION(opcode));
 	return 1 + mn->number_of_operands;
 }
 

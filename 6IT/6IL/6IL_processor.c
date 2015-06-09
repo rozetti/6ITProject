@@ -14,14 +14,14 @@
 //#define USE_SECOND_LEVEL_JUMP_TABLE
 
 #ifdef PROCESSOR_WITH_DEBUGGER
-_6IT_PRIVATE void _6IT_MACHINECALL(execute_debug)
+_6IT_PRIVATE void _6IT_MACHINECALL(_6IL_execute_debug)
 #else
-_6IT_PRIVATE void _6IT_MACHINECALL(execute)
+_6IT_PRIVATE void _6IT_MACHINECALL(_6IL_execute)
 #endif
 {
 	opcode_t *entry_ip = IP;
 
-	int n;
+//	int n;
 	for (;;)
 	{
 #ifdef _6IT_SUPPORT_INTERRUPTS

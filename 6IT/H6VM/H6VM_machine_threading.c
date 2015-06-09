@@ -1,14 +1,15 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "H6VM.h"
 
-void machine_create_thread(struct machine_t *machine, struct thread_t *thread, struct callable_unit_t *entry)
+_H6VM_METHODXX(void, create_thread, struct thread_t *thread, struct callable_unit_t *entry)
 {
-	thread->registers = machine->registers;
+	thread->registers = _This->registers;
 
-	construct_thread(thread, machine, &machine->config);
-	machine->threads[machine->number_of_threads] = thread;
-	thread->id = machine->number_of_threads++;
+	construct_H6VM_THREAD(thread, _This, &_This->config);
+	_This->threads[_This->number_of_threads] = thread;
+	thread->id = _This->number_of_threads++;
 	thread->saved_reg = thread->registers;
 
 	thread->registers.frame->frame_registers = _REG_RS(&thread->registers) + _REG_RSP(&thread->registers);
@@ -21,18 +22,18 @@ void machine_create_thread(struct machine_t *machine, struct thread_t *thread, s
 	}
 }
 
-void machine_switch_context(struct machine_t *machine, int id)
+_H6VM_METHODX(void, switch_context, int id)
 {
-	if (id == machine->current_thread_idx)
+	if (id == _This->current_thread_idx)
 	{
 		return;
 	}
 
-	if (-1 != machine->current_thread_idx)
+	if (-1 != _This->current_thread_idx)
 	{
-		machine->threads[machine->current_thread_idx]->registers = machine->registers;
+		_This->threads[_This->current_thread_idx]->registers = _This->registers;
 	}
 
-	machine->current_thread_idx = id;
-	machine->registers = machine->threads[machine->current_thread_idx]->registers;
+	_This->current_thread_idx = id;
+	_This->registers = _This->threads[_This->current_thread_idx]->registers;
 }

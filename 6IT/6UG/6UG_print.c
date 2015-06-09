@@ -1,8 +1,9 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6UG.h"
 
-DEBUGGER_METHOD(void, print_disassembly)
+_6UG_METHOD(void, print_disassembly)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -42,7 +43,7 @@ DEBUGGER_METHOD(void, print_disassembly)
 	}
 }
 
-DEBUGGER_METHOD(void, print_state)
+_6UG_METHOD(void, print_state)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -141,7 +142,7 @@ DEBUGGER_METHOD(void, print_state)
 	machine->printf(machine, "-----------------\n");
 }
 
-DEBUGGER_METHOD(void, print_strings)
+_6UG_METHOD(void, print_strings)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -161,7 +162,7 @@ DEBUGGER_METHOD(void, print_strings)
 	}
 }
 
-DEBUGGER_METHOD(void, print_current_instruction_disassembly)
+_6UG_METHOD(void, print_current_instruction_disassembly)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -184,7 +185,7 @@ DEBUGGER_METHOD(void, print_current_instruction_disassembly)
 	}
 }
 
-DEBUGGER_METHODX(void, print_callable_unit_disassembly, struct callable_unit_t *unit)
+_6UG_METHODX(void, print_callable_unit_disassembly, struct callable_unit_t *unit)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -210,13 +211,13 @@ DEBUGGER_METHODX(void, print_callable_unit_disassembly, struct callable_unit_t *
 	}
 }
 
-DEBUGGER_METHOD(void, print_registers)
+_6UG_METHOD(void, print_registers)
 {
 	_This->print_relative_registers(_This);
 	_This->print_absolute_registers(_This);
 }
 
-DEBUGGER_METHOD(void, print_value_stack)
+_6UG_METHOD(void, print_value_stack)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -245,7 +246,7 @@ DEBUGGER_METHOD(void, print_value_stack)
 	}
 }
 
-DEBUGGER_METHOD(void, print_evaluator_state)
+_6UG_METHOD(void, print_evaluator_state)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -301,7 +302,7 @@ DEBUGGER_METHOD(void, print_evaluator_state)
 //}
 
 
-DEBUGGER_METHODX(void, print_register, struct register_t *v)
+_6UG_METHODX(void, print_register, struct register_t *v)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -354,7 +355,7 @@ DEBUGGER_METHODX(void, print_register, struct register_t *v)
 	}
 }
 
-DEBUGGER_METHOD(void, print_relative_registers)
+_6UG_METHOD(void, print_relative_registers)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -387,9 +388,10 @@ DEBUGGER_METHOD(void, print_relative_registers)
 	{
 		machine->printf(machine, "\tnone\n");
 	}
+
 }
 
-DEBUGGER_METHOD(void, print_absolute_registers)
+_6UG_METHOD(void, print_absolute_registers)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -408,4 +410,3 @@ DEBUGGER_METHOD(void, print_absolute_registers)
 		machine->printf(machine, "\tnone\n");
 	}
 }
-

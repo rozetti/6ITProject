@@ -1,10 +1,11 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "H6VM.h"
 
 #include <memory.h>
 
-MACHINE_METHOD(int, find_free_breakpoint)
+_H6VM_METHOD(int, find_free_breakpoint)
 {
 	for (int i = 0; i < _This->debug->config.max_number_of_breakpoints; ++i)
 	{
@@ -19,7 +20,7 @@ MACHINE_METHOD(int, find_free_breakpoint)
 	return 0;
 }
 
-MACHINE_METHODX(int, set_breakpoint, int pc)
+_H6VM_METHODX(void, set_breakpoint, int pc)
 {
 	opcode_t *ip = _REG_CS(_REGS(_This)) + pc;
 	opcode_t oc = *ip;

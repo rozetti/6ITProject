@@ -1,19 +1,20 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6YM.h"
 #include "6EV/6EV_opcodes.h"
 #include "6IL/6IL_opcodes.h"
 
 #include <assert.h>
 
-DOWNCOMPILER_METHOD_CONST(void, downcompile_instruction)
+_6YM_METHOD_CONST(void, downcompile_instruction)
 {
 	struct machine_t *machine = _This->machine;
 	struct instruction_emitter_t *emitter = &machine->instruction_emitter;
 	
 	struct callable_unit_t *unit = _State->unit;
 
-	add_fixup(_This, _State, _State->pc - _State->callable_unit_PC, _REG_FCP(_REGS(machine)) - unit->entry_point_program_counter);
+	_6YM_METHOD_NAME(add_fixup)(_This, _State, _State->pc - _State->callable_unit_PC, _REG_FCP(_REGS(machine)) - unit->entry_point_program_counter);
 
 	_State->p = _REG_CS(_REGS(machine)) + _State->pc;
 	_SET_IP(_REGS(machine), _State->p);
@@ -37,10 +38,10 @@ DOWNCOMPILER_METHOD_CONST(void, downcompile_instruction)
 	//	succeeded = _6YM_downcompile_FORX(state);
 	//	break;
 	case H6VM_OPCODE_EVAL:
-		succeeded = downcompile_EVAL(_This, _State);
+		succeeded = _6YM_METHOD_NAME(downcompile_EVAL)(_This, _State);
 		break;
 	case H6VM_OPCODE_CONDITION:
-		succeeded = downcompile_CONDITION(_This, _State);
+		succeeded = _6YM_METHOD_NAME(downcompile_CONDITION)(_This, _State);
 		break;
 		//case H6VM_OPCODE_RETURN:
 	//	succeeded = _6YM_downcompile_RETURNEVAL(state);
@@ -59,7 +60,7 @@ DOWNCOMPILER_METHOD_CONST(void, downcompile_instruction)
 	}
 }
 
-_6IT_PUBLIC void _6IT_THISCALL(downcompiler, downcompile)
+_6IT_PUBLIC void _6IT_THISCALL(downcompiler, _6YM_METHOD_NAME(downcompile))
 {
 	struct machine_t *machine = _This->machine;
 
@@ -89,7 +90,7 @@ _6IT_PUBLIC void _6IT_THISCALL(downcompiler, downcompile)
 				machine->printf(machine, "6YM: downcompiling callable unit '%s'\n", metadata->symbol);
 			}
 
-			downcompile_callable_unit(_This, &state);
+			_6YM_METHOD_NAME(downcompile_callable_unit)(_This, &state);
 
 			if (_This->verbosity)
 			{
@@ -102,7 +103,7 @@ _6IT_PUBLIC void _6IT_THISCALL(downcompiler, downcompile)
 	{
 #ifdef _6IT_DEBU66ER
 		machine->printf(machine, "state after downcompiling:\n");
-		machine->debugger.print_state(machine);
+		machine->debugger.print_state(&machine->debugger);
 #endif
 		machine->printf(machine, "...finished downcompiling\n");
 	}

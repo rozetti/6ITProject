@@ -1,10 +1,13 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6IOS.h"
 
+#ifdef _6IT_AMALGAMATE_SOURCE
 #include "6IOS/6IOS_input.c"
 #include "6IOS/6IOS_print.c"
 #include "6IOS/6IOS_time.c"
+#endif
 
 _6IT_PUBLIC _6IT_CONSTRUCTOR(bios, 6IOS)
 {

@@ -5,7 +5,7 @@
 #include "SubC.h"
 #include "6IL/6IL_opcodes.h"
 
-COMPILER_METHOD_CONST(void, compile_single_statement)
+_SUBC_METHOD_CONST(void, compile_single_statement)
 {
 	if (CATCH(&_This->machine->exception))
 	{
@@ -19,67 +19,67 @@ COMPILER_METHOD_CONST(void, compile_single_statement)
 
 	if (scanner->try_consume_string(scanner, "return"))
 	{
-		compile_return(_This, _State);
+		_SUBC_METHOD_NAME(compile_return)(_This, _State);
 	}
 	else if (scanner->try_consume_string(scanner, "assert"))
 	{
-		compile_assert(_This, _State);
+		_SUBC_METHOD_NAME(compile_assert)(_This, _State);
 		scanner->consume_token(scanner, TOKEN_SEMI_COLON);
 	}
 	else if (scanner->try_consume_string(scanner, "if"))
 	{
-		compile_if(_This, _State);
+		_SUBC_METHOD_NAME(compile_if)(_This, _State);
 	}
 	else if (scanner->try_consume_string(scanner, "break"))
 	{
-		compile_break(_This, _State);
+		_SUBC_METHOD_NAME(compile_break)(_This, _State);
 	}
 	else if (scanner->try_consume_string(scanner, "continue"))
 	{
-		compile_continue(_This, _State);
+		_SUBC_METHOD_NAME(compile_continue)(_This, _State);
 	}
 	else if (scanner->try_consume_string(scanner, "while"))
 	{
-		compile_while(_This, _State);
+		_SUBC_METHOD_NAME(compile_while)(_This, _State);
 	}
 	else if (scanner->try_consume_string(scanner, "do"))
 	{
-		compile_do(_This, _State);
+		_SUBC_METHOD_NAME(compile_do)(_This, _State);
 	}
 	else if (scanner->try_consume_string(scanner, "for"))
 	{
-		compile_for(_This, _State);
+		_SUBC_METHOD_NAME(compile_for)(_This, _State);
 	}
 	else
 	{
-		compile_expression(_This, _State);
+		_SUBC_METHOD_NAME(compile_expression)(_This, _State);
 		scanner->consume_token(scanner, TOKEN_SEMI_COLON);
 	}
 }
 
-COMPILER_METHOD_CONST(void, compile_statements)
+_SUBC_METHOD_CONST(void, compile_statements)
 {
 	while ((_This->scanner->token.id != TOKEN_CLOSE_BRACE) && (!_State->fatal))
 	{
-		compile_single_statement(_This, _State);
+		_SUBC_METHOD_NAME(compile_single_statement)(_This, _State);
 	}
 }
 
-COMPILER_METHOD_CONST(void, compile_block)
+_SUBC_METHOD_CONST(void, compile_block)
 {
 	int rsp = _REG_RSP(_REGS(_This->machine));
-	compile_statements(_This, _State);
+	_SUBC_METHOD_NAME(compile_statements)(_This, _State);
 	_SET_RSP(_REGS(_This->machine), rsp);
 }
 
-COMPILER_METHOD_CONST(void, compile_single_statement_scope)
+_SUBC_METHOD_CONST(void, compile_single_statement_scope)
 {
 	int rsp = _REG_RSP(_REGS(_This->machine));
-	compile_single_statement(_This, _State);
+	_SUBC_METHOD_NAME(compile_single_statement)(_This, _State);
 	_SET_RSP(_REGS(_This->machine), rsp);
 }
 
-_6IT_PRIVATE int _6IT_THISCALL(compiler, compile)
+_6IT_PRIVATE int _SUBC_METHOD_NAME(compile)(struct compiler_t *_This)
 {
 	struct compiler_state_t state;
 	memset(&state, 0, sizeof(struct compiler_state_t));
@@ -103,7 +103,7 @@ _6IT_PRIVATE int _6IT_THISCALL(compiler, compile)
 	state.number_of_warnings = 0;
 	state.fatal = 0;
 
-	compile_program(_This, &state);
+	_SUBC_METHOD_NAME(compile_program)(_This, &state);
 
 	if (state.number_of_errors != 0)
 	{

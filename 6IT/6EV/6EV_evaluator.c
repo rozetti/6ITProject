@@ -9,9 +9,9 @@
 #define RELS _FRAME(_Machine)->frame_registers
 
 #ifdef EVALUATOR_WITH_DEBUGGER
-_6IT_PRIVATE int _6IT_MACHINECALL(evaluate_debug)
+_6IT_PRIVATE int _6IT_MACHINECALL(_6EV_evaluate_debug)
 #else
-_6IT_PRIVATE int _6IT_MACHINECALL(evaluate)
+_6IT_PRIVATE int _6IT_MACHINECALL(_6EV_evaluate)
 #endif
 {
 	struct register_t *var;

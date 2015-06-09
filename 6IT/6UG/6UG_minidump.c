@@ -1,8 +1,9 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6UG.h"
 
-DEBUGGER_METHOD(void, print_minidump)
+_6UG_METHOD(void, print_minidump)
 {
 	struct machine_t *machine = _This->machine;
 

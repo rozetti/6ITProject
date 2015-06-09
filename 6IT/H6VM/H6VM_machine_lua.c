@@ -5,20 +5,20 @@
 #include "6IT.h"
 #include <string.h>
 
-void machine_push_to_lua(struct machine_t *machine);
+//void machine_push_to_lua(struct machine_t *machine);
 
-static void machine_setup_lua(struct machine_t *machine)
+_H6VM_METHOD(void, setup_lua)
 {
-	if (!machine->lua) return;
+	if (!_This->lua) return;
 
 	// todo crz: before and after check to grab only stuff defined in the .lua file
 
-	lua_pushglobaltable(machine->lua);
-	lua_pushnil(machine->lua);
+	lua_pushglobaltable(_This->lua);
+	lua_pushnil(_This->lua);
 
-	while (lua_next(machine->lua, -2)) 
+	while (lua_next(_This->lua, -2))
 	{
-		const char* name = lua_tostring(machine->lua, -2);
+		const char* name = lua_tostring(_This->lua, -2);
 
 		//if (lua_isnumber(machine->lua, -1))
 		//{
@@ -40,27 +40,27 @@ static void machine_setup_lua(struct machine_t *machine)
 		//	function->is_vararg = 1;
 		//}
 
-		lua_pop(machine->lua, 1);
+		lua_pop(_This->lua, 1);
 	}
 
-	lua_pop(machine->lua, 1);
+	lua_pop(_This->lua, 1);
 }
 
-static void machine_pull_from_lua(struct machine_t *machine)
+_H6VM_METHOD(void, pull_from_lua)
 {
-	lua_State *L = machine->lua;
+	lua_State *L = _This->lua;
 
-	for (int i = 0; i < machine->config.max_number_of_globals; ++i)
+	for (int i = 0; i < _This->config.max_number_of_globals; ++i)
 	{
-		struct register_t *var = _STATIC_REGISTER(machine, i);
+		struct register_t *var = _STATIC_REGISTER(_This, i);
 
 		if (var->is_lua)
 		{
-			char const *symbol = machine->register_get_symbol(machine, var->idx);
+			char const *symbol = _This->register_get_symbol(_This, var->idx);
 
 			lua_getglobal(L, symbol);
 			assert(lua_isnumber(L, -1));
-			lua_Number v = lua_tonumber(machine->lua, -1);
+			lua_Number v = lua_tonumber(_This->lua, -1);
 
 			switch (var->value.type)
 			{
@@ -71,54 +71,54 @@ static void machine_pull_from_lua(struct machine_t *machine)
 				var->value.as_float = (float)v;
 				break;
 			default:
-				strcpy(machine->exception.message, "Lua excternal has incompatible type");
-				THROW(&machine->exception, 1);
+				strcpy(_This->exception.message, "Lua excternal has incompatible type");
+				THROW(&_This->exception, 1);
 			}
 		}
 	}
 }
 
-static void machine_push_to_lua(struct machine_t *machine)
+_H6VM_METHOD(void, push_to_lua)
 {
-	for (int i = 0; i < machine->config.max_number_of_globals; ++i)
+	for (int i = 0; i < _This->config.max_number_of_globals; ++i)
 	{
-		struct register_t *var = _STATIC_REGISTER(machine, i);
+		struct register_t *var = _STATIC_REGISTER(_This, i);
 
 		if (var->is_lua)
 		{
-			char const *symbol = machine->register_get_symbol(machine, var->idx);
+			char const *symbol = _This->register_get_symbol(_This, var->idx);
 
-			lua_pushnumber(machine->lua, var->value.as_float);
-			lua_setglobal(machine->lua, symbol);
+			lua_pushnumber(_This->lua, var->value.as_float);
+			lua_setglobal(_This->lua, symbol);
 		}
 	}
 }
 
-static int machine_lua_has_variable(struct machine_t *machine, char const *symbol)
+_H6VM_METHODX(int, lua_has_variable, char const *symbol)
 {
 	int yes = 0;
 
 #ifdef _6IT_SUPPORT_LUA
-	lua_getglobal(machine->lua, symbol);
+	lua_getglobal(_This->lua, symbol);
 
-	if (lua_isnumber(machine->lua, -1)) yes = 1;
+	if (lua_isnumber(_This->lua, -1)) yes = 1;
 
-	lua_pop(machine->lua, 1);
+	lua_pop(_This->lua, 1);
 #endif
 
 	return yes;
 }
 
-static int machine_lua_has_function(struct machine_t *machine, char const *symbol)
+_H6VM_METHODX(int, lua_has_function, char const *symbol)
 {
 	int yes = 0;
 
 #ifdef _6IT_SUPPORT_LUA
-	lua_getglobal(machine->lua, symbol);
+	lua_getglobal(_This->lua, symbol);
 
-	if (lua_isfunction(machine->lua, -1)) yes = 1;
+	if (lua_isfunction(_This->lua, -1)) yes = 1;
 
-	lua_pop(machine->lua, 1);
+	lua_pop(_This->lua, 1);
 #endif
 
 	return yes;
@@ -136,19 +136,19 @@ static int machine_lua_has_function(struct machine_t *machine, char const *symbo
 //}
 //#endif
 
-static void machine_resolve_lua_externals(struct machine_t *machine)
+_H6VM_METHOD(void, resolve_lua_externals)
 {
-	if (!machine->lua) return;
+	if (!_This->lua) return;
 
-	for (int i = 0; i < _REG_FUP(_REGS(machine)); ++i)
+	for (int i = 0; i < _REG_FUP(_REGS(_This)); ++i)
 	{
-		struct callable_unit_t *cu = CALLABLE_UNIT(machine, i);
+		struct callable_unit_t *cu = CALLABLE_UNIT(_This, i);
 
 		if (!cu->is_resolved)
 		{
-			char const *symbol = machine->get_callable_unit_symbol(machine, i);
+			char const *symbol = _This->get_callable_unit_symbol(_This, i);
 
-			if (machine_lua_has_function(machine, symbol))
+			if (_H6VM_METHOD_NAME(lua_has_function)(_This, symbol))
 			{
 				cu->is_resolved = 1;
 				cu->is_lua = 1;
@@ -156,21 +156,21 @@ static void machine_resolve_lua_externals(struct machine_t *machine)
 		}
 	}
 
-	for (int i = 0; i < machine->config.max_number_of_globals; ++i)
+	for (int i = 0; i < _This->config.max_number_of_globals; ++i)
 	{
-		struct register_t *var = _STATIC_REGISTER(machine, i);
+		struct register_t *var = _STATIC_REGISTER(_This, i);
 
 		if (var->is_external)
 		{
-			char const *symbol = machine->register_get_symbol(machine, var->idx);
-			if (machine_lua_has_variable(machine, symbol))
+			char const *symbol = _This->register_get_symbol(_This, var->idx);
+			if (_H6VM_METHOD_NAME(lua_has_variable)(_This, symbol))
 			{
 				var->is_lua = 1;
 			}
 		}
 	}
 
-	machine->pull_from_lua(machine);
+	_This->pull_from_lua(_This);
 }
 
 #endif

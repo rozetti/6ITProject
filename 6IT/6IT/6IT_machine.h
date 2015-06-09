@@ -312,7 +312,7 @@ struct machine_t
 	void(*push_to_lua)(struct machine_t*);
 #endif
 
-	int(*check_state)(struct machine_t*);
+	MACHINE_METHOD(int, (*check_state));
 
 	// crz: strings
 	MACHINE_METHODXX(void, (*add_string), char const *string, int *index);
@@ -327,7 +327,7 @@ struct machine_t
 
 	// crz: debugger
 	MACHINE_METHOD(int, (*find_free_breakpoint));
-	MACHINE_METHODX(int, (*set_breakpoint), int pc);
+	MACHINE_METHODX(void, (*set_breakpoint), int pc);
 
 	// crz: console
 	//MACHINE_METHOD(char const *, (*read_line));

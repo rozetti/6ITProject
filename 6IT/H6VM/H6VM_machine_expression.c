@@ -4,14 +4,14 @@
 
 #include <memory.h>
 
-static struct expression_term_t *get_final_expression_term(struct machine_t *machine, struct expression_t *expression)
+_H6VM_METHODX(struct expression_term_t *, get_final_expression_term, struct expression_t *expression)
 {
 	return expression->terms + expression->number_of_terms - 1;
 }
 
-static void machine_build_expression(struct machine_t *machine, struct expression_t *expression, int ptr)
+_H6VM_METHODXX(void, build_expression, struct expression_t *expression, int ptr)
 {
-	expression->terms = _REG_XS(_REGS(machine)) + ptr;
+	expression->terms = _REG_XS(_REGS(_This)) + ptr;
 	expression->first_term_index = ptr;
 	expression->number_of_terms = 0;
 

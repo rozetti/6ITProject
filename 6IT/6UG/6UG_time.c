@@ -1,10 +1,11 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6UG.h"
 
 #include <stdio.h>
 
-DEBUGGER_METHOD(char const *, format_execution_time)
+_6UG_METHOD(char const *, format_execution_time)
 {
 	static char buffer[10];
 

@@ -5,7 +5,7 @@
 #include "SubC.h"
 #include "6IL/6IL_opcodes.h"
 
-COMPILER_METHOD_CONST(void, compile_while)
+_SUBC_METHOD_CONST(void, compile_while)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
@@ -34,13 +34,13 @@ COMPILER_METHOD_CONST(void, compile_while)
 	if (scanner->try_consume_token(scanner, TOKEN_OPEN_BRACE))
 	{
 		emitter->set_code(emitter, opcode_pc, H6VM_OPCODE_WHILEB);
-		compile_block(_This, _State);
+		_SUBC_METHOD_NAME(compile_block)(_This, _State);
 		scanner->consume_token(scanner, TOKEN_CLOSE_BRACE);
 	}
 	else
 	{
 		emitter->set_code(emitter, opcode_pc, H6VM_OPCODE_WHILES);
-		compile_single_statement_scope(_This, _State);
+		_SUBC_METHOD_NAME(compile_single_statement_scope)(_This, _State);
 	}
 
 	emitter->set_code(emitter, jump_over_pc, _REG_FCP(_REGS(machine)) - _State->callable_unit_PC);
@@ -54,7 +54,7 @@ COMPILER_METHOD_CONST(void, compile_while)
 	emitter->emit_instruction(emitter, H6VM_OPCODE_LOADRSP, rel);
 }
 
-COMPILER_METHOD_CONST(void, compile_do)
+_SUBC_METHOD_CONST(void, compile_do)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
@@ -73,13 +73,13 @@ COMPILER_METHOD_CONST(void, compile_do)
 	if (scanner->try_consume_token(scanner, TOKEN_OPEN_BRACE))
 	{
 		emitter->set_code(emitter, opcode_pc, H6VM_OPCODE_DOB);
-		compile_block(_This, _State);
+		_SUBC_METHOD_NAME(compile_block)(_This, _State);
 		scanner->consume_token(scanner, TOKEN_CLOSE_BRACE);
 	}
 	else
 	{
 		emitter->set_code(emitter, opcode_pc, H6VM_OPCODE_DOS);
-		compile_single_statement_scope(_This, _State);
+		_SUBC_METHOD_NAME(compile_single_statement_scope)(_This, _State);
 	}
 
 	scanner->consume_string(scanner, "while");
@@ -100,7 +100,7 @@ COMPILER_METHOD_CONST(void, compile_do)
 
 // todo crz: rework these
 
-COMPILER_METHOD_CONST(void, compile_continue)
+_SUBC_METHOD_CONST(void, compile_continue)
 {
 	struct instruction_emitter_t *emitter = &_This->machine->instruction_emitter;
 
@@ -115,7 +115,7 @@ COMPILER_METHOD_CONST(void, compile_continue)
 	emitter->emit_PC(emitter, _State->loop_PC);
 }
 
-COMPILER_METHOD_CONST(void, compile_break)
+_SUBC_METHOD_CONST(void, compile_break)
 {
 	struct instruction_emitter_t *emitter = &_This->machine->instruction_emitter;
 

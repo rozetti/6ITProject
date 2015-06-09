@@ -1,8 +1,9 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "SubC.h"
 
-COMPILER_METHOD_CONST(void, compile_program)
+_SUBC_METHOD_CONST(void, compile_program)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
@@ -44,13 +45,13 @@ COMPILER_METHOD_CONST(void, compile_program)
 				scanner->state = scanner_save;
 				scanner->token = before;
 				_State->base_RSP = _REG_RSP(_REGS(machine));
-				compile_function(_This, _State);
+				_SUBC_METHOD_NAME(compile_function)(_This, _State);
 			}
 			else
 			{
 				scanner->state = scanner_save;
 				scanner->token = before;
-				compile_global_expression(_This, _State);
+				_SUBC_METHOD_NAME(compile_global_expression)(_This, _State);
 			}
 
 			continue;
@@ -73,7 +74,7 @@ COMPILER_METHOD_CONST(void, compile_program)
 		}
 	}
 
-	emit_static_initialiser(_This, _State);
+	_SUBC_METHOD_NAME(emit_static_initialiser)(_This, _State);
 
 	machine->resolve_externals(machine);
 

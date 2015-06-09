@@ -1,14 +1,15 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "H6VM.h"
 
-static void new_program(struct machine_t *machine)
+_H6VM_METHOD(void, new_program)
 {
-	_REG_FCP(_REGS(machine)) = 0;
-	_REG_FSP(_REGS(machine)) = 0;
-	_REG_FUP(_REGS(machine)) = 0;
-	_REG_FXP(_REGS(machine)) = 0;
-	_REG_FRP(_REGS(machine)) = 0;
+	_REG_FCP(_REGS(_This)) = 0;
+	_REG_FSP(_REGS(_This)) = 0;
+	_REG_FUP(_REGS(_This)) = 0;
+	_REG_FXP(_REGS(_This)) = 0;
+	_REG_FRP(_REGS(_This)) = 0;
 
 #ifdef _6IT_SUPPORT_LUA
 	//machine_setup_lua(machine);

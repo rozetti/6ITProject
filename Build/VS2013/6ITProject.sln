@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "6ITProject", "6ITProject.vcxproj", "{95063B91-B05E-4C3F-B198-9F2579F995CE}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SubC_sample", "..\..\Samples\SubC_sample\SubC_sample.vcxproj", "{D191F5E3-0146-465C-8494-1315BE500A3A}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95063B91-B05E-4C3F-B198-9F2579F995CE}.Debug|Win32.ActiveCfg = Debug|Win32
-		{95063B91-B05E-4C3F-B198-9F2579F995CE}.Debug|Win32.Build.0 = Debug|Win32
-		{95063B91-B05E-4C3F-B198-9F2579F995CE}.Release|Win32.ActiveCfg = Release|Win32
-		{95063B91-B05E-4C3F-B198-9F2579F995CE}.Release|Win32.Build.0 = Release|Win32
 		{D191F5E3-0146-465C-8494-1315BE500A3A}.Debug|Win32.ActiveCfg = Debug|Win32
 		{D191F5E3-0146-465C-8494-1315BE500A3A}.Debug|Win32.Build.0 = Debug|Win32
 		{D191F5E3-0146-465C-8494-1315BE500A3A}.Release|Win32.ActiveCfg = Release|Win32

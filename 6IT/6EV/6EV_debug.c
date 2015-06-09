@@ -3,7 +3,7 @@
 #include "6IT.h"
 #include "6EV.h"
 
-_6IT_PRIVATE void _6IT_MACHINECALLX(print_expression_term, struct expression_term_t *term)
+_6IT_PRIVATE void _6IT_MACHINECALLX(_6EV_METHOD_NAME(print_expression_term), struct expression_term_t *term)
 {
 	struct callable_unit_t *func;
 	char const *name;
@@ -95,21 +95,21 @@ _6IT_PRIVATE void _6IT_MACHINECALLX(print_expression_term, struct expression_ter
 	}
 }
 
-_6IT_PRIVATE void _6IT_MACHINECALLX(print_expression, struct expression_t const *expression)
+_6IT_PRIVATE void _6IT_MACHINECALLX(_6EV_METHOD_NAME(print_expression), struct expression_t const *expression)
 {
 	_Machine->printf(_Machine, "\t{%d}: ", expression->first_term_index);
 
 	for (int i = 0; i < expression->number_of_terms; ++i)
 	{
 		struct expression_term_t *term = expression->terms + i;
-		print_expression_term(_Machine, term);
+		_6EV_METHOD_NAME(print_expression_term)(_Machine, term);
 		_Machine->printf(_Machine, " ");
 	}
 
 	_Machine->printf(_Machine, "\n");
 }
 
-_6IT_PRIVATE void _6IT_MACHINECALLX(print_state, struct expression_t const *expression)
+_6IT_PRIVATE void _6IT_MACHINECALLX(_6EV_METHOD_NAME(print_state), struct expression_t const *expression)
 {
 	for (int i = 0; i <= expression->number_of_terms; ++i)
 	{
@@ -124,7 +124,7 @@ _6IT_PRIVATE void _6IT_MACHINECALLX(print_state, struct expression_t const *expr
 
 		struct expression_term_t *term = _REG_XS(_REGS(_Machine)) + expression->first_term_index + i;
 
-		print_expression_term(_Machine, term);
+		_6EV_METHOD_NAME(print_expression_term)(_Machine, term);
 		_Machine->printf(_Machine, "\n");
 	}
 }

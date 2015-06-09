@@ -28,6 +28,13 @@ SOFTWARE.
 
 #include "6IT.h"
 
+#define _H6VM_METHOD_NAME(NAME) (_H6VM##_##NAME)
+#define _H6VM_METHOD(R, NAME) _6IT_PRIVATE R _6IT_THISCALL(machine, _H6VM_METHOD_NAME(NAME))
+#define _H6VM_METHODX(R, NAME, P1) _6IT_PRIVATE R _6IT_THISCALLX(machine, _H6VM_METHOD_NAME(NAME), P1)
+#define _H6VM_METHODXX(R, NAME, P1, P2) _6IT_PRIVATE R _6IT_THISCALLXX(machine, _H6VM_METHOD_NAME(NAME), P1, P2)
+#define _H6VM_METHODXXX(R, NAME, P1, P2, P3) _6IT_PRIVATE R _6IT_THISCALLXXX(machine, _H6VM_METHOD_NAME(NAME), P1, P2, P3)
+#define _H6VM_METHODXXXX(R, NAME, P1, P2, P3, P4) _6IT_PRIVATE R _6IT_THISCALLXXXX(machine, _H6VM_METHOD_NAME(NAME), P1, P2, P3, P4)
+
 #define DEBUG_SHOW_ADDED_SYMBOL(M) ((M)->verbosity >= 1)
 
 // todo crz: put these somewhere nice
@@ -37,7 +44,8 @@ int machine_debug_is_active(struct machine_t *machine);
 
 //void debug_printf(char const *format, ...);
 
-int machine_first_chance_exception_handler(struct exception_t *);
+// todo crz: this should not be associated with the VM
+int _H6VM_METHOD_NAME(first_chance_exception_handler)(struct exception_t *);
 int machine_check_state(struct machine_t *machine);
 void machine_minidump(struct machine_t *machine);
 

@@ -1,8 +1,9 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6X.h"
 
-EXPRESSION_PARSER_METHODXX(void, parse_brackets, struct expression_parser_state_t *state, struct expression_t *expression)
+_6X_METHODXX(void, parse_brackets, struct expression_parser_state_t *state, struct expression_t *expression)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;

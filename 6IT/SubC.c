@@ -3,12 +3,13 @@
 #include "6IT.h"
 #include "SubC.h"
 
-COMPILER_METHOD_CONST(void, compile_program);
-COMPILER_METHOD_CONST(void, compile_single_statement);
-COMPILER_METHOD_CONST(void, compile_statements);
-COMPILER_METHOD_CONST(void, compile_block);
-COMPILER_METHOD_CONST(void, compile_single_statement_scope);
+_SUBC_METHOD_CONST(void, compile_program);
+_SUBC_METHOD_CONST(void, compile_single_statement);
+_SUBC_METHOD_CONST(void, compile_statements);
+_SUBC_METHOD_CONST(void, compile_block);
+_SUBC_METHOD_CONST(void, compile_single_statement_scope);
 
+#ifdef _6IT_AMALGAMATE_SOURCE
 #include "SubC/SubC_compiler_whitespace.c"
 
 #include "SubC/SubC_variables.c"
@@ -21,12 +22,13 @@ COMPILER_METHOD_CONST(void, compile_single_statement_scope);
 #include "SubC/SubC_compile_assert.c"
 #include "SubC/SubC_compiler.c"
 #include "SubC/SubC_compile_program.c"
+#endif
 
 #include <memory.h>
 
 void override_move_past_whitespace(struct scanner_t *scanner);
 
-_6IT_DESTRUCTOR(compiler)
+_6IT_DESTRUCTOR(compiler, SubC)
 {
 	// todo crz: might need to be careful not to destruct the base object
 	_This->scanner->destruct(_This->scanner);
@@ -39,8 +41,8 @@ _6IT_CONSTRUCTOR(compiler, SubC)
 
 	DERIVED_OBJECT(_This->scanner).move_past_whitespace = override_move_past_whitespace;
 
-	_This->destruct = compiler_destruct;
-	_This->compile = compile;
+	_This->destruct = _SUBC_METHOD_NAME(destruct);
+	_This->compile = _SUBC_METHOD_NAME(compile);
 	_This->scanner = &DERIVED_OBJECT(_This->scanner);
 }
 

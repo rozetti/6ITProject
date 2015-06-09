@@ -1,48 +1,48 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "H6VM.h"
 
-// todo crz: macros
 // hack crz: this is all a bit inconsistent and hacky
 
-static void machine_bind_compiler(struct machine_t *machine, struct compiler_t *compiler)
+_H6VM_METHODX(void, bind_compiler, struct compiler_t *compiler)
 {
-	compiler->machine = machine;
-	machine->bind_scanner(machine, compiler->scanner);
+	compiler->machine = _This;
+	_This->bind_scanner(_This, compiler->scanner);
 }
 
-static void machine_bind_scanner(struct machine_t *machine, struct scanner_t *scanner)
+_H6VM_METHODX(void, bind_scanner, struct scanner_t *scanner)
 {
-	scanner->machine = machine;
-	scanner->environment = machine->environment;
+	scanner->machine = _This;
+	scanner->environment = _This->environment;
 };
 
-static void machine_bind_processor(struct machine_t *machine, struct processor_t *processor)
+_H6VM_METHODX(void, bind_processor, struct processor_t *processor)
 {
 #ifdef _6IT_DEBU66ER
-	machine->execute = processor->execute_debug;
+	_This->execute = processor->execute_debug;
 #else
-	machine->execute = processor->execute;
+	_This->execute = processor->execute;
 #endif
 };
 
-static void machine_bind_evaluator(struct machine_t *machine, struct evaluator_t *evaluator)
+_H6VM_METHODX(void, bind_evaluator, struct evaluator_t *evaluator)
 {
-	machine->evaluate = evaluator->evaluate;
+	_This->evaluate = evaluator->evaluate;
 };
 
-static void machine_bind_downcompiler(struct machine_t *machine, struct downcompiler_t *downcompiler)
+_H6VM_METHODX(void, bind_downcompiler, struct downcompiler_t *downcompiler)
 {
 };
 
-static void machine_bind_environment(struct machine_t *machine, struct environment_t *environment)
+_H6VM_METHODX(void, bind_environment, struct environment_t *environment)
 {
-	machine->environment = environment;
+	_This->environment = environment;
 }
 
 #ifdef _6IT_SUPPORT_LUA
-static void machine_bind_lua(struct machine_t *machine, struct lua_State *state)
+_H6VM_METHODX(void, bind_lua, struct lua_State *state)
 {
-	machine->lua = state;
+	_This->lua = state;
 }
 #endif

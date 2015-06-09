@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdio.h>
 
-int first_chance_exception_handler(struct exception_t *exception)
+int _H6VM_METHOD_NAME(first_chance_exception_handler)(struct exception_t *exception)
 {
 	if (exception->message[0] != 0)
 	{

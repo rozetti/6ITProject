@@ -7,6 +7,8 @@
 #include "6IT.h"
 #include "SubCRT.h"
 
+#include "SubC_complete.c"
+
 static char buffer[100];
 
 static struct machine_t machine;
@@ -17,7 +19,7 @@ static struct lua_State *lua;
 
 //#define BREAK_AT_START
 //#define BREAK_AT_END
-//#define DUMP_COMPILED_CODE // todo crz: finc out why corrupts the registers in the lua test (with threading on)
+#define DUMP_COMPILED_CODE // todo crz: finc out why corrupts the registers in the lua test (with threading on)
 
 #ifndef _6IT_DEBU66ER
 #undef BREAK_AT_START
@@ -144,9 +146,10 @@ static int compile()
 	machine.downcompiler.downcompile(&machine.downcompiler);
 
 #ifdef DUMP_COMPILED_CODE
+#ifdef _6IT_DEBU66ER
 	machine.debugger.print_state(&machine.debugger);
 #endif
-
+#endif
 	return 1;
 }
 
@@ -272,12 +275,10 @@ int run_tests()
 	run_file("test_function_call.c");
 	run_file("test_if.c");
 	run_file("test_loops.c");
-	
 	run_file("test_operators.c");
-	
 	run_file("test_globals.c");
 	run_file("test_float.c");
-
+	
 	run_file("test_fibonacci_subc.c");
 #ifdef _6IT_SUPPORT_LUA
 	run_file("test_fibonacci_lua.c");

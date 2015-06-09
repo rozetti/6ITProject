@@ -1,11 +1,12 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6X.h"
 #include "6EV/6EV_opcodes.h"
 
 #include <memory.h>
 
-EXPRESSION_PARSER_METHODXX(int, parse_expression, struct expression_parser_state_t *state, struct expression_t *expression)
+_6X_METHODXX(int, parse_expression, struct expression_parser_state_t *state, struct expression_t *expression)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;

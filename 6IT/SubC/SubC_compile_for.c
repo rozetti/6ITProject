@@ -1,11 +1,11 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
-
 #include "SubC.h"
+
 #include "6IL/6IL_opcodes.h"
 
-COMPILER_METHOD_CONST(void, compile_for)
+_SUBC_METHOD_CONST(void, compile_for)
 {
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
@@ -50,13 +50,13 @@ COMPILER_METHOD_CONST(void, compile_for)
 	if (scanner->try_consume_token(scanner, TOKEN_OPEN_BRACE))
 	{
 		oc = H6VM_OPCODE_FORB;
-		compile_block(_This, _State);
+		_SUBC_METHOD_NAME(compile_block)(_This, _State);
 		scanner->consume_token(scanner, TOKEN_CLOSE_BRACE);
 	}
 	else
 	{
 		oc = H6VM_OPCODE_FORS;
-		compile_single_statement_scope(_This, _State);
+		_SUBC_METHOD_NAME(compile_single_statement_scope)(_This, _State);
 	}
 
 	int next_pc;

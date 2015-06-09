@@ -24,15 +24,15 @@
 
 struct value_t _int_value;
 
-static void machine_die(struct machine_t *machine, int fault_code, char const *message)
+_6IT_THISCALL_DIE(machine, H6VM)
 {
 #ifdef _6IT_DEBU66ER
-	machine->debugger.print_state(&machine->debugger);
+	_This->debugger.print_state(&_This->debugger);
 #endif
 
-	machine->printf(machine, "\n\nvirtual machine fault: %s\n", message);
+	_This->printf(_This, "\n\nvirtual machine fault: %s\n", message);
 
-	THROW(&machine->exception, fault_code);
+	THROW(&_This->exception, fault_code);
 }
 
 void machine_die_immediately(struct machine_t *machine, int fault_code, char const *message)
@@ -42,7 +42,7 @@ void machine_die_immediately(struct machine_t *machine, int fault_code, char con
 	THROW(&machine->exception, fault_code);
 }
 
-static char const *machine_get_error_string(struct machine_t *machine, int error)
+_6IT_THISCALL_GET_ERROR_STRING(machine, H6VM)
 {
 	switch (error)
 	{
@@ -205,57 +205,57 @@ static int try_construct_segments(struct machine_t *machine)
 	return 1;
 }
 
-static void machine_destruct(struct machine_t *machine)
+_6IT_DESTRUCTOR(machine, H6VM)
 {
-	machine->ready = 0;
+	_This->ready = 0;
 
-	if (_REG_US(_REGS(machine)))
+	if (_REG_US(_REGS(_This)))
 	{
-		free(_REG_US(_REGS(machine)));
-		_REG_US(_REGS(machine)) = 0;
+		free(_REG_US(_REGS(_This)));
+		_REG_US(_REGS(_This)) = 0;
 	}
 
-	if (_REG_XS(_REGS(machine)))
+	if (_REG_XS(_REGS(_This)))
 	{
-		free(_REG_XS(_REGS(machine)));
-		_REG_XS(_REGS(machine)) = 0;
+		free(_REG_XS(_REGS(_This)));
+		_REG_XS(_REGS(_This)) = 0;
 	}
 
-	if (_REG_CS(_REGS(machine)))
+	if (_REG_CS(_REGS(_This)))
 	{
-		free(_REG_CS(_REGS(machine)));
-		_REG_CS(_REGS(machine)) = 0;
+		free(_REG_CS(_REGS(_This)));
+		_REG_CS(_REGS(_This)) = 0;
 	}
 
-	if (_REG_DS(_REGS(machine)))
+	if (_REG_DS(_REGS(_This)))
 	{
-		free(_REG_DS(_REGS(machine)));
-		_REG_DS(_REGS(machine)) = 0;
+		free(_REG_DS(_REGS(_This)));
+		_REG_DS(_REGS(_This)) = 0;
 	}
 
-	if (machine->callable_unit_metadata)
+	if (_This->callable_unit_metadata)
 	{
-		free(machine->callable_unit_metadata);
-		machine->callable_unit_metadata = 0;
+		free(_This->callable_unit_metadata);
+		_This->callable_unit_metadata = 0;
 	}
 
-	if (machine->register_metadata)
+	if (_This->register_metadata)
 	{
-		free(machine->register_metadata);
-		machine->register_metadata = 0;
+		free(_This->register_metadata);
+		_This->register_metadata = 0;
 	}
 
-	if (_REG_SS(_REGS(machine)))
+	if (_REG_SS(_REGS(_This)))
 	{
-		free(_REG_SS(_REGS(machine)));
-		_REG_SS(_REGS(machine)) = 0;
+		free(_REG_SS(_REGS(_This)));
+		_REG_SS(_REGS(_This)) = 0;
 	}
 
-	if (machine->debug)
+	if (_This->debug)
 	{
-		destruct_machine_debug(machine->debug);
-		free(machine->debug);
-		machine->debug = 0;
+		destruct_machine_debug(_This->debug);
+		free(_This->debug);
+		_This->debug = 0;
 	}
 }
 
@@ -263,7 +263,7 @@ static void machine_destruct(struct machine_t *machine)
 
 _6IT_PUBLIC _6IT_CONSTRUCTORX(machine, H6VM, struct machine_config_t config)
 {
-	INITIALISE_COMMON_ATTRIBUTES(machine, _Machine);
+	INITIALISE_COMMON_ATTRIBUTES(machine, H6VM, _Machine);
 
 	_This->config = config;
 
@@ -274,82 +274,82 @@ _6IT_PUBLIC _6IT_CONSTRUCTORX(machine, H6VM, struct machine_config_t config)
 #endif
 	construct_6IOS(&_Bios, 0); // hack crz: this should only be a singleton
 
-	_This->bind_downcompiler = machine_bind_downcompiler;
-	_This->bind_evaluator = machine_bind_evaluator;
-	_This->bind_processor = machine_bind_processor;
-	_This->bind_scanner = machine_bind_scanner;
-	_This->bind_compiler = machine_bind_compiler;
-	_This->bind_environment = machine_bind_environment;
+	_This->bind_downcompiler = _H6VM_METHOD_NAME(bind_downcompiler);
+	_This->bind_evaluator = _H6VM_METHOD_NAME(bind_evaluator);
+	_This->bind_processor = _H6VM_METHOD_NAME(bind_processor);
+	_This->bind_scanner = _H6VM_METHOD_NAME(bind_scanner);
+	_This->bind_compiler = _H6VM_METHOD_NAME(bind_compiler);
+	_This->bind_environment = _H6VM_METHOD_NAME(bind_environment);
 
-	_This->printf = machine_printf;
+	_This->printf = _H6VM_METHOD_NAME(printf);
 
 	// crz: debugger support
 
-	_This->first_chance_exception_handler = first_chance_exception_handler;
-	_This->check_state = machine_check_state;
-	_This->format_primitive_value = format_primitive_value;
-	_This->format_machine_code = format_machine_code;
-	_This->get_referenced_expressions = get_referenced_expressions;
-	_This->disassemble_instruction = disassemble_instruction;
-	_This->type_description = type_description;
-	_This->set_breakpoint = set_breakpoint;
-	_This->find_free_breakpoint = find_free_breakpoint;
+	_This->first_chance_exception_handler = _H6VM_METHOD_NAME(first_chance_exception_handler);
+	_This->check_state = _H6VM_METHOD_NAME(check_state);
+	_This->format_primitive_value = _H6VM_METHOD_NAME(format_primitive_value);
+	_This->format_machine_code = _H6VM_METHOD_NAME(format_machine_code);
+	_This->get_referenced_expressions = _H6VM_METHOD_NAME(get_referenced_expressions);
+	_This->disassemble_instruction = _H6VM_METHOD_NAME(disassemble_instruction);
+	_This->type_description = _H6VM_METHOD_NAME(type_description);
+	_This->set_breakpoint = _H6VM_METHOD_NAME(set_breakpoint);
+	_This->find_free_breakpoint = _H6VM_METHOD_NAME(find_free_breakpoint);
 
 	// crz: allocation
 
-	_This->allocate_free_static_register = machine_allocate_free_static_register;
-	_This->allocate_static_register = machine_allocate_static_register;
-	_This->allocate_frame_register = machine_allocate_frame_register;
+	_This->allocate_free_static_register = _H6VM_METHOD_NAME(allocate_free_static_register);
+	_This->allocate_static_register = _H6VM_METHOD_NAME(allocate_static_register);
+	_This->allocate_frame_register = _H6VM_METHOD_NAME(allocate_frame_register);
 
 	// crz: callable units
 
-	_This->get_callable_unit = machine_get_callable_unit;
-	_This->add_callable_unit = machine_add_callable_unit;
-	_This->add_builtin = machine_add_builtin;
+	_This->get_callable_unit = _H6VM_METHOD_NAME(get_callable_unit);
+	_This->add_callable_unit = _H6VM_METHOD_NAME(add_callable_unit);
+	_This->add_builtin = _H6VM_METHOD_NAME(add_builtin);
 
 	// crz: expressions
 
-	_This->build_expression = machine_build_expression;
-	_This->get_final_expression_term = get_final_expression_term;
+	_This->build_expression = _H6VM_METHOD_NAME(build_expression);
+	_This->get_final_expression_term = _H6VM_METHOD_NAME(get_final_expression_term);
 
 	// crz: symbols
 
-	_This->find_static_register = machine_find_static_register;
-	_This->find_frame_register = machine_find_frame_register;
-	_This->find_register = machine_find_register;
-	_This->get_register_metadata = machine_get_register_metadata;
-	_This->register_set_symbol = machine_register_set_symbol;
-	_This->register_get_symbol = machine_register_get_symbol;
+	_This->find_static_register = _H6VM_METHOD_NAME(find_static_register);
+	_This->find_frame_register = _H6VM_METHOD_NAME(find_frame_register);
+	_This->find_register = _H6VM_METHOD_NAME(find_register);
+	_This->get_register_metadata = _H6VM_METHOD_NAME(get_register_metadata);
+	_This->register_set_symbol = _H6VM_METHOD_NAME(register_set_symbol);
+	_This->register_get_symbol = _H6VM_METHOD_NAME(register_get_symbol);
 
-	_This->get_callable_unit_metadata = machine_get_callable_unit_metadata;
-	_This->find_callable_unit = machine_find_callable_unit;
-	_This->find_callable_unit_by_entry_point = machine_find_callable_unit_by_entry_point;
-	_This->get_callable_unit_symbol = machine_get_callable_unit_symbol;
-	_This->set_callable_unit_symbol = machine_set_callable_unit_symbol;
-	_This->get_callable_unit_parameter_symbol = machine_get_callable_unit_parameter_symbol;
-	_This->set_callable_unit_parameter_symbol = machine_set_callable_unit_parameter_symbol;
+	_This->get_callable_unit_metadata = _H6VM_METHOD_NAME(get_callable_unit_metadata);
+	_This->find_callable_unit = _H6VM_METHOD_NAME(find_callable_unit);
+	_This->find_callable_unit_by_entry_point = _H6VM_METHOD_NAME(find_callable_unit_by_entry_point);
+	_This->get_callable_unit_symbol = _H6VM_METHOD_NAME(get_callable_unit_symbol);
+	_This->set_callable_unit_symbol = _H6VM_METHOD_NAME(set_callable_unit_symbol);
+	_This->get_callable_unit_parameter_symbol = _H6VM_METHOD_NAME(get_callable_unit_parameter_symbol);
+	_This->set_callable_unit_parameter_symbol = _H6VM_METHOD_NAME(set_callable_unit_parameter_symbol);
 
 	// crz: program
 
-	_This->new_program = new_program;
-	_This->resolve_externals = machine_resolve_externals;
+	_This->new_program = _H6VM_METHOD_NAME(new_program);
+	_This->resolve_externals = _H6VM_METHOD_NAME(resolve_externals);
 
 #ifdef _6IT_SUPPORT_LUA
-	_This->bind_lua = machine_bind_lua;
-	_This->resolve_lua_externals = machine_resolve_lua_externals;
-	_This->push_to_lua = machine_push_to_lua;
-	_This->pull_from_lua = machine_pull_from_lua;
+	_This->bind_lua = _H6VM_METHOD_NAME(bind_lua);
+	_This->resolve_lua_externals = _H6VM_METHOD_NAME(resolve_lua_externals);
+	_This->push_to_lua = _H6VM_METHOD_NAME(push_to_lua);
+	_This->pull_from_lua = _H6VM_METHOD_NAME(pull_from_lua);
 #endif
 
 	// crz: strings
 
-	_This->add_string = add_string;
-	_This->get_string = get_string;
+	_This->add_string = _H6VM_METHOD_NAME(add_string);
+	_This->get_string = _H6VM_METHOD_NAME(get_string);
 
 	// crz: theeading
 
-	_This->create_thread = machine_create_thread;
-	_This->switch_context = machine_switch_context;
+	_This->create_thread = _H6VM_METHOD_NAME(create_thread);
+	_This->switch_context = _H6VM_METHOD_NAME(switch_context);
 
 #ifdef _6IT_SUPPORT_INTERRUPTS
 	construct_interrupt_controller(&_This->interrupt_controller, _This);

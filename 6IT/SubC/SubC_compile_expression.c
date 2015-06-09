@@ -6,7 +6,7 @@
 #include "6IL/6IL_opcodes.h"
 #include "6EV/6EV_opcodes.h"
 
-COMPILER_METHOD_CONST(void, compile_global_expression)
+_SUBC_METHOD_CONST(void, compile_global_expression)
 {
 	struct expression_t expression;
 	init_new_expression(_This->machine, &expression);
@@ -16,7 +16,7 @@ COMPILER_METHOD_CONST(void, compile_global_expression)
 	_State->global_expressions[_State->number_of_global_expressions++] = expression.first_term_index;
 }
 
-COMPILER_METHOD_CONST(void, emit_static_initialiser)
+_SUBC_METHOD_CONST(void, emit_static_initialiser)
 {
 	struct instruction_emitter_t *emitter = &_This->machine->instruction_emitter;
 
@@ -41,7 +41,7 @@ COMPILER_METHOD_CONST(void, emit_static_initialiser)
 	cu->exit_point_program_counter = _REG_FCP(_REGS(_This->machine)) - 1;
 }
 
-COMPILER_METHOD_CONST(void, compile_expression)
+_SUBC_METHOD_CONST(void, compile_expression)
 {
 	struct instruction_emitter_t *emitter = &_This->machine->instruction_emitter;
 

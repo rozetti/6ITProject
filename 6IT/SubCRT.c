@@ -3,8 +3,10 @@
 #include "6IT.h"
 #include "SubCRT.h"
 
+#ifdef _6IT_AMALGAMATE_SOURCE
 #include "SubCRT/SubCRT_stdio.c"
 #include "SubCRT/SubCRT_conio.c"
+#endif
 
 _6IT_PUBLIC void _6IT_MACHINECALL(bind_SubCRT)
 {

@@ -1,10 +1,11 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6YM.h"
 #include "6EV/6EV_opcodes.h"
 #include "6IL/6IL_opcodes.h"
 
-DOWNCOMPILER_METHODX_CONST(int, downcompile_EVAL_RETURN, struct expression_t *expression)
+_6YM_METHODX_CONST(int, downcompile_EVAL_RETURN, struct expression_t *expression)
 {
 	struct instruction_emitter_t *emitter = &_This->machine->instruction_emitter;
 	
@@ -22,7 +23,7 @@ DOWNCOMPILER_METHODX_CONST(int, downcompile_EVAL_RETURN, struct expression_t *ex
 	return 0;
 }
 
-DOWNCOMPILER_METHOD_CONST(int, downcompile_RETURNEVAL)
+_6YM_METHOD_CONST(int, downcompile_RETURNEVAL)
 {
 	struct machine_t *machine = _This->machine;
 	struct instruction_emitter_t *emitter = &machine->instruction_emitter;

@@ -1,6 +1,7 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
 #include "6IT.h"
+#include "6UG.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -10,7 +11,7 @@
 #define _IS_PARM(C, S) (!_strcmpi(parms[0], #C) || !_strcmpi(parms[0], #S))
 #define _HAS_PARM  (number_of_parms != 0)
 
-DEBUGGER_METHOD(void, state_changed)
+_6UG_METHOD(void, state_changed)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -26,7 +27,7 @@ _6IT_PRIVATE void help(struct machine_t *machine)
 	machine->printf(machine, "commands: (s)tep, (b)reak, (l)ist, state, ev, val, reg, (c)ontinue, (r)un\n");
 }
 
-DEBUGGER_METHODX(void, enter_processor_debugger, struct breakpoint_t *bp)
+_6UG_METHODX(void, enter_processor_debugger, struct breakpoint_t *bp)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -148,7 +149,7 @@ DEBUGGER_METHODX(void, enter_processor_debugger, struct breakpoint_t *bp)
 }
 
 // todo crz: this
-DEBUGGER_METHOD(void, enter_evaluator_debugger)
+_6UG_METHOD(void, enter_evaluator_debugger)
 {
 	//if (!machine->single_step_flag) return;
 
