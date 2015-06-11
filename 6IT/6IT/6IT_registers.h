@@ -73,15 +73,18 @@ struct machine_registers_t
 	struct frame_t *execution_stack;
 	struct frame_t *frame;
 	struct expression_term_t *expression_segment;
+	char *string_segment;
+	struct callable_unit_t *callable_unit_segment;
+	void *data_segment;
 
 	struct register_t FRP; // crz: free absolute register pointer
 	struct register_t FXP; // crz: free expression pointer
 	struct register_t FCP;
 	struct register_t DS;
 	struct register_t FDP;
-	struct register_t SS; // crz: string segment
+	//struct register_t SS; // crz: string segment
 	struct register_t FSP; // crz: free string pointer
-	struct register_t US;
+	//struct register_t US;
 	struct register_t FUP;
 	struct register_t ACC;
 	struct register_t CMP;
@@ -103,10 +106,10 @@ struct machine_registers_t
 #define _RSP_CHANGED(regs)
 #endif
 
-#define _REG_US(regs) ((struct callable_unit_t *)(regs)->US.value.P)
+#define _REG_US(regs) ((regs)->callable_unit_segment)
 #define _REG_FUP(regs) ((regs)->FUP.value.E)
 
-#define _REG_SS(regs) ((char *)(regs)->SS.value.P)
+#define _REG_SS(regs) ((regs)->string_segment)
 #define _REG_FSP(regs) ((regs)->FSP.value.E)
 #define _INC_FSP(regs) (++(regs)->FSP.value.E)
 
@@ -123,10 +126,10 @@ struct machine_registers_t
 #define _REG_FXP(regs) ((regs)->FXP.value.E)
 
 #define _REG_CS(reg) ((reg)->code_segment)
-#define _CODE_FLOAT(regs, p) ((float)(*(_REG_CS(regs) + p)))
+#define _CODE_FLOAT(regs, p) (*((float *)(_REG_CS(regs) + p)))
 #define _REG_FCP(regs) ((regs)->FCP.value.E)
 
-#define _REG_DS(regs) ((void *)(regs)->DS.value.E)
+#define _REG_DS(regs) ((regs)->data_segment)
 #define _REG_FDP(regs) ((regs)->FDP.value.E)
 
 #define _REG_FRP(regs) ((regs)->FRP.value.E)
