@@ -72,7 +72,7 @@ static int setup_lua()
 #ifdef _6IT_SUPPORT_LUA
 	struct lua_State *L = luaL_newstate();
 	luaL_openlibs(L);
-	luaL_dofile(L, "test_fibonacci_lua.lua");
+	luaL_dofile(L, "../TestFiles/test_fibonacci_lua.lua");
 
 	lua = L;
 
@@ -278,13 +278,13 @@ int run_file(char const *filename)
 
 int run_tests()
 {
-	run_file("../TestFiles/test_main.c");
-	run_file("../TestFiles/test_function_call.c");
-	run_file("../TestFiles/test_if.c");
-	run_file("../TestFiles/test_loops.c");
-	run_file("../TestFiles/test_operators.c");
-	run_file("../TestFiles/test_globals.c");
-	run_file("../TestFiles/test_float.c");
+//	run_file("../TestFiles/test_main.c");
+//	run_file("../TestFiles/test_function_call.c");
+//	run_file("../TestFiles/test_if.c");
+//	run_file("../TestFiles/test_loops.c");
+//	run_file("../TestFiles/test_operators.c");
+//	run_file("../TestFiles/test_globals.c");
+//	run_file("../TestFiles/test_float.c");
 
 	run_file("../TestFiles/test_fibonacci_subc.c");
 #ifdef _6IT_SUPPORT_LUA
@@ -299,7 +299,7 @@ int run_tests()
 	return 1;
 }
 
-#ifdef _6IT_SUPPORT_LUA
+#ifdef _6IT_SUPPORT_THREADS
 DWORD WINAPI run_tests_thread(LPVOID blah)
 {
 	run_tests();

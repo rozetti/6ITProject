@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define _IS_COMMAND(C, S) (!_strcmpi(command, #C) || !_strcmpi(command, #S))
-#define _IS_PARM(C, S) (!_strcmpi(parms[0], #C) || !_strcmpi(parms[0], #S))
+#define _IS_COMMAND(C, S) (!strcmp(command, #C) || !strcmp(command, #S))
+#define _IS_PARM(C, S) (!strcmp(parms[0], #C) || !strcmp(parms[0], #S))
 #define _HAS_PARM  (number_of_parms != 0)
 
 _6UG_METHOD(void, state_changed)
@@ -106,23 +106,23 @@ _6UG_METHODX(void, enter_processor_debugger, struct breakpoint_t *bp)
 				machine->printf(machine, "break need a parm\n");
 			}
 		}
-		else if (!_strcmpi(command, "state"))
+		else if (!strcmp(command, "state"))
 		{
 			_This->print_state(_This);
 		}
-		else if (!_strcmpi(command, "ev"))
+		else if (!strcmp(command, "ev"))
 		{
 			_This->print_evaluator_state(_This);
 		}
-		else if (!_strcmpi(command, "val"))
+		else if (!strcmp(command, "val"))
 		{
 			_This->print_value_stack(_This);
 		}
-		else if (!_strcmpi(command, "reg"))
+		else if (!strcmp(command, "reg"))
 		{
 			_This->print_registers(_This);
 		}
-		else if (!_strcmpi(command, "continue") || !_strcmpi(command, "c"))
+		else if (!strcmp(command, "continue") || !strcmp(command, "c"))
 		{
 			break;
 		}

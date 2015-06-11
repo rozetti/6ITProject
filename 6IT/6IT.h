@@ -68,6 +68,12 @@ typedef volatile unsigned char atomic_flag_t; // todo crz: platform-specific bet
 
 #include <assert.h>
 
+#ifdef _6IT_SUPPORT_LUA
+#include "../ThirdParty/lua/lua.h"
+#include "../ThirdParty/lua/lualib.h"
+#include "../ThirdParty/lua/lauxlib.h"
+#endif
+
 #ifdef _6IT_AMALGAMATED_SOURCE
 #ifdef _6IT_PRIVATE
 #undef _6IT_PRIVATE

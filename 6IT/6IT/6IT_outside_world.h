@@ -25,9 +25,3 @@ struct environment_t
 	void *context;
 };
 
-#ifdef _6IT_SUPPORT_LUA
-#include "..\..\ThirdParty\lua\lua.h"
-#include "..\..\ThirdParty\lua\lualib.h"
-#include "..\..\ThirdParty\lua\lauxlib.h"
-#endif
-
