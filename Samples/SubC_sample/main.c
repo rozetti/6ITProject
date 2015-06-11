@@ -1,16 +1,19 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
+
+#include "6IT.h"
 
 #ifdef _6IT_WIN32
 #include <Windows.h>
+#include <direct.h>
+#define get_cwd _getcwd
+#else
+#include <unistd.h>
+#define get_cwd getcwd
 #endif
 
-#include "6IT.h"
 #include "SubCRT.h"
-
-//#include "SubC_complete.c"
 
 static char buffer[100];
 
@@ -274,22 +277,22 @@ int run_file(char const *filename)
 
 int run_tests()
 {
-	run_file("test_main.c");
-	run_file("test_function_call.c");
-	run_file("test_if.c");
-	run_file("test_loops.c");
-	run_file("test_operators.c");
-	run_file("test_globals.c");
-	run_file("test_float.c");
+	run_file("../TestFiles/test_main.c");
+	run_file("../TestFiles/test_function_call.c");
+	run_file("../TestFiles/test_if.c");
+	run_file("../TestFiles/test_loops.c");
+	run_file("../TestFiles/test_operators.c");
+	run_file("../TestFiles/test_globals.c");
+	run_file("../TestFiles/test_float.c");
 
-	run_file("test_fibonacci_subc.c");
+	run_file("../TestFiles/test_fibonacci_subc.c");
 #ifdef _6IT_SUPPORT_LUA
-	run_file("test_fibonacci_lua.c");
+	run_file("../TestFiles/test_fibonacci_lua.c");
 #endif
-	run_file("test_fibonacci_native.c");
+	run_file("../TestFiles/test_fibonacci_native.c");
 
 #ifdef _6IT_SUPPORT_THREADS
-	run_file("test_threads.c");
+	run_file("../TestFiles/test_threads.c");
 #endif
 
 	return 1;
@@ -306,9 +309,9 @@ DWORD WINAPI run_tests_thread(LPVOID blah)
 
 int main(int argc, char *argv[])
 {
-    char c[1000];
-    getcwd(c, sizeof(c));
-    printf("\ncwd: '%s'\n", c);
+	char cwd[FILENAME_MAX];
+	if (!get_cwd(cwd, sizeof(cwd))) return errno;
+	printf("cwd %s\n", cwd);
 
 #ifdef _6IT_SUPPORT_LUA
 	setup_lua();

@@ -10,6 +10,10 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\6IT\SubC_complete.c" />
+    <ClCompile Include="..\main.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D191F5E3-0146-465C-8494-1315BE500A3A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -42,11 +46,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\..\6IT</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\..\..\6IT</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\..\6IT</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\..\..\6IT</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -102,45 +106,6 @@
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\6IT\SubC_complete.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lapi.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lauxlib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lbaselib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lbitlib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lcode.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lcorolib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lctype.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\ldblib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\ldebug.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\ldo.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\ldump.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lfunc.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lgc.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\linit.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\liolib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\llex.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lmathlib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lmem.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\loadlib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lobject.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lopcodes.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\loslib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lparser.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lstate.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lstring.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lstrlib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\ltable.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\ltablib.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\ltm.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lundump.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lvm.c" />
-    <ClCompile Include="..\..\ThirdParty\lua\lzio.c" />
-    <ClCompile Include="main.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="test_fibonacci_lua.lua" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
