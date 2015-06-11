@@ -6,7 +6,6 @@
 #ifdef _6IT_AMALGAMATE_SOURCE
 #include "6EV/6EV_debug.c"
 #include "6EV/6EV_opcodes.c"
-#include "6EV/6EV_misc.c"
 #include "6EV/6EV_type_checker.c"
 
 #ifdef _6IT_DEBU66ER

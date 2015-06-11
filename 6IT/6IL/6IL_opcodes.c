@@ -1,7 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
-#include "6IL.h"
+#include "../6IL.h"
 
 _6IT_PRIVATE struct mnemonic_t h6vm_mnemonic[] =
 {
@@ -108,3 +107,27 @@ _6IT_PRIVATE struct mnemonic_t h6vm_mnemonic[] =
 
 	0, 0, LIGHT, 0, 0, 0, { 0, 0, 0, 0, 0 }
 };
+
+_6IT_PRIVATE struct mnemonic_t const *_6IL_get_mnemonic(opcode_t opcode)
+{
+	int i = 0;
+
+	while (h6vm_mnemonic[i].mnemonic)
+	{
+		if (h6vm_mnemonic[i].opcode == opcode)
+		{
+			return &h6vm_mnemonic[i];
+		}
+
+		++i;
+	}
+
+	return 0;
+}
+
+_6IT_PRIVATE int _6IL_get_instruction_length(opcode_t opcode)
+{
+	struct mnemonic_t const *mn = _6IL_get_mnemonic(OPCODE_INSTRUCTION(opcode));
+	return 1 + mn->number_of_operands;
+}
+

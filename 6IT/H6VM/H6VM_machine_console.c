@@ -1,7 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
-#include "H6VM.h"
+#include "../H6VM.h"
 
 #include <stdlib.h>
 #include <stdarg.h>

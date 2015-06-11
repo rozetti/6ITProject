@@ -1,7 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
-#include "6YM.h"
+#include "../6YM.h"
 
 _6YM_METHODX_CONST(int, find_new_pc, int old_pc)
 {

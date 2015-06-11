@@ -6,13 +6,14 @@
 #include "6IL/6IL_opcodes.c"
 #include "6IL/6IL_misc.c"
 
+#include "6IL/6IL_processor.c"
+
 #ifdef _6IT_DEBU66ER
 #define PROCESSOR_WITH_DEBUGGER
 #include "6IL/6IL_processor.c"
 #undef PROCESSOR_WITH_DEBUGGER
 #endif
 
-#include "6IL/6IL_processor.c"
 #endif
 
 _6IT_PRIVATE void _6IT_MACHINECALL(_6IL_execute_debug_no_debugger)

@@ -66,7 +66,7 @@
       </InlineFunctionExpansion>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <ShowIncludes>true</ShowIncludes>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -92,7 +92,7 @@
       <WholeProgramOptimization />
       <AssemblerOutput>NoListing</AssemblerOutput>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <ShowIncludes>true</ShowIncludes>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,6 +103,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\6IT\SubC_complete.c" />
     <ClCompile Include="..\..\ThirdParty\lua\lapi.c" />
     <ClCompile Include="..\..\ThirdParty\lua\lauxlib.c" />
     <ClCompile Include="..\..\ThirdParty\lua\lbaselib.c" />

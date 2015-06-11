@@ -1,7 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
-#include "H6VM.h"
+#include "../H6VM.h"
 
 _H6VM_METHODXX(void, create_thread, struct thread_t *thread, struct callable_unit_t *entry)
 {

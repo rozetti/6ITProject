@@ -26,6 +26,10 @@ SOFTWARE.
 
 #pragma once
 
+#include "6IT.h"
+#include "6IL/6IL_opcodes.h"
+#include "6EV/6EV_opcodes.h"
+
 #define _SUBC_METHOD_NAME(NAME) (_SubC##_##NAME)
 #define _SUBC_METHOD_CONST(R, NAME) _6IT_PRIVATE R _6IT_STATECALL_CONST(compiler, _SUBC_METHOD_NAME(NAME))
 #define _SUBC_METHODX_CONST(R, NAME, P1) _6IT_PRIVATE R _6IT_STATECALLX_CONST(compiler, _SUBC_METHOD_NAME(NAME), P1)

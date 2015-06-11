@@ -1,7 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
-#include "6X.h"
+#include "../6X.h"
 #include "6EV/6EV_opcodes.h" // todo crz: please try to decouple this
 
 _6X_METHODXXX(void, emit_string, struct expression_t *expression, int index, int source_position)

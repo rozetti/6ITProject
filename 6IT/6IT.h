@@ -68,7 +68,9 @@ typedef volatile unsigned char atomic_flag_t; // todo crz: platform-specific bet
 
 #include <assert.h>
 
+#ifdef _6IT_AMALGAMATED_SOURCE
 #ifdef _6IT_PRIVATE
 #undef _6IT_PRIVATE
 #endif
 #define _6IT_PRIVATE static
+#endif

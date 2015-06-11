@@ -28,6 +28,9 @@ SOFTWARE.
 
 #include "6IT.h"
 
+#include "6EV/6EV_opcodes.h"
+#include "6IL/6IL_opcodes.h"
+
 #define _6YM_METHOD_NAME(NAME) _##6YM##_##NAME
 #define _6YM_METHOD_CONST(R, NAME) _6IT_PRIVATE R _6IT_STATECALL_CONST(downcompiler, _6YM_METHOD_NAME(NAME))
 #define _6YM_METHODX_CONST(R, NAME, P1) _6IT_PRIVATE R _6IT_STATECALLX_CONST(downcompiler, _6YM_METHOD_NAME(NAME), P1)

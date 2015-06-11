@@ -1,7 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
-#include "H6VM.h"
+#include "../H6VM.h"
 
 _6IT_PUBLIC _6IT_CONSTRUCTORX(frame, stack_frame, int position)
 {

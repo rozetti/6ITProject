@@ -1,7 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
-#include "6X.h"
+#include "../6X.h"
 #include "6EV/6EV_opcodes.h"
 
 #include <memory.h>

@@ -1,9 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
-#include "SubC.h"
-
-#include "6IL/6IL_opcodes.h"
+#include "../SubC.h"
 
 #include <string.h>
 

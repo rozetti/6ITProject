@@ -1,7 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
-#include "6EV.h"
+#include "../6EV.h"
 
 _6IT_PRIVATE void _6IT_MACHINECALLX(_6EV_METHOD_NAME(print_expression_term), struct expression_term_t *term)
 {

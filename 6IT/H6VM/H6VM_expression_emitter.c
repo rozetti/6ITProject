@@ -1,6 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
+#include "../H6VM.h"
 
 EXPRESSION_EMITTER_METHODXXX(void, append_term, struct expression_t *expression, struct expression_term_t *term, int source_position)
 {

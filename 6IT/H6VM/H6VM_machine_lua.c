@@ -2,7 +2,7 @@
 
 #ifdef _6IT_SUPPORT_LUA
 
-#include "6IT.h"
+#include "../H6VM.h"
 #include <string.h>
 
 //void machine_push_to_lua(struct machine_t *machine);

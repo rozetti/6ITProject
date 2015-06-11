@@ -1,6 +1,7 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
+#include "../6EV.h"
+
 #include "6EV_opcodes.h"
 
 _6IT_PRIVATE struct mnemonic_t evaluator_mnemonics[] =
@@ -90,4 +91,22 @@ _6IT_PRIVATE struct mnemonic_t evaluator_mnemonics[] =
 
 	0, 0, LIGHT, 0, 0, 0, { 0, 0, 0, 0, 0 }
 };
+
+_6IT_PRIVATE struct mnemonic_t const *_6EV_get_mnemonic(opcode_t opcode)
+{
+	int i = 0;
+
+	while (evaluator_mnemonics[i].mnemonic)
+	{
+		if (evaluator_mnemonics[i].opcode == opcode)
+		{
+			return &evaluator_mnemonics[i];
+		}
+
+		++i;
+	}
+
+	return 0;
+}
+
 

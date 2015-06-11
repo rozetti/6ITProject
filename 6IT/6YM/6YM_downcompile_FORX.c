@@ -1,9 +1,6 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "6IT.h"
-#include "6YM.h"
-#include "6EV/6EV_opcodes.h"
-#include "6IL/6IL_opcodes.h"
+#include "../6YM.h"
 
 // hack crz
 static struct expression_t init_expression;

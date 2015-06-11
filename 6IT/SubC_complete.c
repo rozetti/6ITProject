@@ -2,8 +2,10 @@
 
 #include "6IT.h"
 
-#include "6IT.c"
+#ifdef _6IT_AMALGAMATE_SOURCE
+
 #include "6EV.c"
+#include "6IT.c"
 #include "6IOS.c"
 #include "6OO.c"
 #include "6UG.c"
@@ -13,4 +15,6 @@
 #include "SubC.c"
 #include "6IL.c"
 #include "SubCRT.c"
+
+#endif
 

@@ -7,7 +7,7 @@
 #include "6IT.h"
 #include "SubCRT.h"
 
-#include "SubC_complete.c"
+//#include "SubC_complete.c"
 
 static char buffer[100];
 
