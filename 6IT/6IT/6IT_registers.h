@@ -122,7 +122,7 @@ struct machine_registers_t
 #define _REG_VPC(reg) ((reg)->evaluator_program_counter)
 #define _SET_VPC(reg, v) (_REG_VPC(reg) = (v))
 
-#define _REG_XS(regs) ((struct expression_term_t *)(regs)->expression_segment)
+#define _REG_XS(regs) ((regs)->expression_segment)
 #define _REG_FXP(regs) ((regs)->FXP.value.E)
 
 #define _REG_CS(reg) ((reg)->code_segment)

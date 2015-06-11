@@ -5,15 +5,17 @@
 #include <time.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdarg.h>
 
 #ifdef _6IT_WIN32
-
 #include <Windows.h>
+#endif
 
 _6IT_PRIVATE void bios_print_string(char const *s)
 {
 	fputs(s, stdout);
 
+#ifdef _6IT_WIN32
 	auto len = strlen(s);
 
 	wchar_t *dest = malloc((len + 1) * sizeof(wchar_t));
@@ -24,8 +26,8 @@ _6IT_PRIVATE void bios_print_string(char const *s)
 	OutputDebugString(dest);
 
 	free(dest);
-}
 #endif
+}
 
 _6IT_PRIVATE void bios_printf(char const *format, ...)
 {
