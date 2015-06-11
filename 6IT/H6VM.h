@@ -39,7 +39,6 @@ SOFTWARE.
 
 // todo crz: put these somewhere nice
 int construct_machine_debugger_support(struct machine_debugger_support_t *debug, struct machine_debug_config_t config);
-void destruct_machine_debug(struct machine_debugger_support_t *debug);
 int machine_debug_is_active(struct machine_t *machine);
 
 //void debug_printf(char const *format, ...);

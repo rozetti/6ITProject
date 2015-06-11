@@ -1,0 +1,544 @@
+# depslib dependency file v1.0
+1434021109 source:/Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC_complete.c
+	"6IT.h"
+	"6EV.c"
+	"6IT.c"
+	"6IOS.c"
+	"6OO.c"
+	"6UG.c"
+	"6X.c"
+	"6YM.c"
+	"H6VM.c"
+	"SubC.c"
+	"6IL.c"
+	"SubCRT.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT.h
+	"6IT_config.h"
+	"6IT/6IT_platform.h"
+	"6IT/6IT_macros.h"
+	"6IT/6IT_classes.h"
+	"6IT/6IT_outside_world.h"
+	"6IT/6IT_bios.h"
+	"6IT/6IT_types.h"
+	"6IT/6IT_tokens.h"
+	"6IT/6IT_interfaces.h"
+	"6IT/6IT_constructors.h"
+	"6IT/6IT_end_user.h"
+	<assert.h>
+
+1434021529 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT_config.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_platform.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_macros.h
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_classes.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_outside_world.h
+	<setjmp.h>
+	"..\..\ThirdParty\lua\lua.h"
+	"..\..\ThirdParty\lua\lualib.h"
+	"..\..\ThirdParty\lua\lauxlib.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_bios.h
+	"6IT.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_types.h
+	<inttypes.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_tokens.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_interfaces.h
+	"6IT_scanner.h"
+	"6IT_expression_parser.h"
+	"6IT_compiler.h"
+	"6IT_debugger.h"
+	"6IT_registers.h"
+	"6IT_downcompiler.h"
+	"6IT_evaluator.h"
+	"6IT_processor.h"
+	"6IT_debugger.h"
+	"6IT_machine.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_scanner.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_expression_parser.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_compiler.h
+	"6IT.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_debugger.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_registers.h
+	"6IT.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_downcompiler.h
+	"6IT_macros.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_evaluator.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_processor.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_machine.h
+	"6IT_scheduler.h"
+	"6IT_interrupt_controller.h"
+	<time.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_scheduler.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_interrupt_controller.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_constructors.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT/6IT_end_user.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6EV.c
+	"6IT.h"
+	"6EV.h"
+	"6EV/6EV_debug.c"
+	"6EV/6EV_opcodes.c"
+	"6EV/6EV_type_checker.c"
+	"6EV/6EV_evaluator.c"
+	"6EV/6EV_evaluator.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6EV.h
+	"6IT.h"
+	"6EV/6EV_opcodes.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6EV/6EV_opcodes.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6EV/6EV_debug.c
+	"../6EV.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6EV/6EV_opcodes.c
+	"../6EV.h"
+	"6EV_opcodes.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6EV/6EV_type_checker.c
+	"../6EV.h"
+	<assert.h>
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6EV/6EV_evaluator.c
+	"../6EV.h"
+	<stdio.h>
+	<assert.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IT.c
+	"6IT.h"
+	<memory.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IOS.c
+	"6IT.h"
+	"6IOS.h"
+	"6IOS/6IOS_input.c"
+	"6IOS/6IOS_print.c"
+	"6IOS/6IOS_time.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IOS.h
+	"6IT.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IOS/6IOS_input.c
+	"../6IOS.h"
+	<stdio.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IOS/6IOS_print.c
+	"../6IOS.h"
+	<time.h>
+	<string.h>
+	<stdio.h>
+	<stdarg.h>
+	<Windows.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IOS/6IOS_time.c
+	"../6IOS.h"
+	<time.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6OO.c
+	"6IT.h"
+	"6OO.h"
+	"6OO/6OO_classification.c"
+	"6OO/6OO_extraction.c"
+	"6OO/6OO_consumption.c"
+	"6OO/6OO_moving.c"
+	"6OO/6OO_tokeniser.c"
+	"6OO/6OO_tokens.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6OO.h
+	"6IT.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6OO/6OO_classification.c
+	"../6OO.h"
+	<string.h>
+	<ctype.h>
+	<stdio.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6OO/6OO_extraction.c
+	"../6OO.h"
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6OO/6OO_consumption.c
+	"../6OO.h"
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6OO/6OO_moving.c
+	"../6OO.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6OO/6OO_tokeniser.c
+	"../6OO.h"
+	"6OO_reader.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6OO/6OO_reader.c
+	"6OO_reader.h"
+	<stdio.h>
+	<stdlib.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6OO/6OO_reader.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6OO/6OO_tokens.c
+	"../6OO.h"
+	<stdio.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6UG.c
+	"6IT.h"
+	"6UG/6UG_debugger.c"
+	"6UG/6UG_print.c"
+	"6UG/6UG_minidump.c"
+	"6UG/6UG_time.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6UG/6UG_debugger.c
+	"../6UG.h"
+	<string.h>
+	<stdlib.h>
+	<time.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6UG.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6UG/6UG_print.c
+	"../6UG.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6UG/6UG_minidump.c
+	"../6UG.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6UG/6UG_time.c
+	"../6UG.h"
+	<stdio.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X.c
+	"6IT.h"
+	"6X.h"
+	"6X/6X_emitter.c"
+	"6X/6X_parser.c"
+	"6X/6X_parse_arithmetic.c"
+	"6X/6X_parse_assignment.c"
+	"6X/6X_parse_brackets.c"
+	"6X/6X_parse_data_type.c"
+	"6X/6X_parse_identifier.c"
+	"6X/6X_parse_primitive.c"
+	"6X/6X_parse_relational.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X.h
+	"6IT.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X/6X_emitter.c
+	"../6X.h"
+	"6EV/6EV_opcodes.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X/6X_parser.c
+	"../6X.h"
+	"6EV/6EV_opcodes.h"
+	<memory.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X/6X_parse_arithmetic.c
+	"../6X.h"
+	"6EV/6EV_opcodes.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X/6X_parse_assignment.c
+	"../6X.h"
+	"6EV/6EV_opcodes.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X/6X_parse_brackets.c
+	"../6X.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X/6X_parse_data_type.c
+	"../6X.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X/6X_parse_identifier.c
+	"../6X.h"
+	<stdio.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X/6X_parse_primitive.c
+	"../6X.h"
+	<string.h>
+	<stdlib.h>
+	<assert.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6X/6X_parse_relational.c
+	"../6X.h"
+	"6EV/6EV_opcodes.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM.c
+	"6IT.h"
+	"6YM.h"
+	"6YM/6YM_fixup.c"
+	"6YM/6YM_downcompile_RETURNX.c"
+	"6YM/6YM_downcompile_IF.c"
+	"6YM/6YM_downcompile_EVAL.c"
+	"6YM/6YM_downcompile_FORX.c"
+	"6YM/6YM_downcompile_CONDITION.c"
+	"6YM/6YM_downcompile_smalls.c"
+	"6YM/6YM_downcompile_callable_unit.c"
+	"6YM/6YM_downcompiler.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM.h
+	"6IT.h"
+	"6EV/6EV_opcodes.h"
+	"6IL/6IL_opcodes.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IL/6IL_opcodes.h
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM/6YM_fixup.c
+	"../6YM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM/6YM_downcompile_RETURNX.c
+	"../6YM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM/6YM_downcompile_IF.c
+	"../6YM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM/6YM_downcompile_EVAL.c
+	"../6YM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM/6YM_downcompile_FORX.c
+	"../6YM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM/6YM_downcompile_CONDITION.c
+	"../6YM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM/6YM_downcompile_smalls.c
+	"../6YM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM/6YM_downcompile_callable_unit.c
+	"../6YM.h"
+	<stdio.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6YM/6YM_downcompiler.c
+	"6YM.h"
+	<assert.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM.c
+	"6IT.h"
+	"H6VM/H6VM_execution_stack.c"
+	"H6VM/H6VM_evaluator_stack.c"
+	"H6VM/H6VM_instruction_emitter.c"
+	"H6VM/H6VM_expression_emitter.c"
+	"H6VM/H6VM_thread.c"
+	"H6VM/H6VM_scheduler.c"
+	"H6VM/H6VM_debug.c"
+	"H6VM/H6VM_machine.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_execution_stack.c
+	"../H6VM.h"
+
+1434021598 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM.h
+	"6IT.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_evaluator_stack.c
+	"../H6VM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_instruction_emitter.c
+	"../H6VM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_expression_emitter.c
+	"../H6VM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_thread.c
+	"../H6VM.h"
+	<stdlib.h>
+	<memory.h>
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_scheduler.c
+	"../H6VM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_debug.c
+	"../H6VM.h"
+	<time.h>
+	<string.h>
+	<stdio.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine.c
+	"../H6VM.h"
+	"H6VM_machine_strings.c"
+	"H6VM_machine_disassembly.c"
+	"H6VM_machine_breakpoints.c"
+	"H6VM_machine_bindings.c"
+	"H6VM_machine_program.c"
+	"H6VM_machine_console.c"
+	"H6VM_machine_callable_unit.c"
+	"H6VM_machine_expression.c"
+	"H6VM_machine_lua.c"
+	"H6VM_machine_interrupt_controller.c"
+	"H6VM_machine_register.c"
+	"H6VM_machine_threading.c"
+	"H6VM_machine_debugger_support.c"
+	"H6VM_machine_checking.c"
+	<stdlib.h>
+	<memory.h>
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_strings.c
+	"../H6VM.h"
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_disassembly.c
+	"../H6VM.h"
+	<string.h>
+	<stdio.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_breakpoints.c
+	"../H6VM.h"
+	<memory.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_bindings.c
+	"../H6VM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_program.c
+	"../H6VM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_console.c
+	"../H6VM.h"
+	<stdlib.h>
+	<stdarg.h>
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_callable_unit.c
+	"../H6VM.h"
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_expression.c
+	"../H6VM.h"
+	<memory.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_lua.c
+	"../H6VM.h"
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_interrupt_controller.c
+	"../H6VM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_register.c
+	"../H6VM.h"
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_threading.c
+	"../H6VM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_debugger_support.c
+	"../H6VM.h"
+	<memory.h>
+	<stdlib.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/H6VM/H6VM_machine_checking.c
+	"../H6VM.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC.c
+	"6IT.h"
+	"SubC.h"
+	"SubC/SubC_compiler_whitespace.c"
+	"SubC/SubC_variables.c"
+	"SubC/SubC_compile_expression.c"
+	"SubC/SubC_compile_for.c"
+	"SubC/SubC_compile_function.c"
+	"SubC/SubC_compile_if.c"
+	"SubC/SubC_compile_loops.c"
+	"SubC/SubC_compile_assert.c"
+	"SubC/SubC_compiler.c"
+	"SubC/SubC_compile_program.c"
+	<memory.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC/SubC_compiler_whitespace.c
+	"../SubC.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC/SubC_variables.c
+	"../SubC.h"
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC/SubC_compile_expression.c
+	"../SubC.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC/SubC_compile_for.c
+	"../SubC.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC/SubC_compile_function.c
+	"../SubC.h"
+	<string.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC/SubC_compile_if.c
+	"../SubC.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC/SubC_compile_loops.c
+	"../SubC.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC/SubC_compile_assert.c
+	"../SubC.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC/SubC_compiler.c
+	"../SubC.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubC/SubC_compile_program.c
+	"../SubC.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IL.c
+	"6IT.h"
+	"6IL/6IL_opcodes.c"
+	"6IL/6IL_misc.c"
+	"6IL/6IL_processor.c"
+	"6IL/6IL_processor.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IL/6IL_opcodes.c
+	"../6IL.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IL.h
+	"6IT.h"
+	"6IL/6IL_opcodes.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IL/6IL_misc.c
+	"../6IL.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/6IL/6IL_processor.c
+	"../6IL.h"
+	<memory.h>
+	<assert.h>
+	<stdio.h>
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubCRT.c
+	"6IT.h"
+	"SubCRT.h"
+	"SubCRT/SubCRT_stdio.c"
+	"SubCRT/SubCRT_conio.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubCRT.h
+	"6IT.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubCRT/SubCRT_stdio.c
+	"../SubCRT.h"
+	"SubCRT_stdio_printf.c"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubCRT/SubCRT_stdio_printf.c
+	<stdarg.h>
+	"6IT.h"
+
+1434021109 /Users/conraddavis/Documents/CodeBlocks/6ITProject/6IT/SubCRT/SubCRT_conio.c
+	"../SubCRT.h"
+
+1434022973 source:/Users/conraddavis/Documents/CodeBlocks/6ITProject/Samples/SubC_sample/main.c
+	<time.h>
+	<stdlib.h>
+	<stdio.h>
+	<Windows.h>
+	"6IT.h"
+	"SubCRT.h"
+

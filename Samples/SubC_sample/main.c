@@ -1,8 +1,11 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
+#ifdef _6IT_WIN32
 #include <Windows.h>
+#endif
 
 #include "6IT.h"
 #include "SubCRT.h"
@@ -54,7 +57,7 @@ static void teardown()
 	compiler.destruct(&compiler);
 #ifdef _6IT_SUPPORT_LUA
 	lua_close(lua);
-#endif	
+#endif
 }
 
 #ifdef _6IT_SUPPORT_LUA
@@ -278,7 +281,7 @@ int run_tests()
 	run_file("test_operators.c");
 	run_file("test_globals.c");
 	run_file("test_float.c");
-	
+
 	run_file("test_fibonacci_subc.c");
 #ifdef _6IT_SUPPORT_LUA
 	run_file("test_fibonacci_lua.c");
@@ -292,15 +295,21 @@ int run_tests()
 	return 1;
 }
 
+#ifdef _6IT_SUPPORT_LUA
 DWORD WINAPI run_tests_thread(LPVOID blah)
 {
 	run_tests();
 
 	return 42;
 }
+#endif
 
 int main(int argc, char *argv[])
 {
+    char c[1000];
+    getcwd(c, sizeof(c));
+    printf("\ncwd: '%s'\n", c);
+
 #ifdef _6IT_SUPPORT_LUA
 	setup_lua();
 #endif
