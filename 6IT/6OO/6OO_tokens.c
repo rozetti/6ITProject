@@ -67,7 +67,7 @@ struct token_string_t _6OO_default_token_strings[] =
 	{TOKEN_LESS_THAN, "<"},
 	{TOKEN_GREATER_THAN, ">"},
 	{TOKEN_SEMI_COLON, ";"},
-	{TOKEN_COMMA, "},"},
+	{TOKEN_COMMA, ","},
 	{TOKEN_OPEN_PAREN, "("},
 	{TOKEN_CLOSE_PAREN, ")"},
 	{TOKEN_OPEN_SQUARE_BRACKET, "["},
