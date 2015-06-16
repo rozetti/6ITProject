@@ -8,7 +8,6 @@
 
 _6X_METHODXX(void, parse_numeric_literal, struct expression_parser_state_t *state, struct expression_t *expression)
 {
-	struct machine_t *machine = state->parser->machine;
 	struct scanner_t *scanner = state->parser->scanner;
 
 	char const *p = strchr(scanner->token.token, '.');
@@ -30,7 +29,6 @@ _6X_METHODXX(void, parse_numeric_literal, struct expression_parser_state_t *stat
 
 _6X_METHODXX(void, parse_char_literal, struct expression_parser_state_t *state, struct expression_t *expression)
 {
-	struct machine_t *machine = state->parser->machine;
 	struct scanner_t *scanner = state->parser->scanner;
 
 	// todo crz: remove this assert and handle escape sequences
@@ -53,7 +51,6 @@ _6X_METHODXX(void, parse_char_literal, struct expression_parser_state_t *state, 
 
 _6X_METHODXX(void, parse_string_literal, struct expression_parser_state_t *state, struct expression_t *expression)
 {
-	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
 
 	_This->emit_string(_This, expression, scanner->token.id, scanner->token.source_offset);
@@ -63,7 +60,6 @@ _6X_METHODXX(void, parse_string_literal, struct expression_parser_state_t *state
 
 _6X_METHODXX(void, parse_primitive, struct expression_parser_state_t *state, struct expression_t *expression)
 {
-	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
 
 	if (scanner->token.type == TOKEN_TYPE_IDENTIFIER)

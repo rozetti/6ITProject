@@ -4,6 +4,7 @@
 
 _6IT_PRIVATE void _6IT_MACHINECALL(_6IL_execute_and_reset)
 {
+	// todo crz: integrate this with checked build
 	int rsp = _REG_RSP(_REGS(_Machine));
 	int pc = _REG_PC(_REGS(_Machine));
 

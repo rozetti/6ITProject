@@ -7,7 +7,6 @@
 _SUBC_METHODX_CONST(void, compile_function_parameters, struct callable_unit_t *function)
 {
 	struct machine_t *machine = _This->machine;
-	struct frame_t *frame = _State->frame;
 	struct scanner_t *scanner = _This->scanner;
 
 	int parameter_index = 0;
@@ -47,7 +46,6 @@ _SUBC_METHODX_CONST(void, compile_function_parameters, struct callable_unit_t *f
 _SUBC_METHOD_CONST(void, compile_function)
 {
 	struct machine_t *machine = _This->machine;
-	struct frame_t *frame = _State->frame;
 	struct scanner_t *scanner = _This->scanner;
 	struct instruction_emitter_t *emitter = &machine->instruction_emitter;
 

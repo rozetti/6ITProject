@@ -9,11 +9,6 @@ _6X_METHODXX(void, parse_identifier, struct expression_parser_state_t *state, st
 	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
 
-	if (scanner->token.source_line_number == 39)
-	{
-		int i = 0;
-	}
-
 	struct callable_unit_t *function = machine->find_callable_unit(machine, scanner->token.token);
 	if (function)
 	{

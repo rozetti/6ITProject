@@ -1,5 +1,7 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
+// todo crz: get rid of this
+
 #include <stdarg.h>
 
 #include "6IT.h"
@@ -90,7 +92,7 @@ static int printi(char **out, int i, int b, int sg, int width, int pad, int letb
 
 static int print_f(char **out, float f, int base, int sg, int width, int pad, int letbase)
 {
-	int neg = 0, pc = 0;
+	int pc = 0;
 
 	int i = (int)f;
 	int fractional_part = (int)((f - i) * 100000);

@@ -20,8 +20,6 @@
 // todo crz: put somewhere else
 #define CALLABLE_UNIT(M, idx) (_REG_US((_REGS(M))) + (idx))
 
-//(ex)->message[0] = 0; \
-
 #ifdef _6IT_DEBU66ER
 #define THROW(ex, i) \
 	(ex)->fault_code = (i); \

@@ -14,7 +14,7 @@ _6X_METHODXX(int, parse_expression, struct expression_parser_state_t *state, str
 	int vsp = _REG_VSP(_REGS(machine));
 
 	int ex = 0;
-	if (ex = CATCH(&state->exception))
+	if ((ex = CATCH(&state->exception)))
 	{
 		_SET_VSP(_REGS(machine), vsp);
 		return state->exception.fault_code;

@@ -4,7 +4,6 @@
 
 _6X_METHODXX(void, parse_brackets, struct expression_parser_state_t *state, struct expression_t *expression)
 {
-	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
 
 	if (scanner->token.id == TOKEN_OPEN_PAREN)

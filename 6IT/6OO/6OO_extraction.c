@@ -18,7 +18,6 @@ _6OO_METHOD(void, extract_string_literal)
 		return;
 	}
 
-	int i = 0;
 	while (!_This->is_char(_This, '\"'))
 	{
 		if (_REG_FSP(_REGS(_This->machine)) > _This->machine->config.string_segment_size)

@@ -52,6 +52,7 @@ _SUBC_METHOD_CONST(void, compile_if)
 		else_pc = _REG_FCP(_REGS(machine)) - _State->callable_unit_PC;
 		else_opcode_pc = emitter->emit_placeholder(emitter);
 
+		// todo crz: why is this not used?
 		int jump_around_else_pc = emitter->emit_PC(emitter, 0);
 
 		if (scanner->try_consume_token(scanner, TOKEN_OPEN_BRACE))

@@ -14,8 +14,6 @@ _6OO_METHOD(int, tokenise)
 
 	construct_token(&_This->token);
 
-	int i = 0;
-
 	_This->state.line_number = 0;
 	_This->state.source_offset = 0;
 	_This->state.current_char = _This->source[_This->state.source_offset];

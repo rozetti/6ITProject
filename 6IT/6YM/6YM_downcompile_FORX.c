@@ -12,8 +12,6 @@ _6YM_METHOD_CONST(int, downcompile_FORRI)
 	struct machine_t *machine = _This->machine;
 	struct instruction_emitter_t *emitter = &machine->instruction_emitter;
 
-	opcode_t *next_p = _State->unit_p + OPERAND3(machine);
-
 	int is_increl = 0;
 	int rel_reg = 0;
 	int lower_limit = 0;
@@ -22,9 +20,9 @@ _6YM_METHOD_CONST(int, downcompile_FORRI)
 	is_increl = 1;
 	lower_limit = init_expression.terms[0].data.as_integer;
 	upper_limit = condition_expression.terms[1].data.as_integer;
-	int operator = condition_expression.terms[2].type;
+	int op = condition_expression.terms[2].type;
 
-	switch (operator)
+	switch (op)
 	{
 	case EVALUATOR_OPCODE_LT:
 		break;

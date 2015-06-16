@@ -8,5 +8,5 @@ struct scheduler_t
 {
 	struct machine_t *machine;
 
-	void(*next)(struct scheduler_t*);
+	void(*next)(struct scheduler_t const *);
 };

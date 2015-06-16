@@ -138,7 +138,6 @@ _6X_METHODXX(void, parse_multiplicative, struct expression_parser_state_t *state
 
 _6X_METHODXXX(int, try_parse_cast, struct expression_parser_state_t *state, struct expression_t *expression, int *op)
 {
-	struct machine_t *machine = _This->machine;
 	struct scanner_t *scanner = _This->scanner;
 
 	struct token_t save = scanner->token;

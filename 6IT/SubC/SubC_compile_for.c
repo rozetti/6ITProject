@@ -31,10 +31,6 @@ _SUBC_METHOD_CONST(void, compile_for)
 
 	int rel = _REG_RSP(_REGS(machine)) - _State->base_RSP;
 
-	int rel_reg = 0;
-	int lower_limit = 0;
-	int upper_limit = 0;
-
 	emitter->emit_instruction(emitter, H6VM_OPCODE_EXEC, init_expression.first_term_index);
 	emitter->emit_instruction(emitter, H6VM_OPCODE_CONDITION, condition_expression.first_term_index);
 
