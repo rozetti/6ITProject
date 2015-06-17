@@ -98,4 +98,11 @@
 #define SET_TOKEN_TRACE(M, on) if ((M)->debug) {(M)->debug->token_trace_on = (on) != 0; }
 #define TOKEN_TRACE(M) ((M)->debug ? (M)->debug->token_trace_on : 0)
 
+// todo crz: probably move binding stuff somewhere nice
+#define SET_STATIC_REGISTER_INT(M, name, i) \
+(M)->find_static_register((M), "binding_target")->value.as_integer = (i)
+
+#define GET_STATIC_REGISTER_INT(M, name) \
+((M)->find_static_register((M), "binding_target")->value.as_integer)
+
 

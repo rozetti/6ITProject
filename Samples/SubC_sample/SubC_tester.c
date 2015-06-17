@@ -100,6 +100,13 @@ static int compile()
 		return 0;
 	}
 
+#ifdef _6IT_SUPPORT_LUA
+	if (machine.environment->lua)
+	{
+		machine.bind_lua(&machine, machine.environment->lua);
+	}
+#endif
+
 	machine.downcompiler.downcompile(&machine.downcompiler);
 
 #ifdef DUMP_COMPILED_CODE
@@ -110,7 +117,7 @@ static int compile()
 	return 1;
 }
 
-static int run()
+static int run(void (*pre_run_callback)(struct machine_t *machine), void(*post_run_callback)(struct machine_t *machine))
 {
 	if (CATCH(&machine.exception))
 	{
@@ -125,6 +132,7 @@ static int run()
 
 	struct callable_unit_t *si = machine.find_callable_unit(&machine, "static");
 	_SET_PC(_REGS(&machine), si->entry_point_program_counter);
+
 	machine.execute(&machine);
 
 	struct callable_unit_t *cu = machine.find_callable_unit(&machine, "main");
@@ -179,7 +187,9 @@ static int run()
 	machine.interrupt_controller.request(&machine.interrupt_controller, INTERRUPT_BREAK);
 #endif
 
+	if (pre_run_callback) pre_run_callback(&machine);
 	machine.execute(&machine);
+	if (post_run_callback) post_run_callback(&machine);
 	_Bios.get_current_time_ms(&end_ms);
 
 #ifdef _6IT_SUPPORT_THREADS

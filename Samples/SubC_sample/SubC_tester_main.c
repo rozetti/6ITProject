@@ -88,51 +88,93 @@ int load_file(struct machine_t *machine, char const *filename, char **buffer)
 	return 1;
 }
 
-int run_file(struct machine_t *machine, int(*compile)(), int(*run)(), char const *filename)
+int open_file(struct machine_t *machine, char const *filename)
 {
-	machine->printf(machine, "\nrunning file '%s' ------------------------------------------------------------\n\n", filename);
 #ifdef _6IT_ANDROID
 	struct android_app *app = (struct android_app*)_Bios.context;
 	AAssetManager* mgr = app->activity->assetManager;
 	AAsset* asset = AAssetManager_open(mgr, filename, AASSET_MODE_UNKNOWN);
-	if (NULL == asset) {
-		machine->printf(machine, "could not open program\n");
-		return 0;
-	}
+	if (NULL == asset) return 0;
 	machine->environment->context = asset;
 #else
 	FILE *fp = 0;
-	if ((fp = fopen(filename, "rb")) == NULL)
+	if ((fp = fopen(filename, "rb")) == NULL) return 0;
+	machine->environment->context = fp;
+#endif
+
+	return 1;
+}
+
+void close_file(struct machine_t *machine)
+{
+#ifdef _6IT_ANDROID
+	AAsset_close((AAsset *)machine->environment->context);
+#else
+	fclose((FILE *)machine->environment->context);
+#endif
+}
+
+int run_file(struct machine_t *machine, int(*compile)(), int(*run)(run_callback_t, run_callback_t), char const *filename)
+{
+	machine->printf(machine, "\nrunning file '%s' ------------------------------------------------------------\n\n", filename);
+
+	if (!open_file(machine, filename))
 	{
 		machine->printf(machine, "could not open program\n");
 		return 0;
 	}
-	machine->environment->context = fp;
-#endif
 
 	int compiled = (*compile)();
-#ifdef _6IT_ANDROID
-	AAsset_close(asset);
-#else
-	fclose(fp);
-#endif
+	close_file(machine);
 
 	if (compiled)
 	{
-#ifdef _6IT_SUPPORT_LUA
-		if (machine->environment->lua)
-		{
-			machine->bind_lua(machine, machine->environment->lua);
-		}
-#endif
-		(*run)();
+		(*run)(0, 0);
 		assert(machine->check_state(machine));
 	}
 
 	return 1;
 }
 
-static void run_tests_callback(struct machine_t *machine, int(*compile)(), int(*run)())
+#define BINDING_TARGET_REGISTER_NAME "binding_target"
+
+void test_binding_pre_callback(struct machine_t *machine)
+{
+	machine->printf(machine, "setting static register '%s' to integer value %d\n", BINDING_TARGET_REGISTER_NAME, 42);
+	SET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME, 42);
+}
+
+void test_binding_post_callback(struct machine_t *machine)
+{
+	int v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
+
+	machine->printf(machine, "static register '%s' has integer value %d\n", BINDING_TARGET_REGISTER_NAME, v);
+	assert(v == 1729);
+}
+
+static int test_binding(struct machine_t *machine, int(*compile)(), int(*run)(run_callback_t, run_callback_t), char const *filename)
+{
+	machine->printf(machine, "\testing binding on file '%s' ------------------------------------------------------------\n\n", filename);
+
+	if (!open_file(machine, filename))
+	{
+		machine->printf(machine, "could not open program\n");
+		return 0;
+	}
+
+	int compiled = (*compile)();
+	close_file(machine);
+
+	if (compiled)
+	{
+		(*run)(test_binding_pre_callback, test_binding_post_callback);
+		assert(machine->check_state(machine));
+	}
+
+	return 1;
+}
+
+static void run_tests_callback(struct machine_t *machine, int(*compile)(), int(*run)(run_callback_t, run_callback_t))
 {
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_main.c"));
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_function_call.c"));
@@ -141,6 +183,8 @@ static void run_tests_callback(struct machine_t *machine, int(*compile)(), int(*
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_operators.c"));
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_globals.c"));
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_float.c"));
+
+	test_binding(machine, compile, run, TEST_FILE_ASSET("test_binding.c"));
 
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_fibonacci_subc.c"));
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_fibonacci_native.c"));

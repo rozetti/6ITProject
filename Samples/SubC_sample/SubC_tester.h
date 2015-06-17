@@ -4,7 +4,8 @@
 
 #include "6IT.h"
 
-typedef void(*run_tests_callback_t)(struct machine_t *, int(*compile)(), int(*run)());
+typedef void(*run_callback_t)(struct machine_t *);
+typedef void(*run_tests_callback_t)(struct machine_t *, int(*compile)(), int(*run)(run_callback_t, run_callback_t));
 
 int SubC_tester_main(void *context);
 int SubC_tester_run_tests(struct environment_t *, run_tests_callback_t);

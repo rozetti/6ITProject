@@ -99,6 +99,7 @@
     <Content Include="..\..\..\TestFiles\test_threads.c">
       <Link>assets\test_threads.c</Link>
     </Content>
+    <Content Include="assets\test_binding.c" />
     <Content Include="res\values\strings.xml" />
     <AntBuildXml Include="build.xml" />
     <AndroidManifest Include="AndroidManifest.xml" />
@@ -108,9 +109,6 @@
     <ProjectReference Include="..\SubC_sample_Android.NativeActivity\SubC_sample_Android.NativeActivity.vcxproj">
       <Project>{e948ddbc-6338-45ac-a91a-767887884778}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="assets\" />
   </ItemGroup>
   <Import Project="$(AndroidTargetsPath)\Android.targets" />
   <ImportGroup Label="ExtensionTargets" />
