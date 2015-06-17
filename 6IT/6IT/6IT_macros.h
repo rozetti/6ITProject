@@ -105,4 +105,7 @@
 #define GET_STATIC_REGISTER_INT(M, name) \
 ((M)->find_static_register((M), "binding_target")->value.as_integer)
 
+#define CALL_FUNCTION(M, name) \
+_SET_PC(_REGS((M)), (M)->find_callable_unit((M), name)->entry_point_program_counter); \
+(M)->execute((M));
 

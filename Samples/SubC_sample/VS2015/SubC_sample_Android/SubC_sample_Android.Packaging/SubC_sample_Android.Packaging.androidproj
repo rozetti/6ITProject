@@ -63,6 +63,9 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Content Include="..\..\..\TestFiles\test_binding.c">
+      <Link>assets\test_binding.c</Link>
+    </Content>
     <Content Include="..\..\..\TestFiles\test_fibonacci_lua.c">
       <Link>assets\test_fibonacci_lua.c</Link>
     </Content>
@@ -99,7 +102,6 @@
     <Content Include="..\..\..\TestFiles\test_threads.c">
       <Link>assets\test_threads.c</Link>
     </Content>
-    <Content Include="assets\test_binding.c" />
     <Content Include="res\values\strings.xml" />
     <AntBuildXml Include="build.xml" />
     <AndroidManifest Include="AndroidManifest.xml" />

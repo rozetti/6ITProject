@@ -150,11 +150,21 @@ void test_binding_post_callback(struct machine_t *machine)
 
 	machine->printf(machine, "static register '%s' has integer value %d\n", BINDING_TARGET_REGISTER_NAME, v);
 	assert(v == 1729);
+
+	CALL_FUNCTION(machine, "increment_test");
+
+	v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
+	assert(v == 1730);
+
+	CALL_FUNCTION(machine, "return_int_test");
+	v = POP_INT(machine);
+	assert(v == 314);
+	machine->printf(machine, "return value was %d\n", v);
 }
 
 static int test_binding(struct machine_t *machine, int(*compile)(), int(*run)(run_callback_t, run_callback_t), char const *filename)
 {
-	machine->printf(machine, "\testing binding on file '%s' ------------------------------------------------------------\n\n", filename);
+	machine->printf(machine, "testing binding on file '%s' ------------------------------------------------------------\n\n", filename);
 
 	if (!open_file(machine, filename))
 	{
@@ -186,6 +196,7 @@ static void run_tests_callback(struct machine_t *machine, int(*compile)(), int(*
 
 	test_binding(machine, compile, run, TEST_FILE_ASSET("test_binding.c"));
 
+#ifdef RUN_LONG_TESTS
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_fibonacci_subc.c"));
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_fibonacci_native.c"));
 
@@ -205,6 +216,7 @@ static void run_tests_callback(struct machine_t *machine, int(*compile)(), int(*
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_fibonacci_lua.c"));
 	lua_close(machine->environment->lua);
 	machine->environment->lua = 0;
+#endif
 #endif
 
 #ifdef _6IT_SUPPORT_THREADS
