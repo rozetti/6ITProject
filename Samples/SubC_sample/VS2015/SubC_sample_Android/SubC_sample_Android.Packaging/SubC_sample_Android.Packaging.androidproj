@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <RootNamespace>SubC_sample_Android</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <ProjectVersion>1.0</ProjectVersion>
+    <ProjectGuid>{501e39f8-e00e-42ff-8312-6c6161057de9}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(AndroidTargetsPath)\Android.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(AndroidTargetsPath)\Android.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <AntPackage>
+      <AndroidAppLibName>$(RootNamespace)</AndroidAppLibName>
+    </AntPackage>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <AntPackage>
+      <AndroidAppLibName>$(RootNamespace)</AndroidAppLibName>
+    </AntPackage>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <AntPackage>
+      <AndroidAppLibName>$(RootNamespace)</AndroidAppLibName>
+    </AntPackage>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <AntPackage>
+      <AndroidAppLibName>$(RootNamespace)</AndroidAppLibName>
+    </AntPackage>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\TestFiles\test_fibonacci_lua.c">
+      <Link>assets\test_fibonacci_lua.c</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_fibonacci_lua.lua">
+      <Link>assets\test_fibonacci_lua.lua</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_fibonacci_native.c">
+      <Link>assets\test_fibonacci_native.c</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_fibonacci_subc.c">
+      <Link>assets\test_fibonacci_subc.c</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_float.c">
+      <Link>assets\test_float.c</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_function_call.c">
+      <Link>assets\test_function_call.c</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_globals.c">
+      <Link>assets\test_globals.c</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_if.c">
+      <Link>assets\test_if.c</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_loops.c">
+      <Link>assets\test_loops.c</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_main.c">
+      <Link>assets\test_main.c</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_operators.c">
+      <Link>assets\test_operators.c</Link>
+    </Content>
+    <Content Include="..\..\..\TestFiles\test_threads.c">
+      <Link>assets\test_threads.c</Link>
+    </Content>
+    <Content Include="res\values\strings.xml" />
+    <AntBuildXml Include="build.xml" />
+    <AndroidManifest Include="AndroidManifest.xml" />
+    <AntProjectPropertiesFile Include="project.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SubC_sample_Android.NativeActivity\SubC_sample_Android.NativeActivity.vcxproj">
+      <Project>{e948ddbc-6338-45ac-a91a-767887884778}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\" />
+  </ItemGroup>
+  <Import Project="$(AndroidTargetsPath)\Android.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

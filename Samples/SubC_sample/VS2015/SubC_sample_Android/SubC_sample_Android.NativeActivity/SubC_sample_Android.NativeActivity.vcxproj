@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{e948ddbc-6338-45ac-a91a-767887884778}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <ProjectName>SubC_sample_Android.NativeActivity</ProjectName>
+    <RootNamespace>SubC_sample_Android</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <IncludePath>../../../../../6IT;$(LLVMToolchainPrebuiltRoot)\lib\clang\$(LLVMVersion)\include;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <IncludePath>../../../../../6IT;$(LLVMToolchainPrebuiltRoot)\lib\clang\$(LLVMVersion)\include;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <IncludePath>../../../../../6IT;$(LLVMToolchainPrebuiltRoot)\lib\clang\$(LLVMVersion)\include;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <IncludePath>../../../../../6IT;$(LLVMToolchainPrebuiltRoot)\lib\clang\$(LLVMVersion)\include;</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <PreprocessorDefinitions>LUA_USE_LONGJMP;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;m</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <PreprocessorDefinitions>LUA_USE_LONGJMP;</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;m</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <PreprocessorDefinitions>LUA_USE_LONGJMP;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;m</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <PreprocessorDefinitions>LUA_USE_LONGJMP;</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;m</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lapi.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lauxlib.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lcode.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lctype.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\ldebug.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\ldo.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lfunc.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lgc.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\llex.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\llimits.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lmem.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lobject.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lopcodes.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lparser.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lstate.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lstring.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\ltable.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\ltm.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lua.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lua.hpp" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\luaconf.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lualib.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lundump.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lvm.h" />
+    <ClInclude Include="..\..\..\..\..\ThirdParty\lua\lzio.h" />
+    <ClInclude Include="..\..\..\SubC_tester.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="android_native_app_glue.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\6IT\SubC_complete.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lapi.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lauxlib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lbaselib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lbitlib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lcode.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lcorolib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lctype.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\ldblib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\ldebug.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\ldo.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\ldump.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lfunc.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lgc.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\linit.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\liolib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\llex.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lmathlib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lmem.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\loadlib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lobject.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lopcodes.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\loslib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lparser.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lstate.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lstring.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lstrlib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\ltable.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\ltablib.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\ltm.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lundump.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lvm.c" />
+    <ClCompile Include="..\..\..\..\..\ThirdParty\lua\lzio.c" />
+    <ClCompile Include="..\..\..\SubC_tester.c" />
+    <ClCompile Include="..\..\..\SubC_tester_main.c" />
+    <ClCompile Include="android_native_app_glue.c" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
