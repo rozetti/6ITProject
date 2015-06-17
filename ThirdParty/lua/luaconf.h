@@ -545,7 +545,11 @@
 ** without modifying the main part of the file.
 */
 
-
-
 #endif
+
+// crz
+#ifdef __ANDROID__
+#define getlocaledecpoint() '.'
+#endif
+
 
