@@ -21,3 +21,6 @@
 #define _6IT_VSPRINTF_STATIC_BUFFER(DEST, FORMAT, ARGS) vsprintf(DEST, FORMAT, ARGS)
 #endif
 
+#ifdef __ANDROID__
+#define _6IT_ANDROID
+#endif

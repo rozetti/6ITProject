@@ -7,6 +7,7 @@
 struct bios_t
 {
 	int initialised;
+	void *context;
 
 	void(*print_string)(char const *);
 	void(*printf)(char const *format, ...);

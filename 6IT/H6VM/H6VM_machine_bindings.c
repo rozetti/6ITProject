@@ -39,6 +39,7 @@ _H6VM_METHODX(void, bind_environment, struct environment_t *environment)
 	_This->environment = environment;
 }
 
+// todo crz: probably switch to using only the environment
 #ifdef _6IT_SUPPORT_LUA
 _H6VM_METHODX(void, bind_lua, struct lua_State *state)
 {

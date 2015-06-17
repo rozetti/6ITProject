@@ -271,7 +271,8 @@ _6IT_PUBLIC _6IT_CONSTRUCTORX(machine, H6VM, struct machine_config_t config)
 #ifdef _6IT_DEBU66ER
 	construct_6UG(&_This->debugger, _This);
 #endif
-	construct_6IOS(&_Bios, 0); // hack crz: this should only be a singleton
+	// crz: this is smelly, moved out into client code (for now..)
+//	construct_6IOS(&_Bios, 0); // hack crz: this should only be a singleton
 
 	_This->bind_downcompiler = _H6VM_METHOD_NAME(bind_downcompiler);
 	_This->bind_evaluator = _H6VM_METHOD_NAME(bind_evaluator);

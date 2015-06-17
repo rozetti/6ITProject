@@ -27,6 +27,14 @@ _6IT_PRIVATE void bios_print_string(char const *s)
 
 	free(dest);
 #endif
+
+	// todo crz: think about this
+#ifdef _6IT_ANDROID
+#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "6IT", __VA_ARGS__))
+	LOGI(s);
+#undef LOGI
+#endif
+
 }
 
 _6IT_PRIVATE void bios_printf(char const *format, ...)

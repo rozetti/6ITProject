@@ -16,6 +16,10 @@ struct exception_t
 
 struct environment_t
 {
+#ifdef _6IT_SUPPORT_LUA
+	struct lua_State *lua;
+#endif
+
 	int(*read_next_char)(void *context, char *);
 	int(*read_seek)(void *context, int offset);
 
