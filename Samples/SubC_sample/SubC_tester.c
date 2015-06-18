@@ -12,11 +12,11 @@
 
 #ifdef _6IT_WIN32
 #include <Windows.h>
-#include <direct.h>
-#define get_cwd _getcwd
+//#include <direct.h>
+//#define _6IT_GetCurrentDirectory _getcwd
 #else
-#include <unistd.h>
-#define get_cwd getcwd
+//#include <unistd.h>
+//#define _6IT_GetCurrentDirectory getcwd
 #endif
 
 #include "SubCRT.h"
@@ -221,7 +221,7 @@ int SubC_tester_run_tests(struct environment_t *env, run_tests_callback_t run_te
 	environment = env;
 
 	char cwd[FILENAME_MAX];
-	if (!get_cwd(cwd, sizeof(cwd))) return errno;
+	if (!_6IT_GetCurrentDirectory(cwd, sizeof(cwd))) return errno;
 	printf("cwd %s\n", cwd);
 
 	if (!setup())

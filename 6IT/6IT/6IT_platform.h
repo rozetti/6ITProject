@@ -24,3 +24,19 @@
 #ifdef __ANDROID__
 #define _6IT_ANDROID
 #endif
+
+#if defined(_6IT_WIN32)
+#include <direct.h>
+#define _6IT_GetCurrentDirectory _getcwd
+#define _6IT_Fileno _fileno
+#elif defined(_6IT_ANDROID)
+#include <unistd.h>
+#define _6IT_GetCurrentDirectory getcwd
+#define _6IT_Fileno _fileno
+#elif defined(_6IT_OSX)
+#include <unistd.h>
+#define _6IT_GetCurrentDirectory getcwd
+#define _6IT_Fileno fileno
+#else
+#pragma message "we don't know what platform we are running on"
+#endif

@@ -39,6 +39,8 @@
 		E515F17F1B29BF37005E6A04 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = E515F15C1B29BF37005E6A04 /* lundump.c */; };
 		E515F1801B29BF37005E6A04 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = E515F15E1B29BF37005E6A04 /* lvm.c */; };
 		E515F1811B29BF37005E6A04 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = E515F1601B29BF37005E6A04 /* lzio.c */; };
+		E54D5B341B32B95200810E33 /* SubC_tester_main.c in Sources */ = {isa = PBXBuildFile; fileRef = E54D5B321B32B95200810E33 /* SubC_tester_main.c */; };
+		E54D5B351B32B95200810E33 /* SubC_tester.c in Sources */ = {isa = PBXBuildFile; fileRef = E54D5B331B32B95200810E33 /* SubC_tester.c */; };
 		E571220E1B29B9FB000BB1FA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = E571220D1B29B9FB000BB1FA /* main.c */; };
 		E57122101B29BA0C000BB1FA /* SubC_complete.c in Sources */ = {isa = PBXBuildFile; fileRef = E571220F1B29BA0C000BB1FA /* SubC_complete.c */; };
 /* End PBXBuildFile section */
@@ -114,6 +116,8 @@
 		E515F1601B29BF37005E6A04 /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
 		E515F1611B29BF37005E6A04 /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
 		E536C3061B29B95F00F315C2 /* SubC_sample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SubC_sample; sourceTree = BUILT_PRODUCTS_DIR; };
+		E54D5B321B32B95200810E33 /* SubC_tester_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SubC_tester_main.c; path = ../SubC_tester_main.c; sourceTree = "<group>"; };
+		E54D5B331B32B95200810E33 /* SubC_tester.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SubC_tester.c; path = ../SubC_tester.c; sourceTree = "<group>"; };
 		E571220D1B29B9FB000BB1FA /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = ../main.c; sourceTree = "<group>"; };
 		E571220F1B29BA0C000BB1FA /* SubC_complete.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SubC_complete.c; path = ../../../6IT/SubC_complete.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +201,8 @@
 		E536C2FD1B29B95F00F315C2 = {
 			isa = PBXGroup;
 			children = (
+				E54D5B321B32B95200810E33 /* SubC_tester_main.c */,
+				E54D5B331B32B95200810E33 /* SubC_tester.c */,
 				E515F1281B29BF37005E6A04 /* lua */,
 				E571220F1B29BA0C000BB1FA /* SubC_complete.c */,
 				E571220D1B29B9FB000BB1FA /* main.c */,
@@ -238,7 +244,7 @@
 		E536C2FE1B29B95F00F315C2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Wide Open Technical Services Ltd";
 				TargetAttributes = {
 					E536C3051B29B95F00F315C2 = {
@@ -285,6 +291,7 @@
 				E515F16C1B29BF37005E6A04 /* ldump.c in Sources */,
 				E515F17A1B29BF37005E6A04 /* lstring.c in Sources */,
 				E515F1621B29BF37005E6A04 /* lapi.c in Sources */,
+				E54D5B351B32B95200810E33 /* SubC_tester.c in Sources */,
 				E515F1791B29BF37005E6A04 /* lstate.c in Sources */,
 				E515F1761B29BF37005E6A04 /* lopcodes.c in Sources */,
 				E515F1711B29BF37005E6A04 /* llex.c in Sources */,
@@ -294,6 +301,7 @@
 				E515F1751B29BF37005E6A04 /* lobject.c in Sources */,
 				E515F17D1B29BF37005E6A04 /* ltablib.c in Sources */,
 				E515F17B1B29BF37005E6A04 /* lstrlib.c in Sources */,
+				E54D5B341B32B95200810E33 /* SubC_tester_main.c in Sources */,
 				E515F1721B29BF37005E6A04 /* lmathlib.c in Sources */,
 				E515F16E1B29BF37005E6A04 /* lgc.c in Sources */,
 				E515F1681B29BF37005E6A04 /* lctype.c in Sources */,
@@ -327,6 +335,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
