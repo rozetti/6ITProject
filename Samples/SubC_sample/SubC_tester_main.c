@@ -156,6 +156,13 @@ void test_binding_post_callback(struct machine_t *machine)
 	v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
 	assert(v == 1730);
 
+	PUSH_INT(machine, 13);
+	CALL_FUNCTION(machine, "add_test");
+
+	v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
+	assert(v == 1743);
+	machine->printf(machine, "sum is %d\n", v);
+
 	CALL_FUNCTION(machine, "return_int_test");
 	v = POP_INT(machine);
 	assert(v == 314);
