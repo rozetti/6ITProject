@@ -281,6 +281,8 @@ _6IT_PUBLIC _6IT_CONSTRUCTORX(machine, H6VM, struct machine_config_t config)
 	_This->bind_compiler = _H6VM_METHOD_NAME(bind_compiler);
 	_This->bind_environment = _H6VM_METHOD_NAME(bind_environment);
 
+	_This->vcall = _H6VM_METHOD_NAME(vcall);
+
 	_This->printf = _H6VM_METHOD_NAME(printf);
 
 	// crz: debugger support

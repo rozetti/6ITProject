@@ -298,6 +298,8 @@ struct machine_t
 	void(*bind_compiler)(struct machine_t*, struct compiler_t*);
 	void(*bind_environment)(struct machine_t*, struct environment_t*);
 	
+	int(*vcall)(struct machine_t *machine, char const *symbol, void *return_value, ...);
+
 	struct expression_term_t *(*get_final_expression_term)(struct machine_t*, struct expression_t*);
 
 	void(*new_program)(struct machine_t*);

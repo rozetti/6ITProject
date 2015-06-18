@@ -146,62 +146,6 @@ void test_binding_pre_callback(struct machine_t *machine)
 	SET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME, 42);
 }
 
-int vcall(struct machine_t *machine, char const *symbol, void *return_value, ...)
-{
-	struct callable_unit_t *cu = machine->find_callable_unit(machine, symbol);
-	if (!cu)
-	{
-		return 0;
-	}
-
-	va_list args;
-	va_start(args, return_value);
-
-	for (int n = 0; n < cu->number_of_parameters; ++n)
-	{
-		data_type_t type = cu->parameters[n];
-
-		_FRAME_REGISTER(_FRAME(machine), n)->value.type = type;
-		switch (type)
-		{
-		case TYPE_INT:
-			_FRAME_REGISTER(_FRAME(machine), n)->value.as_integer = va_arg(args, int);
-			_INC_RSP(_REGS(machine));
-			break;
-		case TYPE_FLOAT:
-			_FRAME_REGISTER(_FRAME(machine), n)->value.as_float = (float)va_arg(args, double);
-			_INC_RSP(_REGS(machine));
-			break;
-		case TYPE_CHAR_CONST_PTR:
-			_FRAME_REGISTER(_FRAME(machine), n)->value.as_char_const_ptr = va_arg(args, char const *);
-			_INC_RSP(_REGS(machine));
-			break;
-		default:
-			return 0;
-		}
-	}
-
-	va_end(args);
-
-	CALL_FUNCTION(machine, symbol);
-
-	switch (cu->return_type)
-	{
-	case TYPE_INT:
-		*(int *)return_value = POP_INT(machine);
-		break;
-	case TYPE_FLOAT:
-		*(float *)return_value = POP_FLOAT(machine);
-		break;
-	case TYPE_VOID:
-		break;
-	default:
-		return 0;
-	}
-
-	return 1;
-}
-
 void test_binding_post_callback(struct machine_t *machine)
 {
 	int rv;
@@ -210,34 +154,34 @@ void test_binding_post_callback(struct machine_t *machine)
 	machine->printf(machine, "static register '%s' has integer value %d\n", BINDING_TARGET_REGISTER_NAME, v);
 	assert(v == 1729);
 
-	rv = vcall(machine, "increment_test", 0);
+	rv = machine->vcall(machine, "increment_test", 0);
 	assert(rv == 1);
 	v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
 	assert(v == 1730);
 
-	rv = vcall(machine, "add_test", 0, 13);
+	rv = machine->vcall(machine, "add_test", 0, 13);
 	assert(rv == 1);
 	v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
 	assert(v == 1743);
 	machine->printf(machine, "sum is %d\n", v);
 
-	rv = vcall(machine, "return_int_test", &v);
+	rv = machine->vcall(machine, "return_int_test", &v);
 	assert(v == 314);
 	machine->printf(machine, "return value was %d\n", v);
 
-	rv = vcall(machine, "sum_test", &v, 42, 1729);
+	rv = machine->vcall(machine, "sum_test", &v, 42, 1729);
 	assert(rv == 1);
 	assert(v == 42 + 1729);
 	machine->printf(machine, "return value was %d\n", v);
 
 	float f;
-	rv = vcall(machine, "sum_test_float", &f, 3.14f, 2.78f);
+	rv = machine->vcall(machine, "sum_test_float", &f, 3.14f, 2.78f);
 	assert(rv == 1);
 	assert(f < 3.14 + 2.78 + FLT_EPSILON);
 	assert(f > 3.14 + 2.78 - FLT_EPSILON);
 	machine->printf(machine, "return value was %f\n", f);
 
-	rv = vcall(machine, "test_printf", 0, "hello SubC!", 1729, 3.14);
+	rv = machine->vcall(machine, "test_printf", 0, "hello SubC!", 1729, 3.14);
 	assert(rv == 1);
 }
 

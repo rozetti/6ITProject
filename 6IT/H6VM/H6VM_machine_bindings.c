@@ -46,3 +46,60 @@ _H6VM_METHODX(void, bind_lua, struct lua_State *state)
 	_This->lua = state;
 }
 #endif
+
+_6IT_PRIVATE int _H6VM_METHOD_NAME(vcall)(struct machine_t *machine, char const *symbol, void *return_value, ...)
+{
+	struct callable_unit_t *cu = machine->find_callable_unit(machine, symbol);
+	if (!cu)
+	{
+		return 0;
+	}
+
+	va_list args;
+	va_start(args, return_value);
+
+	for (int n = 0; n < cu->number_of_parameters; ++n)
+	{
+		data_type_t type = cu->parameters[n];
+
+		_FRAME_REGISTER(_FRAME(machine), n)->value.type = type;
+		switch (type)
+		{
+		case TYPE_INT:
+			_FRAME_REGISTER(_FRAME(machine), n)->value.as_integer = va_arg(args, int);
+			_INC_RSP(_REGS(machine));
+			break;
+		case TYPE_FLOAT:
+			_FRAME_REGISTER(_FRAME(machine), n)->value.as_float = (float)va_arg(args, double);
+			_INC_RSP(_REGS(machine));
+			break;
+		case TYPE_CHAR_CONST_PTR:
+			_FRAME_REGISTER(_FRAME(machine), n)->value.as_char_const_ptr = va_arg(args, char const *);
+			_INC_RSP(_REGS(machine));
+			break;
+		default:
+			return 0;
+		}
+	}
+
+	va_end(args);
+
+	CALL_FUNCTION(machine, symbol);
+
+	switch (cu->return_type)
+	{
+	case TYPE_INT:
+		*(int *)return_value = POP_INT(machine);
+		break;
+	case TYPE_FLOAT:
+		*(float *)return_value = POP_FLOAT(machine);
+		break;
+	case TYPE_VOID:
+		break;
+	default:
+		return 0;
+	}
+
+	return 1;
+}
+
