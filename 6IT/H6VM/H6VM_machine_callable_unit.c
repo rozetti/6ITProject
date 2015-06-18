@@ -34,7 +34,7 @@ _H6VM_METHODX(struct callable_unit_metadata_t *, get_callable_unit_metadata, int
 	return _This->callable_unit_metadata + idx;
 }
 
-_H6VM_METHODX(struct callable_unit_t *, find_callable_unit, char *name)
+_H6VM_METHODX(struct callable_unit_t *, find_callable_unit, char const *name)
 {
 	for (int i = 0; i < _REG_FUP(_REGS(_This)); ++i)
 	{

@@ -33,3 +33,26 @@ void add_test(int n)
 
 	printf("SubC::add_test(%d) : binding_target = %d\n", n, binding_target );
 }
+
+int sum_test(int a, int b)
+{
+	int c = a + b;
+
+	printf("SubC::sum_test(%d, %d) : returning %d\n", a, b, c);
+
+	return c;
+}
+
+float sum_test_float(float a, float b)
+{
+	float c = a + b;
+
+	printf("SubC::sum_test_float(%f, %f) : returning %f\n", a, b, c);
+
+	return c;
+}
+
+void test_printf(char const *s, int i, float f)
+{
+	printf("SubC::test_printf('%s', %d, %f)\n", s, i, f);
+}

@@ -278,7 +278,7 @@ struct machine_t
 	// crz: callable unit methods
 	struct callable_unit_t *(*get_callable_unit)(struct machine_t*, int idx);
 	struct callable_unit_metadata_t *(*get_callable_unit_metadata)(struct machine_t*, int idx);
-	struct callable_unit_t *(*find_callable_unit)(struct machine_t*, char *name);
+	struct callable_unit_t *(*find_callable_unit)(struct machine_t*, char const *name);
 	struct callable_unit_t *(*find_callable_unit_by_entry_point)(struct machine_t*, int entry);
 	struct callable_unit_t *(*add_callable_unit)(struct machine_t*, int return_type, char const *name);
 	struct callable_unit_t *(*add_builtin)(struct machine_t*, int return_type, char const *name, int(*entry_point_ptr)(struct machine_t*), int *parms);
