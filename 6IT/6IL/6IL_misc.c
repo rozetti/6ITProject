@@ -5,14 +5,14 @@
 _6IT_PRIVATE void _6IT_MACHINECALL(_6IL_execute_and_reset)
 {
 	// todo crz: integrate this with checked build
-#ifdef NDEBUG
+#ifdef _6IT_CHECKED_BUILD
 	int rsp = _REG_RSP(_REGS(_Machine));
 #endif
-	int pc = _REG_PC(_REGS(_Machine));
+	long pc = _REG_PC(_REGS(_Machine));
 
 	_Machine->execute(_Machine);
 
-	assert(_REG_RSP(_REGS(_Machine)) == rsp);
+	_6IT_ASSERT(_REG_RSP(_REGS(_Machine)) == rsp);
 	_SET_PC(_REGS(_Machine), pc);
 }
 

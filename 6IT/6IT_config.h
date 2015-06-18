@@ -15,7 +15,10 @@
 //#define _6IT_SUPPORT_INTERRUPTS
 //#define _6IT_SUPPORT_THREADS
 //#define _6IT_DEBU66ER
-//#define _6IT_CHECKED_BUILD
+
+#if defined(NDEBUG) || defined(DEBUG)
+#define _6IT_CHECKED_BUILD
+#endif
 
 #define _TIMESLICE 10000
 #define _NUMBER_OF_INTERRUPT_LEVELS 10

@@ -101,11 +101,11 @@
 #define TOKEN_TRACE(M) ((M)->debug ? (M)->debug->token_trace_on : 0)
 
 // todo crz: probably move binding stuff somewhere nice
-#define SET_STATIC_REGISTER_INT(M, name, i) \
-(M)->find_static_register((M), "binding_target")->value.as_integer = (i)
+#define SET_STATIC_REGISTER_INT(M, NAME, i) \
+(M)->find_static_register((M), NAME)->value.as_integer = (i)
 
-#define GET_STATIC_REGISTER_INT(M, name) \
-((M)->find_static_register((M), "binding_target")->value.as_integer)
+#define GET_STATIC_REGISTER_INT(M, NAME) \
+((M)->find_static_register((M), NAME)->value.as_integer)
 
 #define CALL_FUNCTION(M, name) \
 _SET_PC(_REGS((M)), (M)->find_callable_unit((M), name)->entry_point_program_counter); \
@@ -113,3 +113,8 @@ _SET_PC(_REGS((M)), (M)->find_callable_unit((M), name)->entry_point_program_coun
 
 #define _6IT_METHOD_NAME(PREFIX, NAME) (_##PREFIX##_##NAME)
 
+#ifdef _6IT_CHECKED_BUILD
+#define _6IT_ASSERT(EXPR) assert(EXPR)
+#else
+#define _6IT_ASSERT(EXPR)
+#endif
