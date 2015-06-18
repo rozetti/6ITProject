@@ -371,7 +371,7 @@ _6IT_PRIVATE int _6IT_MACHINECALL(_6EV_evaluate)
 #endif
 		case EVALUATOR_OPCODE_UNRESOLVED_EXPERNAL_CALL: // todo crz: undecided if this fixup smells
 		{
-			struct callable_unit_t *function = CALLABLE_UNIT(_Machine, term->data.as_integer);
+			struct callable_unit_t *function = GET_CALLABLE_UNIT(_Machine, term->data.as_integer);
 			if (function->is_lua)
 			{
 				term->type = EVALUATOR_OPCODE_LUACALL;

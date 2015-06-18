@@ -287,6 +287,8 @@ struct machine_t
 	char const *(*get_callable_unit_parameter_symbol)(struct machine_t*, int callable_unit_idx, int parm_idx);
 	void(*set_callable_unit_parameter_symbol)(struct machine_t*, int callable_unit_idx, int idx, char const *name);
 
+	int(*vcall)(struct machine_t *machine, struct callable_unit_t const *, void *return_value, ...);
+
 	void(*build_expression)(struct machine_t*, struct expression_t*, int ptr);
 	int(*first_chance_exception_handler)(struct exception_t*);
 
@@ -298,8 +300,6 @@ struct machine_t
 	void(*bind_compiler)(struct machine_t*, struct compiler_t*);
 	void(*bind_environment)(struct machine_t*, struct environment_t*);
 	
-	int(*vcall)(struct machine_t *machine, char const *symbol, void *return_value, ...);
-
 	struct expression_term_t *(*get_final_expression_term)(struct machine_t*, struct expression_t*);
 
 	void(*new_program)(struct machine_t*);

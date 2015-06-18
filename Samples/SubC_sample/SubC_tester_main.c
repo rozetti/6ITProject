@@ -9,6 +9,11 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <float.h>
+#include <math.h>
+
+#define BINDING_TARGET_REGISTER_NAME "binding_target"
+
+#define RUN_LONG_TESTS
 
 static int source_seek(void *context, int offset)
 {
@@ -20,6 +25,8 @@ static int source_seek(void *context, int offset)
 
 	return fseek(p, offset, SEEK_SET);
 #endif
+
+	return 1;
 }
 
 static int source_get_char(void *context, char *c)
@@ -116,7 +123,25 @@ void close_file(struct machine_t *machine)
 #endif
 }
 
-int run_file(struct machine_t *machine, int(*compile)(), int(*run)(run_callback_t, run_callback_t), char const *filename)
+static int c_fib_inner(int n)
+{
+	if (0 == n) return 0;
+	if (1 == n) return 1;
+
+	return c_fib_inner(n - 1) + c_fib_inner(n - 2);
+}
+
+static int c_fib(struct machine_t *machine)
+{
+	return c_fib_inner(TOP_INT(machine));
+}
+
+void prepare_compile_native_fib(struct machine_t *machine)
+{
+	machine->add_builtin(machine, TYPE_INT, "c_fib", c_fib, (int[]) { TYPE_INT, 0 });
+}
+
+int run_file(struct machine_t *machine, int(*compile)(compile_callback_t), int(*run)(run_callback_t, run_callback_t), char const *filename)
 {
 	machine->printf(machine, "\nrunning file '%s' ------------------------------------------------------------\n\n", filename);
 
@@ -126,7 +151,7 @@ int run_file(struct machine_t *machine, int(*compile)(), int(*run)(run_callback_
 		return 0;
 	}
 
-	int compiled = (*compile)();
+	int compiled = (*compile)(prepare_compile_native_fib);
 	close_file(machine);
 
 	if (compiled)
@@ -138,8 +163,6 @@ int run_file(struct machine_t *machine, int(*compile)(), int(*run)(run_callback_
 	return 1;
 }
 
-#define BINDING_TARGET_REGISTER_NAME "binding_target"
-
 void test_binding_pre_callback(struct machine_t *machine)
 {
 	machine->printf(machine, "setting static register '%s' to integer value %d\n", BINDING_TARGET_REGISTER_NAME, 42);
@@ -149,43 +172,48 @@ void test_binding_pre_callback(struct machine_t *machine)
 void test_binding_post_callback(struct machine_t *machine)
 {
 	int rv;
+	float f;
+	int v;
 
-	int v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
+	v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
 	machine->printf(machine, "static register '%s' has integer value %d\n", BINDING_TARGET_REGISTER_NAME, v);
 	assert(v == 1729);
 
-	rv = machine->vcall(machine, "increment_test", 0);
-	assert(rv == 1);
-	v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
-	assert(v == 1730);
+	struct callable_unit_t const *cu = FIND_CALLABLE_UNIT(machine, "increment_test");
 
-	rv = machine->vcall(machine, "add_test", 0, 13);
+	for (int n = 0; n < 10; ++n)
+	{
+		rv = machine->vcall(machine, cu, 0);
+		assert(rv == 1);
+	}
+	v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
+	assert(v == (1729 + 10));
+
+	rv = machine->vcall(machine, FIND_CALLABLE_UNIT(machine, "add_test"), 0, 13);
 	assert(rv == 1);
 	v = GET_STATIC_REGISTER_INT(machine, BINDING_TARGET_REGISTER_NAME);
-	assert(v == 1743);
+	assert(v == 1729 + 10 + 13);
 	machine->printf(machine, "sum is %d\n", v);
 
-	rv = machine->vcall(machine, "return_int_test", &v);
+	rv = machine->vcall(machine, FIND_CALLABLE_UNIT(machine, "return_int_test"), &v);
 	assert(v == 314);
 	machine->printf(machine, "return value was %d\n", v);
 
-	rv = machine->vcall(machine, "sum_test", &v, 42, 1729);
+	rv = machine->vcall(machine, FIND_CALLABLE_UNIT(machine, "sum_test"), &v, 42, 1729);
 	assert(rv == 1);
 	assert(v == 42 + 1729);
 	machine->printf(machine, "return value was %d\n", v);
 
-	float f;
-	rv = machine->vcall(machine, "sum_test_float", &f, 3.14f, 2.78f);
+	rv = machine->vcall(machine, FIND_CALLABLE_UNIT(machine, "sum_test_float"), &f, 3.14f, 2.78f);
 	assert(rv == 1);
-	assert(f < 3.14 + 2.78 + FLT_EPSILON);
-	assert(f > 3.14 + 2.78 - FLT_EPSILON);
+	assert(fabs(f) - (3.14f + 2.78f) <= FLT_EPSILON);
 	machine->printf(machine, "return value was %f\n", f);
 
-	rv = machine->vcall(machine, "test_printf", 0, "hello SubC!", 1729, 3.14);
+	rv = machine->vcall(machine, FIND_CALLABLE_UNIT(machine, "test_printf"), 0, "hello SubC!", 1729, 3.14);
 	assert(rv == 1);
 }
 
-static int test_binding(struct machine_t *machine, int(*compile)(), int(*run)(run_callback_t, run_callback_t), char const *filename)
+static int test_binding(struct machine_t *machine, int(*compile)(compile_callback_t), int(*run)(run_callback_t, run_callback_t), char const *filename)
 {
 	machine->printf(machine, "testing binding on file '%s' ------------------------------------------------------------\n\n", filename);
 
@@ -195,7 +223,7 @@ static int test_binding(struct machine_t *machine, int(*compile)(), int(*run)(ru
 		return 0;
 	}
 
-	int compiled = (*compile)();
+	int compiled = (*compile)(0);
 	close_file(machine);
 
 	if (compiled)
@@ -207,7 +235,7 @@ static int test_binding(struct machine_t *machine, int(*compile)(), int(*run)(ru
 	return 1;
 }
 
-static void run_tests_callback(struct machine_t *machine, int(*compile)(), int(*run)(run_callback_t, run_callback_t))
+static void run_tests_callback(struct machine_t *machine, int(*compile)(compile_callback_t), int(*run)(run_callback_t, run_callback_t))
 {
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_main.c"));
 	run_file(machine, compile, run, TEST_FILE_ASSET("test_function_call.c"));

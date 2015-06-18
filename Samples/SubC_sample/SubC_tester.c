@@ -12,16 +12,9 @@
 
 #ifdef _6IT_WIN32
 #include <Windows.h>
-//#include <direct.h>
-//#define _6IT_GetCurrentDirectory _getcwd
-#else
-//#include <unistd.h>
-//#define _6IT_GetCurrentDirectory getcwd
 #endif
 
 #include "SubCRT.h"
-
-static char buffer[100];
 
 static struct machine_t machine;
 static struct compiler_t compiler;
@@ -68,20 +61,7 @@ static int setup()
 	return 1;
 }
 
-static int c_fib_inner(int n)
-{
-	if (0 == n) return 0;
-	if (1 == n) return 1;
-
-	return c_fib_inner(n - 1) + c_fib_inner(n - 2);
-}
-
-static int c_fib(struct machine_t *machine)
-{
-	return c_fib_inner(TOP_INT(machine));
-}
-
-static int compile()
+static int compile(compile_callback_t callback)
 {
 	if (CATCH(&compiler.scanner->exception))
 	{
@@ -91,8 +71,10 @@ static int compile()
 
 	machine.new_program(&machine);
 	bind_SubCRT(&machine);
-	int parms[] = { TYPE_INT, 0 };
-	machine.add_builtin(&machine, TYPE_INT, "c_fib", c_fib, parms);
+	if (callback)
+	{
+		callback(&machine);
+	}
 
 	if (!compiler.compile(&compiler))
 	{
@@ -117,7 +99,7 @@ static int compile()
 	return 1;
 }
 
-static int run(void (*pre_run_callback)(struct machine_t *machine), void(*post_run_callback)(struct machine_t *machine))
+static int run(run_callback_t pre_run_callback, run_callback_t post_run_callback)
 {
 	if (CATCH(&machine.exception))
 	{

@@ -281,7 +281,7 @@ _6IT_PRIVATE int _6IT_MACHINECALLXX(_6EV_check_expression, struct expression_par
 		}
 		break;
 		case EVALUATOR_OPCODE_CALL:
-			cu = CALLABLE_UNIT(_Machine, term->data.as_integer);
+			cu = GET_CALLABLE_UNIT(_Machine, term->data.as_integer);
 
 			for (int i = cu->number_of_parameters - 1; i >= 0; --i)
 			{
@@ -298,7 +298,7 @@ _6IT_PRIVATE int _6IT_MACHINECALLXX(_6EV_check_expression, struct expression_par
 			PUSH_TYPED_VALUE(_Machine, 0, cu->return_type);
 			break;
 		case EVALUATOR_OPCODE_LUACALL:
-			cu = CALLABLE_UNIT(_Machine, term->data.as_integer);
+			cu = GET_CALLABLE_UNIT(_Machine, term->data.as_integer);
 
 			for (int i = cu->number_of_parameters - 1; i >= 0; --i)
 			{
@@ -315,7 +315,7 @@ _6IT_PRIVATE int _6IT_MACHINECALLXX(_6EV_check_expression, struct expression_par
 			PUSH_TYPED_VALUE(_Machine, 0, cu->return_type);
 			break;
 		case EVALUATOR_OPCODE_UNRESOLVED_EXPERNAL_CALL:
-			cu = CALLABLE_UNIT(_Machine, term->data.as_integer);
+			cu = GET_CALLABLE_UNIT(_Machine, term->data.as_integer);
 			PUSH_TYPED_VALUE(_Machine, 0, cu->return_type);
 			break;
 		case EVALUATOR_OPCODE_PUSH_INTEGER:

@@ -15,9 +15,9 @@ _H6VM_METHODX(struct callable_unit_t *, find_callable_unit_by_entry_point, int e
 {
 	for (int i = 0; i < _REG_FUP(_REGS(_This)); ++i)
 	{
-		if (CALLABLE_UNIT(_This, i)->entry_point_program_counter == entry)
+		if (GET_CALLABLE_UNIT(_This, i)->entry_point_program_counter == entry)
 		{
-			return CALLABLE_UNIT(_This, i);
+			return GET_CALLABLE_UNIT(_This, i);
 		}
 	}
 
@@ -26,7 +26,7 @@ _H6VM_METHODX(struct callable_unit_t *, find_callable_unit_by_entry_point, int e
 
 _H6VM_METHODX(struct callable_unit_t *, get_callable_unit, int idx)
 {
-	return CALLABLE_UNIT(_This, idx);
+	return GET_CALLABLE_UNIT(_This, idx);
 }
 
 _H6VM_METHODX(struct callable_unit_metadata_t *, get_callable_unit_metadata, int idx)
@@ -139,3 +139,55 @@ _H6VM_METHODXXX(void, set_callable_unit_parameter_symbol, int callable_unit_idx,
 {
 	strcpy(_This->callable_unit_metadata[callable_unit_idx].parameter_metadata[idx].symbol, symbol);
 }
+
+_6IT_PRIVATE int _H6VM_METHOD_NAME(vcall)(struct machine_t *machine, struct callable_unit_t const *cu, void *return_value, ...)
+{
+	va_list args;
+	va_start(args, return_value);
+
+	for (int n = 0; n < cu->number_of_parameters; ++n)
+	{
+		data_type_t type = cu->parameters[n];
+
+		_FRAME_REGISTER(_FRAME(machine), n)->value.type = type;
+		switch (type)
+		{
+		case TYPE_INT:
+			_FRAME_REGISTER(_FRAME(machine), n)->value.as_integer = va_arg(args, int);
+			_INC_RSP(_REGS(machine));
+			break;
+		case TYPE_FLOAT:
+			_FRAME_REGISTER(_FRAME(machine), n)->value.as_float = (float)va_arg(args, double);
+			_INC_RSP(_REGS(machine));
+			break;
+		case TYPE_CHAR_CONST_PTR:
+			_FRAME_REGISTER(_FRAME(machine), n)->value.as_char_const_ptr = va_arg(args, char const *);
+			_INC_RSP(_REGS(machine));
+			break;
+		default:
+			return 0;
+		}
+	}
+
+	va_end(args);
+
+	_SET_PC(_REGS(machine), cu->entry_point_program_counter);
+	machine->execute(machine);
+
+	switch (cu->return_type)
+	{
+	case TYPE_INT:
+		*(int *)return_value = POP_INT(machine);
+		break;
+	case TYPE_FLOAT:
+		*(float *)return_value = POP_FLOAT(machine);
+		break;
+	case TYPE_VOID:
+		break;
+	default:
+		return 0;
+	}
+
+	return 1;
+}
+

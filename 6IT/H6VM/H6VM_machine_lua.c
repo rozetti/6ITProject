@@ -20,6 +20,8 @@ _H6VM_METHOD(void, setup_lua)
 	{
 		const char* name = lua_tostring(_This->lua, -2);
 
+		// todo crz: put this back, or get rid of
+
 		//if (lua_isnumber(machine->lua, -1))
 		//{
 		//	struct register_t *var = machine->allocate_free_static_register(machine, TYPE_FLOAT);
@@ -142,7 +144,7 @@ _H6VM_METHOD(void, resolve_lua_externals)
 
 	for (int i = 0; i < _REG_FUP(_REGS(_This)); ++i)
 	{
-		struct callable_unit_t *cu = CALLABLE_UNIT(_This, i);
+		struct callable_unit_t *cu = GET_CALLABLE_UNIT(_This, i);
 
 		if (!cu->is_resolved)
 		{

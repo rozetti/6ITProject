@@ -18,7 +18,9 @@
 #define MACHINE_ERRORS 7000
 
 // todo crz: put somewhere else
-#define CALLABLE_UNIT(M, idx) (_REG_US((_REGS(M))) + (idx))
+#define GET_CALLABLE_UNIT(M, idx) (_REG_US((_REGS(M))) + (idx))
+#define FIND_CALLABLE_UNIT(M, SYMBOL) (M)->find_callable_unit((M), SYMBOL)
+
 
 #ifdef _6IT_DEBU66ER
 #define THROW(ex, i) \
@@ -108,4 +110,6 @@
 #define CALL_FUNCTION(M, name) \
 _SET_PC(_REGS((M)), (M)->find_callable_unit((M), name)->entry_point_program_counter); \
 (M)->execute((M));
+
+#define _6IT_METHOD_NAME(PREFIX, NAME) (_##PREFIX##_##NAME)
 
