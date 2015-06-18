@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
-#include <malloc.h>
+#include <stdlib.h>
 
 static int source_seek(void *context, int offset)
 {
@@ -71,7 +71,7 @@ int load_file(struct machine_t *machine, char const *filename, char **buffer)
 	}
 
 	struct stat st;
-	fstat(_fileno(fp), &st);
+	fstat(fileno(fp), &st);
 	if (!(*buffer = (char *)malloc(st.st_size * sizeof(char) + 1)))
 	{
 		machine->printf(machine, "malloc failed\n");
