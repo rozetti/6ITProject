@@ -155,8 +155,8 @@ static void run_tests_callback(struct machine_t *machine, int(*compile)(compile_
 	test_binding(machine, compile, run, TEST_FILE_ASSET("test_binding.subc"));
 
 #ifdef RUN_LONG_TESTS
-	run_file(machine, compile, run, TEST_FILE_ASSET("test_fibonacci_subc.subc"));
-	run_file(machine, compile, run, TEST_FILE_ASSET("test_fibonacci_native.subc"));
+    run_file(machine, compile, run, TEST_FILE_ASSET("test_fibonacci_subc.subc"));
+    run_file(machine, compile, run, TEST_FILE_ASSET("test_fibonacci_native.subc"));
 
 #ifdef _6IT_SUPPORT_LUA
 	machine->environment->lua = luaL_newstate();
@@ -184,6 +184,8 @@ static void run_tests_callback(struct machine_t *machine, int(*compile)(compile_
 
 int SubC_tester_main(void *context)
 {
+	construct_6IOS(&_Bios, 0);
+
 	_Bios.context = context;
 
 	struct environment_t env = construct_environment();
@@ -192,6 +194,8 @@ int SubC_tester_main(void *context)
 	env.read_next_char = source_get_char;
 	env.read_seek = source_seek;
 
-	return SubC_tester_run_tests(&env, run_tests_callback);
+	auto rv = SubC_tester_run_tests(&env, run_tests_callback);
+
+	return rv;
 }
 

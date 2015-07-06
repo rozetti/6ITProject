@@ -7,7 +7,7 @@
 CONFIG+=windeployqt
 QMAKE_CFLAGS += -std=c99
 
-INCLUDEPATH += C:/Users/conrad/Documents/GitHubVisualStudio/6ITProject\6IT
+INCLUDEPATH += ../../../../6IT
 DEFINES += _6IT_QT
 DEFINES +=_CRT_SECURE_NO_WARNINGS
 
@@ -22,13 +22,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     ../../SubC_tester.c \
     ../../SubC_tester_main.c \
-    ../../../../6IT/SubC_complete.c \
     ../../subc_tester_bios.cpp \
-    rzqscrollarea.cpp
+    ../../../../6IT/SubC_complete.c \
+    rzqscrollarea.cpp \
+    subc_worker.cpp
 
 HEADERS  += mainwindow.h \
-    worker.h \
-    rzqscrollarea.h
+    rzqscrollarea.h \
+    subc_worker.h
 
 FORMS    += mainwindow.ui
 

@@ -124,10 +124,12 @@ static int run(run_callback_t pre_run_callback, run_callback_t post_run_callback
 		return 0;
 	}
 
+	// crz: this is used by non-threaded vm
+	machine.number_of_threads = 1; // hack crz
+
 #ifdef _6IT_SUPPORT_THREADS
 	struct thread_t worker1;
 	struct thread_t worker2;
-	machine.number_of_threads = 1; // hack crz
 
 	struct callable_unit_t *th1 = machine.find_callable_unit(&machine, "worker1");
 	if (th1)

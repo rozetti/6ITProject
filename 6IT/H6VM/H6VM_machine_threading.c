@@ -23,6 +23,12 @@ _H6VM_METHODXX(void, create_thread, struct thread_t *thread, struct callable_uni
 
 _H6VM_METHODX(void, switch_context, int id)
 {
+    // hack crz
+    if (_This->current_thread_idx > 100)
+    {
+        _This->current_thread_idx = -1;
+    }
+
 	if (id == _This->current_thread_idx)
 	{
 		return;

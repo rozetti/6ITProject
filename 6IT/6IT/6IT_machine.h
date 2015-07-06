@@ -218,7 +218,7 @@ struct machine_t
 	int tocks;
 
 	struct thread_t primary_thread;
-	struct thread_t *threads[10];
+	struct thread_t *threads[10]; // crz: magic number
 	int number_of_threads;
 	int current_thread_idx;
 

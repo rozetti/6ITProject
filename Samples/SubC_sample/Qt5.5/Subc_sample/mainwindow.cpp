@@ -1,13 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "worker.h"
+#include "subc_worker.h"
 
 #include <QDir>
 #include <QThread>
 #include <QObject>
 #include <QFile>
 #include <QtWidgets>
+#include <QScroller>
 
 extern "C"
 {
@@ -17,78 +18,42 @@ extern "C"
 
 Ui::MainWindow *_ui;
 
-static void print_string(char const *s)
+void MainWindow::printString(QString const &s)
 {
-	qDebug(s);
-
-    /*
-    auto rect =_ui->lblConsoleOutput->frameRect();
-    auto h = rect.height();
-    auto line_height = _ui->lblConsoleOutput->fontInfo().pixelSize();
-    auto number_of_lines = (h / line_height) - 1;
-
-	if (number_of_lines < 1) return;
-*/
+    qDebug(s.toStdString().c_str());
 
     auto text = _ui->lblConsoleOutput->text();
+
+//    if (text.length() > 2000)
+//    {
+//        text = text.right(1000);
+//    }
+
     text.append(s);
-/*
-    auto lines = text.split('\n');
-
-    while(lines.count() > number_of_lines)
-    {
-        lines.removeFirst();
-    }
-
-    text.clear();
-    for(int i = 0; i < lines.count(); ++i)
-    {
-        if (lines[i].length() > 0)
-        {
-            text.append(lines[i].trimmed());
-            text.append('\n');
-        }
-    }
-*/
     _ui->lblConsoleOutput->setText(text);
-}
-
-void Worker::process()
-{
-    construct_6IOS(&_Bios, 0);
-    _Bios.print_string = print_string;
-
-    SubC_tester_main(0);
-
-    emit finished();
-}
-
-void MainWindow::moveScrollBarToBottom(int min, int max)
-{
-    if (!m_autoScroll) return;
-
-    Q_UNUSED(min);
-    ui->scrollArea->verticalScrollBar()->setValue(max);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    m_autoScroll(true)
+    ui(new Ui::MainWindow)
 {
     _ui = ui;
 
     ui->setupUi(this);
 
     ui->scrollAreaWidgetContents->setStyleSheet("background-color : black; color: white;");
-    QScrollBar* scrollbar = ui->scrollArea->verticalScrollBar();
-    QObject::connect(scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(moveScrollBarToBottom(int, int)));
-    QObject::connect(ui->scrollArea, SIGNAL(userInteracted()), this, SLOT(userInteracted()));
+    QObject::connect(ui->scrollArea, SIGNAL(userInteracted()), this, SLOT(userInteracted()), Qt::QueuedConnection);
 
-    QScroller::grabGesture(ui->scrollArea->viewport(), QScroller::LeftMouseButtonGesture);
+    ui->scrollArea->allowHorizontalScrolling(false);
 
     auto cwd = QDir::currentPath();
-	print_string(cwd.toStdString().c_str());
+
+    construct_6IOS(&_Bios, 0);
+    //_Bios.print_string = print_string;
+
+    printString(cwd);
+
+    //print_string(QSysInfo::productType().toStdString().c_str());
 }
 
 MainWindow::~MainWindow()
@@ -96,31 +61,32 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::run()
+void MainWindow::on_btnRun_clicked()
 {
     ui->btnRun->setEnabled(false);
 
-    QThread* thread = new QThread;
-    Worker* worker = new Worker();
+    ui->lblConsoleOutput->setText("");
+    ui->scrollArea->clampToBottom(true);
+
+    auto thread = new QThread(this);
+    auto worker = new SubCWorker();
+
     worker->moveToThread(thread);
 
-    connect(thread, SIGNAL(started()), worker, SLOT(process()));
-    connect(worker, SIGNAL(finished()), this, SLOT(runFinished()));
+    QObject::connect(thread, SIGNAL(started()), worker, SLOT(run()));
+    QObject::connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
 
+    QObject::connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+    QObject::connect(worker, SIGNAL(finished()), this, SLOT(runFinished()));
+    QObject::connect(worker, SIGNAL(finished()), worker, SLOT(deleteLater()));
+
+    QObject::connect(worker, SIGNAL(printString(QString const &)), this, SLOT(printString(QString const &)), Qt::QueuedConnection);
     thread->start();
-}
-
-
-void MainWindow::on_btnRun_clicked()
-{
-    m_autoScroll = true;
-    ui->lblConsoleOutput->setText("");
-    run();
 }
 
 void MainWindow::userInteracted()
 {
-    m_autoScroll = false;
+    ui->scrollArea->clampToBottom(false);
 }
 
 void MainWindow::runFinished()

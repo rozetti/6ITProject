@@ -126,6 +126,9 @@
     <ClCompile Include="..\..\..\ThirdParty\lua\lzio.c">
       <Filter>lua</Filter>
     </ClCompile>
+    <ClCompile Include="..\subc_tester_bios.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\ThirdParty\lua\lapi.h">
@@ -204,6 +207,9 @@
       <Filter>lua</Filter>
     </ClInclude>
     <ClInclude Include="..\SubC_tester.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\subc_tester_bios.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

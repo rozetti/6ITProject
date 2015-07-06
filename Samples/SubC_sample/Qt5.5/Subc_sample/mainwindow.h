@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class SubCWorker;
+
 namespace Ui {
 class MainWindow;
 }
@@ -16,18 +18,15 @@ public:
     ~MainWindow();
 
 public slots:
-    void run();
+    void printString(QString const &s);
 
 private slots:
-    void moveScrollBarToBottom(int min, int max);
     void on_btnRun_clicked();
     void userInteracted();
     void runFinished();
 
 private:
     Ui::MainWindow *ui;
-
-    bool m_autoScroll;
 };
 
 #endif // MAINWINDOW_H

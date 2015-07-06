@@ -12,8 +12,23 @@ public:
 
     void mousePressEvent(QMouseEvent *event);
 
+    void allowVerticalScrolling(bool b);
+    void allowHorizontalScrolling(bool b);
+    void clampToBottom(bool b);
+
+private:
+    void updateScrollingPolicy();
+
 signals:
     void userInteracted();
+
+private:
+    bool m_allowVerticalScrolling;
+    bool m_allowHorizontalScrolling;
+    bool m_clampToBottom;
+
+private slots:
+    void moveScrollBarToBottom(int min, int max);
 };
 
 #endif // RZQSCROLLAREA_H
