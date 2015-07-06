@@ -7,7 +7,7 @@
 *.sln.docstates
 
 # Build results
-
+build-*/
 [Dd]ebug/
 [Rr]elease/
 x64/
@@ -170,3 +170,4 @@ Merlin/TestSolution/WindowsStoreApp1/WindowsStoreApp1/Properties/AssemblyInfo.cs
 Merlin/TestSolution/WindowsStoreApp1/WindowsStoreApp1/Resources.resw
 Merlin/TestSolution/WindowsStoreApp1/WindowsStoreApp1/WindowsStoreApp1.csproj
 *.orig
+/OpenGLESApp1

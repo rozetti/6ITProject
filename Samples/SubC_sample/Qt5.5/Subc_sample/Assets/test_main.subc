@@ -1,9 +1,10 @@
 /* The 6IT Project. Copyright 2015 Conrad Rozetti, crz@6itproject.org. Distributed under the MIT License, see 6IT.h. */
 
-#include "SubC_tester.h"
+#include <assert.h>
 
-int main(int argc, char *argv[])
+int main()
 {
-	return SubC_tester_main(0);
-}
+	printf("main() called\n");
 
+	return 42;
+}
