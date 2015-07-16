@@ -1,0 +1,17 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>Assets/test_fibonacci_lua.lua</file>
+    <file>Assets/test_binding.subc</file>
+    <file>Assets/test_fibonacci_lua.subc</file>
+    <file>Assets/test_fibonacci_native.subc</file>
+    <file>Assets/test_fibonacci_subc.subc</file>
+    <file>Assets/test_float.subc</file>
+    <file>Assets/test_function_call.subc</file>
+    <file>Assets/test_globals.subc</file>
+    <file>Assets/test_if.subc</file>
+    <file>Assets/test_loops.subc</file>
+    <file>Assets/test_main.subc</file>
+    <file>Assets/test_operators.subc</file>
+    <file>Assets/test_threads.subc</file>
+</qresource>
+</RCC>

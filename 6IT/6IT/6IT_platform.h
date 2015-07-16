@@ -7,8 +7,10 @@
 #define _6IT_OSX
 #endif
 
+#ifndef _6IT_QT
 #ifdef _WIN32
 #define _6IT_WIN32
+#endif
 #endif
 
 #ifdef _6IT_WIN32
@@ -22,7 +24,11 @@
 #endif
 
 #ifdef __ANDROID__
+#ifdef _6IT_QT
+#define _6IT_QT_ANDROID
+#else
 #define _6IT_ANDROID
+#endif
 #endif
 
 #if defined(_6IT_WIN32)
@@ -37,6 +43,9 @@
 #include <unistd.h>
 #define _6IT_GetCurrentDirectory getcwd
 #define _6IT_Fileno fileno
+#elif defined(_6IT_QT)
+#define _6IT_GetCurrentDirectory
+#define _6IT_Fileno
 #else
 #pragma message "we don't know what platform we are running on"
 #endif

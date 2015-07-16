@@ -46,6 +46,7 @@
     <ClCompile Include="..\..\..\ThirdParty\lua\lzio.c" />
     <ClCompile Include="..\main.c" />
     <ClCompile Include="..\SubC_tester.c" />
+    <ClCompile Include="..\subc_tester_bios.cpp" />
     <ClCompile Include="..\SubC_tester_main.c" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +76,7 @@
     <ClInclude Include="..\..\..\ThirdParty\lua\lvm.h" />
     <ClInclude Include="..\..\..\ThirdParty\lua\lzio.h" />
     <ClInclude Include="..\SubC_tester.h" />
+    <ClInclude Include="..\subc_tester_bios.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D191F5E3-0146-465C-8494-1315BE500A3A}</ProjectGuid>

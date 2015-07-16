@@ -419,7 +419,7 @@ _6IT_PRIVATE int _6IT_MACHINECALL(_6EV_evaluate)
 #ifdef EVALUATOR_WITH_DEBUGGER
 			// todo crz: put this back
 			_FRAME(_Machine)->callable_unit_idx = term->data.as_integer;
-			struct callable_unit_t *function = CALLABLE_UNIT(_Machine, term->data.as_integer);
+                        struct callable_unit_t *function = GET_CALLABLE_UNIT(_Machine, term->data.as_integer);
 			struct callable_unit_metadata_t *metadata = _Machine->get_callable_unit_metadata(_Machine, term->data.as_integer);
 			for (int i = function->number_of_parameters - 1; i >= 0; --i)
 			{

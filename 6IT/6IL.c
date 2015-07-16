@@ -25,6 +25,7 @@ _6IT_DESTRUCTOR(processor, 6IL) { }
 
 _6IT_PUBLIC _6IT_CONSTRUCTOR(processor, 6IL)
 {
+    _This->verbosity = 0;
 	_This->destruct = _6IL_METHOD_NAME(destruct);
 
 	_This->execute = _6IL_METHOD_NAME(execute);

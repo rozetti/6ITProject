@@ -15,5 +15,9 @@ int SubC_tester_load_file(struct machine_t *machine, char const *filename, char 
 #ifdef _6IT_ANDROID
 #define TEST_FILE_ASSET(filename) filename
 #else
+#ifdef _6IT_QT
+#define TEST_FILE_ASSET(filename) ":/Assets/" filename
+#else
 #define TEST_FILE_ASSET(filename) "../TestFiles/" filename
+#endif
 #endif
