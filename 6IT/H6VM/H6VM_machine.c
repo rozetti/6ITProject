@@ -361,6 +361,7 @@ _6IT_PUBLIC _6IT_CONSTRUCTORX(machine, H6VM, struct machine_config_t config)
 	construct_scheduler(&_This->scheduler, _This);
 #endif
 	_This->current_thread_idx = -1;
+        _This->number_of_threads = 0;
 	_This->create_thread(_This, &_This->primary_thread, 0);
 	_This->switch_context(_This, _This->primary_thread.id);
 
