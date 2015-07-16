@@ -22,7 +22,7 @@ _SUBC_METHOD_CONST(void, compile_program)
 		{
 			data_type_t dt = expression_parser->parse_data_type(expression_parser, expression_parser_state);
 
-			struct register_t *var = machine->find_register(machine, scanner->token.token);
+			struct machine_register_t *var = machine->find_register(machine, scanner->token.token);
 			if (!var)
 			{
 				var = machine->allocate_free_static_register(machine, dt);

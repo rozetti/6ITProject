@@ -9,7 +9,7 @@
 _6IT_PRIVATE int _6IT_MACHINECALLXX(_6EV_check_expression, struct expression_parser_state_t *state, struct expression_t const *expression)
 {
 	int pointer_save = _REG_VSP(_REGS(_Machine));
-	struct register_t *var;
+	struct machine_register_t *var;
 	struct value_t *stack = _REG_VS(_REGS(_Machine));
 	int current = 0;
 	struct expression_term_t *term = expression->terms;

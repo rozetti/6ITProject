@@ -95,7 +95,7 @@ _H6VM_METHODXXXX(struct callable_unit_t *, add_builtin, int return_type, char co
 		int i = 0;
 		while (parms[i])
 		{
-			//struct register_t *p = &(cu->parameters)[i];
+			//struct machine_register_t *p = &(cu->parameters)[i];
 			//p->value.type = parms[i];
 //			if (p->value.type == TYPE_VARARG)
 

@@ -25,7 +25,7 @@ _SUBC_METHODX_CONST(void, compile_function_parameters, struct callable_unit_t *f
 				THROW(&_State->expression_parser_state->exception, 1); // todo crz: proper fault code
 			}
 
-			//struct register_t *p = function->parameters + parameter_index;
+			//struct machine_register_t *p = function->parameters + parameter_index;
 			//p->value.type = dt;
 
 			function->parameters[parameter_index] = dt;

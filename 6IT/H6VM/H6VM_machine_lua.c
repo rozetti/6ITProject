@@ -24,7 +24,7 @@ _H6VM_METHOD(void, setup_lua)
 
 		//if (lua_isnumber(machine->lua, -1))
 		//{
-		//	struct register_t *var = machine->allocate_free_static_register(machine, TYPE_FLOAT);
+		//	struct machine_register_t *var = machine->allocate_free_static_register(machine, TYPE_FLOAT);
 		//	machine->register_set_symbol(machine, var->idx, name);
 		//	var->value.type = TYPE_FLOAT;
 		//	var->value.as_float = (float)lua_tonumber(machine->lua, -1);
@@ -54,7 +54,7 @@ _H6VM_METHOD(void, pull_from_lua)
 
 	for (int i = 0; i < _This->config.max_number_of_globals; ++i)
 	{
-		struct register_t *var = _STATIC_REGISTER(_This, i);
+		struct machine_register_t *var = _STATIC_REGISTER(_This, i);
 
 		if (var->is_lua)
 		{
@@ -84,7 +84,7 @@ _H6VM_METHOD(void, push_to_lua)
 {
 	for (int i = 0; i < _This->config.max_number_of_globals; ++i)
 	{
-		struct register_t *var = _STATIC_REGISTER(_This, i);
+		struct machine_register_t *var = _STATIC_REGISTER(_This, i);
 
 		if (var->is_lua)
 		{
@@ -131,7 +131,7 @@ _H6VM_METHODX(int, lua_has_function, char const *symbol)
 //{
 //	if (machine_lua_has_variable(machine, symbol))
 //	{
-//		struct register_t *var = machine->allocate_free_static_register(machine, dt);
+//		struct machine_register_t *var = machine->allocate_free_static_register(machine, dt);
 //		expression_emit_absolute_register_allocation(machine, expression, var->idx, scanner->token.source_offset);
 //		machine->register_set_symbol(machine, var->idx, scanner->token.token);
 //	}
@@ -160,7 +160,7 @@ _H6VM_METHOD(void, resolve_lua_externals)
 
 	for (int i = 0; i < _This->config.max_number_of_globals; ++i)
 	{
-		struct register_t *var = _STATIC_REGISTER(_This, i);
+		struct machine_register_t *var = _STATIC_REGISTER(_This, i);
 
 		if (var->is_external)
 		{

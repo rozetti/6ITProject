@@ -13,7 +13,7 @@ _6X_METHODXX(void, parse_assignment, struct expression_parser_state_t *state, st
 
 	if (scanner->token.type == TOKEN_TYPE_IDENTIFIER)
 	{
-		struct register_t const *var = machine->find_register(machine, scanner->token.token);
+		struct machine_register_t const *var = machine->find_register(machine, scanner->token.token);
 		if (var)
 		{
 			scanner->move_next_token(scanner);
@@ -81,7 +81,7 @@ _6X_METHODXX(void, parse_unary_post_assignment, struct expression_parser_state_t
 
 	if (scanner->token.type == TOKEN_TYPE_IDENTIFIER)
 	{
-		struct register_t const *var = machine->find_register(machine, scanner->token.token);
+		struct machine_register_t const *var = machine->find_register(machine, scanner->token.token);
 		if (var)
 		{
 			scanner->move_next_token(scanner);
@@ -137,7 +137,7 @@ _6X_METHODXX(void, parse_unary_pre_assignment, struct expression_parser_state_t 
 			THROW(&machine->exception, 1);
 		}
 
-		struct register_t const *var = machine->find_register(machine, scanner->token.token);
+		struct machine_register_t const *var = machine->find_register(machine, scanner->token.token);
 		if (!var)
 		{
 			THROW(&machine->exception, 1);
@@ -165,7 +165,7 @@ _6X_METHODXX(void, parse_unary_pre_assignment, struct expression_parser_state_t 
 //			machine->die(machine, 0, "identifier expected");
 		}
 
-		struct register_t const *var = machine->find_register(machine, scanner->token.token);
+		struct machine_register_t const *var = machine->find_register(machine, scanner->token.token);
 		if (!var)
 		{
 			THROW(&machine->exception, 1);

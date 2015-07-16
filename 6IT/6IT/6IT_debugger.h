@@ -19,7 +19,7 @@ struct debugger_t
 	void(*print_evaluator_state)(struct debugger_t*);
 	void(*print_value_stack)(struct debugger_t*);
 	void(*print_registers)(struct debugger_t*);
-	void(*print_register)(struct debugger_t*, struct register_t*);
+	void(*print_register)(struct debugger_t*, struct machine_register_t*);
 	void(*print_relative_registers)(struct debugger_t*);
 	void(*print_absolute_registers)(struct debugger_t*);
 	void(*print_minidump)(struct debugger_t*);

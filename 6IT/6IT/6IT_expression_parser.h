@@ -9,7 +9,7 @@ struct expression_parser_t
 	struct scanner_t *scanner;
 
 	void(*emit_string)(struct expression_parser_t*, struct expression_t*, int index, int source_position);
-	void(*emit_variable)(struct expression_parser_t*, struct expression_t*, struct register_t const *var, int source_position);
+	void(*emit_variable)(struct expression_parser_t*, struct expression_t*, struct machine_register_t const *var, int source_position);
 	void(*emit_integer)(struct expression_parser_t*, struct expression_t*, int value, int source_position);
 	void(*emit_float)(struct expression_parser_t*, struct expression_t*, float value, int source_position);
 	void(*emit_call)(struct expression_parser_t*, struct expression_t*, struct callable_unit_t*, int number_of_args, int source_position);

@@ -39,7 +39,7 @@ _6X_METHODXX(void, parse_identifier, struct expression_parser_state_t *state, st
 		return;
 	}
 
-	struct register_t const *var = machine->find_register(machine, scanner->token.token);
+	struct machine_register_t const *var = machine->find_register(machine, scanner->token.token);
 	if (var)
 	{
 		_This->emit_variable(_This, expression, var, scanner->token.source_offset);

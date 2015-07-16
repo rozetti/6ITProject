@@ -27,14 +27,14 @@ _6X_METHODXX(int, parse_expression, struct expression_parser_state_t *state, str
 
 		if (expression->is_global)
 		{
-			struct register_t *var = machine->allocate_free_static_register(machine, dt);
+			struct machine_register_t *var = machine->allocate_free_static_register(machine, dt);
 			state->parser->emit_static_register_allocation(state->parser, expression, var->idx, scanner->token.source_offset);
 			machine->register_set_symbol(machine, var->idx, scanner->token.token);
 		}
 		else
 		{
 			state->parser->emit_frame_register_allocation(state->parser, expression, dt, scanner->token.source_offset);
-			struct register_t *var = machine->allocate_frame_register(machine, dt);
+			struct machine_register_t *var = machine->allocate_frame_register(machine, dt);
 			machine->register_set_symbol(machine, var->idx, scanner->token.token);
 			emitter->emit_opcode(emitter, expression, EVALUATOR_OPCODE_DROP, scanner->token.source_offset);
 		}

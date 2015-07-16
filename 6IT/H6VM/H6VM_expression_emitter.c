@@ -44,7 +44,7 @@ EXPRESSION_EMITTER_METHODXXX(void, emit_unary_operator, struct expression_t *exp
 	_This->append_term(_This, expression, &term, source_position);
 }
 
-EXPRESSION_EMITTER_METHODXXXX(void, emit_frame_register_assignment, struct expression_t *expression, struct register_t const *reg, int op, int source_position)
+EXPRESSION_EMITTER_METHODXXXX(void, emit_frame_register_assignment, struct expression_t *expression, struct machine_register_t const *reg, int op, int source_position)
 {
 	int idx = reg->local_idx;
 
@@ -57,7 +57,7 @@ EXPRESSION_EMITTER_METHODXXXX(void, emit_frame_register_assignment, struct expre
 	_This->append_term(_This, expression, &term, source_position);
 }
 
-EXPRESSION_EMITTER_METHODXXXX(void, emit_static_register_assignment, struct expression_t *expression, struct register_t const *reg, int op, int source_position)
+EXPRESSION_EMITTER_METHODXXXX(void, emit_static_register_assignment, struct expression_t *expression, struct machine_register_t const *reg, int op, int source_position)
 {
 	int idx = reg->idx;
 

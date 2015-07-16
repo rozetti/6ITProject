@@ -4,9 +4,9 @@
 
 #include <string.h>
 
-_H6VM_METHODX(struct register_t *, allocate_frame_register, int type)
+_H6VM_METHODX(struct machine_register_t *, allocate_frame_register, int type)
 {
-	struct register_t *reg = _REG_RS(_REGS(_This)) + _REG_RSP(_REGS(_This));
+	struct machine_register_t *reg = _REG_RS(_REGS(_This)) + _REG_RSP(_REGS(_This));
 
 	reg->value.as_integer = 0;
 	reg->value.type = type;
@@ -20,14 +20,14 @@ _H6VM_METHODX(struct register_t *, allocate_frame_register, int type)
 }
 
 // todo crz: does this get used (without taking a type??)
-_H6VM_METHODX(struct register_t *, allocate_static_register, int idx)
+_H6VM_METHODX(struct machine_register_t *, allocate_static_register, int idx)
 {
 	if (idx > _This->config.max_number_of_globals)
 	{
 		_This->die(_This, 0, "too many absolute registers");
 	}
 
-	struct register_t *reg = _REG_RS(_REGS(_This)) + idx;
+	struct machine_register_t *reg = _REG_RS(_REGS(_This)) + idx;
 
 	reg->local_idx = -1;
 	reg->value.as_integer = 0;
@@ -39,7 +39,7 @@ _H6VM_METHODX(struct register_t *, allocate_static_register, int idx)
 }
 
 // todo crz: work out if the type checker needs the type here
-_H6VM_METHODX(struct register_t *, allocate_free_static_register, int type)
+_H6VM_METHODX(struct machine_register_t *, allocate_free_static_register, int type)
 {
 	int idx = _REG_FRP(_REGS(_This));
 	if (idx > _This->config.max_number_of_globals)
@@ -47,7 +47,7 @@ _H6VM_METHODX(struct register_t *, allocate_free_static_register, int type)
 		_This->die(_This, 0, "too many absolute registers");
 	}
 
-	struct register_t *reg = _REG_RS(_REGS(_This)) + idx;
+	struct machine_register_t *reg = _REG_RS(_REGS(_This)) + idx;
 
 	reg->value.as_integer = 0;
 	reg->value.type = type;
@@ -60,7 +60,7 @@ _H6VM_METHODX(struct register_t *, allocate_free_static_register, int type)
 	return reg;
 }
 
-_H6VM_METHODX(struct register_t *, get_static_register, int idx)
+_H6VM_METHODX(struct machine_register_t *, get_static_register, int idx)
 {
 #ifdef _DEBUG
 	if (idx >= _REG_RSP(_REGS(_This)))
@@ -69,7 +69,7 @@ _H6VM_METHODX(struct register_t *, get_static_register, int idx)
 	}
 #endif
 
-	struct register_t *reg = _REG_RS(_REGS(_This)) + idx;
+	struct machine_register_t *reg = _REG_RS(_REGS(_This)) + idx;
 
 	return reg;
 }
@@ -79,14 +79,14 @@ _H6VM_METHODX(struct register_metadata_t *, get_register_metadata, int idx)
 	return _This->register_metadata + idx;
 }
 
-_H6VM_METHODX(struct register_t *, find_frame_register, char const *symbol)
+_H6VM_METHODX(struct machine_register_t *, find_frame_register, char const *symbol)
 {
 	int last = _REG_RSP(_REGS(_This)) - 1;
 	int first = FRAME_BASE_REGISTER_INDEX(_This, _FRAME(_This));
 
 	for (int i = last; i >= first; i--)
 	{
-		struct register_t *reg = _H6VM_METHOD_NAME(get_static_register)(_This, i);
+		struct machine_register_t *reg = _H6VM_METHOD_NAME(get_static_register)(_This, i);
 		char const *name = _This->register_get_symbol(_This, i);
 		if (!strcmp(name, symbol))
 		{
@@ -97,11 +97,11 @@ _H6VM_METHODX(struct register_t *, find_frame_register, char const *symbol)
 	return 0;
 }
 
-_H6VM_METHODX(struct register_t *, find_static_register, char const *symbol)
+_H6VM_METHODX(struct machine_register_t *, find_static_register, char const *symbol)
 {
 	for (int i = 0; i < _REG_FRP(_REGS(_This)); i++)
 	{
-		struct register_t *reg = _STATIC_REGISTER(_This, i);
+		struct machine_register_t *reg = _STATIC_REGISTER(_This, i);
 		char const *name = _This->register_get_symbol(_This, reg->idx);
 		if (!strcmp(name, symbol))
 		{
@@ -112,9 +112,9 @@ _H6VM_METHODX(struct register_t *, find_static_register, char const *symbol)
 	return 0;
 }
 
-_H6VM_METHODX(struct register_t *, find_register, char const *symbol)
+_H6VM_METHODX(struct machine_register_t *, find_register, char const *symbol)
 {
-	struct register_t *reg = _This->find_frame_register(_This, symbol);
+	struct machine_register_t *reg = _This->find_frame_register(_This, symbol);
 	if (!reg)
 	{
 		reg = _This->find_static_register(_This, symbol);

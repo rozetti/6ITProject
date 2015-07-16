@@ -75,8 +75,8 @@ static int construct_evaluator_stack(struct thread_t *thread, int max_depth)
 
 static int construct_register_stack(struct thread_t *thread, int max_depth)
 {
-	int size = sizeof(struct register_t) * max_depth;
-	if ((_REG_RS(&thread->registers) = (struct register_t *)malloc(size)))
+	int size = sizeof(struct machine_register_t) * max_depth;
+	if ((_REG_RS(&thread->registers) = (struct machine_register_t *)malloc(size)))
 	{
 		memset(_REG_RS(&thread->registers), 0, size);
 		_REG_FRP(&thread->registers) = 0;

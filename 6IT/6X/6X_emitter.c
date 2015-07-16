@@ -16,7 +16,7 @@ _6X_METHODXXX(void, emit_string, struct expression_t *expression, int index, int
 	emitter->append_term(emitter, expression, &term, source_position);
 }
 
-_6X_METHODXXX(void, emit_variable, struct expression_t *expression, struct register_t const *var, int source_position)
+_6X_METHODXXX(void, emit_variable, struct expression_t *expression, struct machine_register_t const *var, int source_position)
 {
 	struct expression_emitter_t *emitter = &_This->machine->expression_emitter;
 

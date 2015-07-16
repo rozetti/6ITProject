@@ -46,7 +46,7 @@ struct value_t
 	data_type_t type;
 };
 
-struct register_t
+struct machine_register_t
 {
 	struct value_t value;
 	int16_t idx;
@@ -63,7 +63,7 @@ struct register_metadata_t
 
 struct machine_registers_t
 {
-	struct register_t *register_stack;
+	struct machine_register_t *register_stack;
 	int register_stack_top_index;
 	struct value_t *evaluator_stack;
 	struct value_t *evaluator_stack_top_pointer;
@@ -77,17 +77,17 @@ struct machine_registers_t
 	struct callable_unit_t *callable_unit_segment;
 	void *data_segment;
 
-	struct register_t FRP; // crz: free absolute register pointer
-	struct register_t FXP; // crz: free expression pointer
-	struct register_t FCP;
-	struct register_t DS;
-	struct register_t FDP;
-	//struct register_t SS; // crz: string segment
-	struct register_t FSP; // crz: free string pointer
-	//struct register_t US;
-	struct register_t FUP;
-	struct register_t ACC;
-	struct register_t CMP;
+	struct machine_register_t FRP; // crz: free absolute register pointer
+	struct machine_register_t FXP; // crz: free expression pointer
+	struct machine_register_t FCP;
+	struct machine_register_t DS;
+	struct machine_register_t FDP;
+	//struct machine_register_t SS; // crz: string segment
+	struct machine_register_t FSP; // crz: free string pointer
+	//struct machine_register_t US;
+	struct machine_register_t FUP;
+	struct machine_register_t ACC;
+	struct machine_register_t CMP;
 
 };
 

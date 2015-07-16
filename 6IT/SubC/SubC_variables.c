@@ -55,17 +55,17 @@ _6IT_PRIVATE char const *type_description(data_type_t type)
 	return buff;
 }
 
-_6IT_PRIVATE struct register_t *_6IT_MACHINECALLXX(push_local_variable, data_type_t type, char const *name)
+_6IT_PRIVATE struct machine_register_t *_6IT_MACHINECALLXX(push_local_variable, data_type_t type, char const *name)
 {
-	struct register_t *var = _Machine->allocate_frame_register(_Machine, type);
+	struct machine_register_t *var = _Machine->allocate_frame_register(_Machine, type);
 	_Machine->register_set_symbol(_Machine, var->idx, name);
 
 	return var;
 }
 
-_6IT_PRIVATE struct register_t *_6IT_MACHINECALLXX(add_global_variable, data_type_t type, char const *name)
+_6IT_PRIVATE struct machine_register_t *_6IT_MACHINECALLXX(add_global_variable, data_type_t type, char const *name)
 {
-	struct register_t *var = _Machine->allocate_free_static_register(_Machine, type);
+	struct machine_register_t *var = _Machine->allocate_free_static_register(_Machine, type);
 	_Machine->register_set_symbol(_Machine, var->idx, name);
 
 	return var;

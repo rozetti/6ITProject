@@ -64,7 +64,7 @@ struct evaluator_stack_t
 // todo crz: tidy this
 struct frame_t
 {
-	struct register_t *frame_registers;
+	struct machine_register_t *frame_registers;
 	opcode_t *entry_ip;
 	opcode_t *return_ip;
 	struct value_t return_value;
@@ -205,8 +205,8 @@ struct expression_emitter_t
 	void(*emit_binary_operator)(struct expression_emitter_t*, struct expression_t*, int op, int source_position);
 	void(*emit_opcode)(struct expression_emitter_t*, struct expression_t*, int op, int source_position);
 	void(*emit_unary_operator)(struct expression_emitter_t*, struct expression_t*, int op, int source_position);
-	void(*emit_frame_register_assignment)(struct expression_emitter_t*, struct expression_t*, struct register_t const*, int op, int source_position);
-	void(*emit_static_register_assignment)(struct expression_emitter_t*, struct expression_t*, struct register_t const*, int op, int source_position);
+	void(*emit_frame_register_assignment)(struct expression_emitter_t*, struct expression_t*, struct machine_register_t const*, int op, int source_position);
+	void(*emit_static_register_assignment)(struct expression_emitter_t*, struct expression_t*, struct machine_register_t const*, int op, int source_position);
 };
 
 struct machine_t
@@ -265,12 +265,12 @@ struct machine_t
 	void(*printf)(struct machine_t*, char const *format, ...);
 	// crz: register methods
 
-	struct register_t *(*allocate_frame_register)(struct machine_t*, int type);
-	struct register_t *(*allocate_free_static_register)(struct machine_t*, int type);
-	struct register_t *(*allocate_static_register)(struct machine_t*, int idx);
-	struct register_t *(*find_frame_register)(struct machine_t*, char const *symbol);
-	struct register_t *(*find_static_register)(struct machine_t*, char const *symbol);
-	struct register_t *(*find_register)(struct machine_t*, char const *symbol);
+	struct machine_register_t *(*allocate_frame_register)(struct machine_t*, int type);
+	struct machine_register_t *(*allocate_free_static_register)(struct machine_t*, int type);
+	struct machine_register_t *(*allocate_static_register)(struct machine_t*, int idx);
+	struct machine_register_t *(*find_frame_register)(struct machine_t*, char const *symbol);
+	struct machine_register_t *(*find_static_register)(struct machine_t*, char const *symbol);
+	struct machine_register_t *(*find_register)(struct machine_t*, char const *symbol);
 	char const *(*register_get_symbol)(struct machine_t*, int idx);
 	void(*register_set_symbol)(struct machine_t*, int idx, char const *name);
 	struct register_metadata_t *(*get_register_metadata)(struct machine_t*, int idx);

@@ -301,7 +301,7 @@ _6UG_METHOD(void, print_evaluator_state)
 //}
 
 
-_6UG_METHODX(void, print_register, struct register_t *v)
+_6UG_METHODX(void, print_register, struct machine_register_t *v)
 {
 	struct machine_t *machine = _This->machine;
 
@@ -378,7 +378,7 @@ _6UG_METHOD(void, print_relative_registers)
 				machine->printf(machine, "    ");
 			}
 
-			struct register_t *v = _REG_RS(_REGS(machine)) + i;
+			struct machine_register_t *v = _REG_RS(_REGS(machine)) + i;
 
 			_This->print_register(_This, v);
 		}
@@ -399,7 +399,7 @@ _6UG_METHOD(void, print_absolute_registers)
 	{
 		for (int i = 0; i < _REG_FRP(_REGS(machine)); i++)
 		{
-			struct register_t *v = _REG_RS(_REGS(machine)) + i;
+			struct machine_register_t *v = _REG_RS(_REGS(machine)) + i;
 			machine->printf(machine, "\t");
 			_This->print_register(_This, v);
 		}

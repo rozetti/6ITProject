@@ -13,7 +13,7 @@ _6IT_PRIVATE int _6IT_MACHINECALL(_6EV_evaluate_debug)
 _6IT_PRIVATE int _6IT_MACHINECALL(_6EV_evaluate)
 #endif
 {
-	struct register_t *var;
+	struct machine_register_t *var;
 	struct expression_term_t *term = _REG_XS(_REGS(_Machine)) + _REG_VPC(_REGS(_Machine));
 
 #ifdef EVALUATOR_WITH_DEBUGGER
