@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/Assets">
+        <file alias="test_binding.subc">test_binding.subc</file>
+        <file alias="test_fibonacci_lua.lua">test_fibonacci_lua.lua</file>
+        <file alias="test_fibonacci_lua.subc">test_fibonacci_lua.subc</file>
+        <file alias="test_fibonacci_native.subc">test_fibonacci_native.subc</file>
+        <file alias="test_fibonacci_subc.subc">test_fibonacci_subc.subc</file>
+        <file alias="test_float.subc">test_float.subc</file>
+        <file alias="test_function_call.subc">test_function_call.subc</file>
+        <file alias="test_globals.subc">test_globals.subc</file>
+        <file alias="test_if.subc">test_if.subc</file>
+        <file alias="test_loops.subc">test_loops.subc</file>
+        <file alias="test_main.subc">test_main.subc</file>
+        <file alias="test_operators.subc">test_operators.subc</file>
+        <file alias="test_threads.subc">test_threads.subc</file>
+    </qresource>
+</RCC>
