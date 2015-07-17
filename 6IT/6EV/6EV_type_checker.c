@@ -186,6 +186,7 @@ _6IT_PRIVATE int _6IT_MACHINECALLXX(_6EV_check_expression, struct expression_par
 
 		case EVALUATOR_OPCODE_ALLOC_FREG:
 		case EVALUATOR_OPCODE_ALLOC_SREG:
+			// todo crz: type checker should probably not leave stuff on the stack
 			PUSH_INT(_Machine, 0);
 			break;
 

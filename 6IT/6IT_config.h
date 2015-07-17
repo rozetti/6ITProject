@@ -12,9 +12,9 @@
 #define REGISTER_STACK_INDEX_BASED
 #define _6IT_STACK_DISPATCH
 //#define _6IT_SUPPORT_LUA
-//#define _6IT_SUPPORT_INTERRUPTS
+#define _6IT_SUPPORT_INTERRUPTS
 //#define _6IT_SUPPORT_THREADS
-//#define _6IT_DEBU66ER
+#define _6IT_DEBU66ER
 
 #if defined(NDEBUG) || defined(DEBUG)
 #define _6IT_CHECKED_BUILD
